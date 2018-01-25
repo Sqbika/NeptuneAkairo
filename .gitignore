@@ -62,3 +62,4 @@ typings/
 Auth/
 
 Auth/auth.json
+postgresql/auth.json

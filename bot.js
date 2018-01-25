@@ -1,3 +1,4 @@
+var bootStart = new Date();
 const { Akairo } = require('discord-akairo');
 const config = require('./config.json');
 
@@ -11,3 +12,14 @@ const client = new Akairo({
 });
 
 client.login(require(config.loginToken).login);
+
+
+function boot() {
+    client.sqbika = {
+        DBMSG: require('./postgresql/models/message'),
+        GSETTINGS: require('./postgresql/models/gsettings'),
+        REMINDS: require('./postgresql/models/reminds'),
+        NEP: require('./postgresql/models/gamindustri'),
+        helper: require('./Modules/helper.js')
+    };
+}
