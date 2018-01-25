@@ -1,0 +1,8 @@
+{
+    "ownerID": "132136706378956800",
+    "prefix": "nep",
+    "commandDirectory": "./Commands/",
+    "inhibitorDirectory": "./Inhibitors/",
+    "listenerDirectory": "./Listeners/",
+    "loginToken": "./Auth/auth.json"
+}

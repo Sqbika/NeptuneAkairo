@@ -1,0 +1,16 @@
+{
+  "name": "neptuneakairo",
+  "version": "2.0.0",
+  "description": "Discord.JS Bot based on DiscordAkairo",
+  "main": "bot.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "keywords": [
+    "discord",
+    "bot",
+    "neptune"
+  ],
+  "author": "Sqbika",
+  "license": "MIT"
+}
