@@ -20,6 +20,10 @@ function boot() {
 		GSETTINGS: require('./postgresql/models/gsettings'),
 		REMINDS: require('./postgresql/models/reminds'),
 		NEP: require('./postgresql/models/gamindustri'),
-		helper: require('./Modules/helper.js')
+        helper: require('./Modules/helper.js'),
+        wt: {
+            whitelist: require('./JSONS/wt-whitelist.json'),
+            whatsnewChannels: []
+        }
 	};
 }
