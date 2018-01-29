@@ -9,7 +9,7 @@ module.exports = class MessageToDBListener extends Listener {
 		});
 	}
 
-	exec({ ID, msg }) {
+	exec(msg) {
 		if(!msg.author.bot && !msg.client.sqbika.helper.scontains(msg.client.sqbika.config.dbexclude, msg.channel.id) && msg.guild !== null && msg.content.length < 255) {
 			msg.client.sqbika.DBMSG.sync().then(() => {
 				msg.client.sqbika.DBMSG.create({

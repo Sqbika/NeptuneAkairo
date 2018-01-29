@@ -9,7 +9,7 @@ module.exports = class WakingTitan extends Listener {
 		});
 	}
 
-	exec({ ID, msg }) {
+	exec(msg) {
 		if(msg.client.sqbika.wt.whatsnewChannels.indexOf(msg.channel.id) !== -1) {
 			var whitelist = msg.client.sqbika.wt.whitelist.whitelist;
 			var result = false;
