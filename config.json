@@ -4,5 +4,10 @@
     "commandDirectory": "./Commands/",
     "inhibitorDirectory": "./Inhibitors/",
     "listenerDirectory": "./Listeners/",
-    "loginToken": "./Auth/auth.json"
+    "loginToken": "./Auth/auth.json",
+    "channels": {
+        "log": "",
+        "error": "",
+        "blocked": ""
+    }
 }

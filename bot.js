@@ -19,7 +19,8 @@ function boot() {
 		DBMSG: require('./postgresql/models/message'),
 		GSETTINGS: require('./postgresql/models/gsettings'),
 		REMINDS: require('./postgresql/models/reminds'),
-		NEP: require('./postgresql/models/gamindustri'),
+        NEP: require('./postgresql/models/gamindustri'),
+        config: config,
         helper: require('./Modules/helper.js'),
         wt: {
             whitelist: require('./JSONS/wt-whitelist.json'),
