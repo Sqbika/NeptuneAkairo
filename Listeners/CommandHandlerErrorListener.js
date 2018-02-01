@@ -11,18 +11,19 @@ module.exports = class CommandHandlerCommandBlockedListener extends Listener {
 
 	exec(error, msg, command) {
         try {
-            return `-----------------------------------
+            msg.channels.get(msg.client.sqbika.config.channels.error).send(`-----------------------------------
         [ERROR] - Command: ${command.id} throwed error.
          Issed by: \`${msg.author.username}#${msg.author.discriminator} / ${msg.author.id}\`
         On: \`${msg.guild === null ? msg.channel.recipient : msg.guild.name}/${msg.channel.name}\`
         
         At: ${new Date()}
-        -----------------------------------`;
+        -----------------------------------`);
         } catch(Ee) {
-            return `-----------------------------------
+            msg.channels.get(msg.client.sqbika.config.channels.error).send(`-----------------------------------
         [ERROR] - Command: ${command.id} throwed error.
          At: ${new Date()}
-        -----------------------------------`;
+        -----------------------------------`);
         }
+    }
 };
 
