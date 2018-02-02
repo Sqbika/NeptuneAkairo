@@ -20,13 +20,19 @@ function boot() {
 		GSETTINGS: require('./postgresql/models/gsettings'),
 		REMINDS: require('./postgresql/models/reminds'),
         NEP: require('./postgresql/models/gamindustri'),
-        config: config,
+		config: config,
+		bus: require('./Framework/bus.js'),
+		remind: require('./Framework/remind.js'),
         helper: require('./Modules/helper.js'),
         wt: {
             whitelist: require('./JSONS/wt-whitelist.json'),
             whatsnewChannels: ['318345958138314752']
         }
 	};
+}
+
+function setupFramework() {
+
 }
 
 boot();
