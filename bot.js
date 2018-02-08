@@ -8,7 +8,9 @@ const client = new AkairoClient({
 	allowMention: true,
 	commandDirectory: config.commandDirectory,
 	inhibitorDirectory: config.inhibitorDirectory,
-	listenerDirectory: config.listenerDirectory
+	listenerDirectory: config.listenerDirectory,
+	disableEveryone: true,
+	disabledEvents: ['TYPING_START']
 });
 
 client.login(require(config.loginToken).loginToken);

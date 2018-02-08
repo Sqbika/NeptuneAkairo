@@ -9,19 +9,23 @@ module.exports = class NotifyCommand extends Command {
 					id: 'sub',
 					type: ['addpin', 'addword', 'removepin', 'removeword', 'enable', 'disable', 'list', 'help'],
 					default: 'help',
-					description: 'Choose one of the sub commands.'
+					description: {
+						content: "Notification plugin.",
+						usage: "<sub> <argument depending on sub> <words if sub is addword>",
+						examples: ['addpin #channel-name', 'addword anywhere Sqbika']
+					}
 				}, {
 					id: 'arg2',
 					type: (word, message, args) => {
 						switch(args.sub) {
 							case 'addpin':
 							case 'addword':
-								return 'textChannel';
+								return this.handler.resolver.type('textChannel');
 							case 'removepin':
 							case 'removeword':
 							case 'enable':
 							case 'disable':
-								return 'integer';
+								return this.handler.resolver.type('integer');
 						}
 					},
 					prompt: {
