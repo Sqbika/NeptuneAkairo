@@ -3,14 +3,7 @@ const { AkairoClient } = require('discord-akairo');
 const config = require('./config.json');
 
 const client = new AkairoClient({
-	ownerID: config.ownerID,
-	prefix: config.prefix,
-	allowMention: true,
-	commandDirectory: config.commandDirectory,
-	inhibitorDirectory: config.inhibitorDirectory,
-	listenerDirectory: config.listenerDirectory,
-	disableEveryone: true,
-	disabledEvents: ['TYPING_START']
+	
 });
 
 client.login(require(config.loginToken).loginToken);

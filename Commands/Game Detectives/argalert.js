@@ -16,6 +16,7 @@ module.exports = class ArgalertCommand extends Command {
 			}]
 		});
 	}
+}
 
 module.exports = class ArgAlertCommand extends Command {
 	constructor(client) {

@@ -33,13 +33,10 @@ module.exports = class NepCommand extends Command {
 				const result = this.makeResultMessages(val, process.hrtime(this.hrStart));
 				if(Array.isArray(result)) {
 					for(const item of result) {
-						if(this.client.selfbot) msg.say(item); else msg.reply(item);
+						msg.reply(item);
 					}
-				} else if(this.client.selfbot) {
-					msg.say(result);
-				} else {
+				} else
 					msg.reply(result);
-				}
 			}
 		};
 		/* eslint-enable no-unused-vars */
@@ -57,17 +54,7 @@ module.exports = class NepCommand extends Command {
 		// Prepare for callback time and respond
 		this.hrStart = process.hrtime();
 		let response = this.makeResultMessages(this.lastResult, hrDiff, args.script, msg.editable);
-		if(msg.editable) {
-			if(response instanceof Array) {
-				if(response.length > 0) response = response.slice(1, response.length - 1);
-				for(const re of response) msg.say(re);
-				return null;
-			} else {
-				return msg.edit(response);
-			}
-		} else {
-			return msg.reply(response);
-		}
+		return msg.reply(response);
 	}
 
 	makeResultMessages(result, hrDiff, input = null, editable = false) {
