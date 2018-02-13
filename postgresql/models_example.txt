@@ -4,15 +4,7 @@ SETTINGS:
     "settings": {
 
     },
-    "WT": {
-        "whitelist": {
-
-        },
-        "channels": [
-        ],
-
-    }
-    "ARGs": {
+    "args": {
         <argID1>: {
             leavemealone: [],
             argalert: [],
@@ -23,6 +15,6 @@ SETTINGS:
         }
     }
     "notify": [
-        
+
     ]
 }

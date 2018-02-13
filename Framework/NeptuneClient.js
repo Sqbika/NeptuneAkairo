@@ -22,4 +22,9 @@ class NeptuneClient extends AkairoClient {
 			dataColumn: 'JSON'
 		});
 	}
+
+	login(auth) {
+		super(auth);
+		//this.bus
+	}
 }
