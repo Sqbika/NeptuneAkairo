@@ -1,0 +1,28 @@
+SETTINGS:
+
+<guildId>: {
+    "settings": {
+
+    },
+    "WT": {
+        "whitelist": {
+
+        },
+        "channels": [
+        ],
+
+    }
+    "ARGs": {
+        <argID1>: {
+            leavemealone: [],
+            argalert: [],
+        },
+        <argID2>: {
+            leavemealone: [],
+            argalert: [],
+        }
+    }
+    "notify": [
+        
+    ]
+}
