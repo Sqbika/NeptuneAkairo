@@ -38,9 +38,33 @@ let QUESTS = database.db.define('quests', {
 	Completed: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
 });
 
+let DBMSG = database.db.define('dbmsg', {
+	Time: { type: Sequelize.BIGINT },
+	Author: { type: Sequelize.BIGINT },
+	Content: { type: Sequelize.STRING },
+	Channel: { type: Sequelize.BIGINT },
+	Server: { type: Sequelize.BIGINT }
+});
+
+let REMINDS = database.db.define('reminds', {
+	Where: { type: Sequelize.STRING },
+	When: { type: Sequelize.DATE },
+	What: { type: Sequelize.TEXT },
+	Who: { type: Sequelize.BIGINT }
+});
+
+let SETTINGS = database.db.define('settings', {
+    Guild: { type: Sequelize.BIGINT },
+    JSON: { type: Sequelize.JSONB }
+});
+
+
 NEPUSR.sync();
 NATION.sync();
 COMPANIONS.sync();
 QUESTS.sync();
+DBMSG.sync();
+REMINDS.sync();
+SETTINGS.sync();
 
-module.exports = { NEPUSR, NATION, COMPANIONS, QUESTS };
+module.exports = { NEPUSR, NATION, COMPANIONS, QUESTS, DBMSG, REMINDS, SETTINGS };
