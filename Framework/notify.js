@@ -41,7 +41,7 @@ function gibRegex(input) {
 }
 
 function enableN(msg, id) {
-	var file = getJSON();
+	var file = getJSON(msg);
 	if (isDM(msg)) {
 		return "Cannot Enable Notify in a DM channel";
 	} else {

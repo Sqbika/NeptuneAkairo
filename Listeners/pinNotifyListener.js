@@ -2,7 +2,7 @@ const { Listener } = require('discord-akairo');
 
 module.exports = class pinNotifyListener extends Listener {
 	constructor() {
-		super('channelPinsUpdate', {
+		super('pinNotifyListener', {
 			emitter: 'client',
 			eventName: 'channelPinsUpdate',
 			category: 'Notify'

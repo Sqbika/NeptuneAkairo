@@ -10,7 +10,7 @@ SETTINGS:
     },
     "args": {
         <argID1>: {
-            leavemealone: {
+            whatsnew: {
                 blacklist: [],
                 regexList: [],
                 text: ""
