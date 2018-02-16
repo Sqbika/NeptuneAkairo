@@ -2,19 +2,37 @@ SETTINGS:
 
 <guildId>: {
     "settings": {
+        admins: [],
+        logChannel: ,
+        argDelete: true,
+        leaveMeAlone: true,
 
     },
     "args": {
         <argID1>: {
-            leavemealone: [],
-            argalert: [],
+            leavemealone: {
+                blacklist: [],
+                regexList: [],
+                text: ""
+            }
+            argalert: {
+                channel: "",
+                users: []
+            }
+            channels: [],
+            details: {
+                description: "",
+                wiki: "",
+                active: true/false
+            }
         },
         <argID2>: {
-            leavemealone: [],
-            argalert: [],
+            .
+            .
+            .
         }
     }
-    "notify": [
-
-    ]
+    "notify": {
+        
+    }
 }
