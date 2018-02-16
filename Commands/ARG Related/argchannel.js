@@ -1,9 +1,9 @@
 const { Command } = require('discord-akairo');
 
-module.exports = class ArgSetChannelCommand extends Command {
+module.exports = class ArgChannelCommand extends Command {
 	constructor() {
-		super('argsetchannel', {
-            description: 'Sets an ARGs channel.',
+		super('argchannel', {
+            description: 'Adds the channel for the ARG List',
             channelRestriction: 'guild',
 			args: [
                 {
@@ -17,6 +17,14 @@ module.exports = class ArgSetChannelCommand extends Command {
                         retry: "Please provide an existing ARG to set the main channel. ARGs: \`" + Object.keys(msg.client.options.get(msg.guild.id, "args")).join(', ') + "\`"
                     }
                 }, {
+                    id: "type",
+                    type: ["add", "remove"],
+                    prompt: {
+                        retries: 2,
+                        start: "Do you want to **add** or **remove** a channel?",
+                        retry: "You need to choose either **add** or **remove**"
+                    }
+                },{
                     id: "channel",
                     type: 'channel',
                     prompt: {
@@ -33,11 +41,15 @@ module.exports = class ArgSetChannelCommand extends Command {
         return msg.client.settings.get(msg.guild.id, "settings")[admins].indexOf(msg.author.id) !== -1;
     }
 
-	exec(msg, { arg, channel }) {
+	exec(msg, { arg, type, channel }) {
         if (msg.deletable && msg.guild.settings.get(msg.guild.id, "settings")["argDelete"]) msg.delete();
         var argObject = msg.guild.settings.get(msg.guild.id, "args");
-        argObject[arg]["channel"] = channel.id;
+        if (type == "add") {
+            argObject[arg]["channels"].push(channel.id);
+        } else {
+            argObject[arg]["channels"].splice(argObject[arg]["channels"].indexOf(channel.id), 1);
+        }
         msg.guild.settings.set(msg.guild.id, "args", argObject);
-        msg.reply("Successfully set the channel for the ARG.").delete(10000);
+        msg.reply("Successfully **" + type + "ed** channel.").delete(10000);
     }
 }

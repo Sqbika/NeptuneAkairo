@@ -1,9 +1,9 @@
 const { Command } = require('discord-akairo');
 
-module.exports = class ArgSetChannelCommand extends Command {
+module.exports = class ArgSetDescriptionCommand extends Command {
 	constructor() {
-		super('argsetchannel', {
-            description: 'Sets an ARGs channel.',
+		super('argsetdesc', {
+            description: 'Sets an ARGs Description.',
             channelRestriction: 'guild',
 			args: [
                 {
@@ -13,16 +13,16 @@ module.exports = class ArgSetChannelCommand extends Command {
                     },
                     prompt: {
                         retries: 2,
-                        start: "Please provide a name for the ARG to set the main channel.",
-                        retry: "Please provide an existing ARG to set the main channel. ARGs: \`" + Object.keys(msg.client.options.get(msg.guild.id, "args")).join(', ') + "\`"
+                        start: "Please provide of the ARG.",
+                        retry: "Please provide an existing ARG. ARGs: \`" + Object.keys(msg.client.options.get(msg.guild.id, "args")).join(', ') + "\`"
                     }
                 }, {
-                    id: "channel",
-                    type: 'channel',
+                    id: "text",
+                    match: 'rest',
                     prompt: {
                         retries: 2,
-                        start: "Please provide a channel to set the ARGs main channel",
-                        retry: "Please provide a channel to set the ARGs main channel"
+                        start: "Please provide the text you want to set the Description to be.",
+                        retry: "Please provide the text you want to set the Description to be."
                     }
                 }
             ]
@@ -33,11 +33,11 @@ module.exports = class ArgSetChannelCommand extends Command {
         return msg.client.settings.get(msg.guild.id, "settings")[admins].indexOf(msg.author.id) !== -1;
     }
 
-	exec(msg, { arg, channel }) {
+	exec(msg, { arg, text }) {
         if (msg.deletable && msg.guild.settings.get(msg.guild.id, "settings")["argDelete"]) msg.delete();
         var argObject = msg.guild.settings.get(msg.guild.id, "args");
-        argObject[arg]["channel"] = channel.id;
+        argObject[arg]["details"]["description"] = text
         msg.guild.settings.set(msg.guild.id, "args", argObject);
-        msg.reply("Successfully set the channel for the ARG.").delete(10000);
+        msg.reply("Successfully set the Description for the ARG.").delete(10000);
     }
 }

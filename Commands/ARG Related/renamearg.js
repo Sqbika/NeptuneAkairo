@@ -30,6 +30,10 @@ module.exports = class RenameArgCommand extends Command {
             ]
 		});
 	}
+    
+    userPermissions(msg) {
+        return msg.client.settings.get(msg.guild.id, "settings")[admins].indexOf(msg.author.id) !== -1;
+    }
 
 	exec(msg, { what, toWhat }) {
         if (msg.deletable && msg.guild.settings.get(msg.guild.id, "settings")["argDelete"]) msg.delete();

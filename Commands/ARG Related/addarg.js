@@ -19,7 +19,11 @@ module.exports = class AddArgCommand extends Command {
                 }
             ]
 		});
-	}
+    }
+        
+    userPermissions(msg) {
+        return msg.client.settings.get(msg.guild.id, "settings")[admins].indexOf(msg.author.id) !== -1;
+    }
 
 	exec(msg, { argName }) {
         if (msg.deletable && msg.guild.settings.get(msg.guild.id, "settings")["argDelete"]) msg.delete();
