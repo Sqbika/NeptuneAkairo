@@ -3,10 +3,8 @@ SETTINGS:
 <guildId>: {
     "settings": {
         admins: [],
-        logChannel: ,
         argDelete: true,
-        leaveMeAlone: true,
-
+        leaveMeAlone: true
     },
     "args": {
         <argID1>: {
