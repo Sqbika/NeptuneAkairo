@@ -10,7 +10,7 @@ module.exports = class CommandHandlerCommandStartedListener extends Listener {
 	}
 
 	exec(msg, command) {
-        msg.channels.get(msg.client.sqbika.config.channels.log).send(`-----------------------------------
+        msg.channels.get(msg.client.config.channels.log).send(`-----------------------------------
 [CMD] - Issued Command: ${command.id}
      Issued by: \`${msg.author.username}#${msg.author.discriminator} / ${msg.author.id}\`
      On: \`${msg.guild === null ? msg.channel.recipient : msg.guild.name}/${msg.channel.name}\`

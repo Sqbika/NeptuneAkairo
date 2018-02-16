@@ -10,7 +10,7 @@ module.exports = class CommandHandlerCommandBlockedListener extends Listener {
 	}
 
 	exec(msg, command, reason) {
-        msg.channels.get(msg.client.sqbika.config.channels.blocked).send(`-----------------------------------
+        msg.channels.get(msg.client.config.channels.blocked).send(`-----------------------------------
 [BLOCK] - Command: ${command.id} was blocked.
     Issed by: \`${msg.author.username}#${msg.author.discriminator} / ${msg.author.id}\`
      On: \`${message.guild === null ? msg.channel.recipient : msg.guild.name}/${msg.channel.name}\`
