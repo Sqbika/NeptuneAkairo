@@ -13,7 +13,8 @@ class NeptuneClient extends AkairoClient {
 			disabledEvents: ['TYPING_START']
 		});
 
-		this.database = require('../postgresql/models.js');
+        this.database = require('../postgresql/models.js');
+        this.notify = require('./notify');
 		this.config = config;
 		this.bus = require('./bus.js');
 		this.remind = require('./remind');
