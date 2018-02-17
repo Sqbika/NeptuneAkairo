@@ -5,6 +5,7 @@ module.exports = class ArgalertCommand extends Command {
 		super('argalert', {
 			aliases: ['argalert'],
 			description: 'ARGAlert Sub Command.',
+			usage: 'See argalert help',
 			channelRestriction: 'guild',
 			args: [{
 				id: 'sub',
@@ -91,7 +92,7 @@ Possible Commands:
 **notify**: Notifies the users in the list about the arg + string (MODERATORS ONLY) | Usage: nep argalert <argName> notify <string>
 **help**: This. | Usage: nep argalert help
 
-Possible <argName>s: \`${Object.keys(msg.client.options.get(msg.guild.id, 'args')).join(', ')}\`
+Possible <argName>s: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\`
 `;
 }
 

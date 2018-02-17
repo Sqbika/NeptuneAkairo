@@ -13,7 +13,7 @@ module.exports = class AddArgCommand extends Command {
 					prompt: {
 						retries: 2,
 						start: 'Please provide a name for the ARG for the users to use. It cannot be the same as an existing one.',
-						retry: (msg) => `Please provide a non-existant name in the database for the ARG. Names in the database: \`${Object.keys(msg.client.options.get(msg.guild.id, 'args')).join(', ')}\``
+						retry: (msg) => `Please provide a non-existant name in the database for the ARG. Names in the database: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
 					}
 				}
 			]
