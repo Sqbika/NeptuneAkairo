@@ -9,5 +9,6 @@
         "log": "",
         "error": "",
         "blocked": ""
-    }
+    },
+	"color": "#69359c"
 }
