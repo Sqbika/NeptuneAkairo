@@ -1,8 +1,9 @@
 const { Command } = require('discord-akairo');
 
-module.exports = class TalkCommand extends Command {
+module.exports = class QueryCommand extends Command {
 	constructor() {
-		super('talk', {
+		super('query', {
+			aliases: ['query'],
 			description: 'Database Query.',
 			ownerOnly: true,
 			args: [{

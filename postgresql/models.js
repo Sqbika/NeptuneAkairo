@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const Database = require('../postgresql');
+const Database = require('./postgresql');
 
 const database = new Database();
 
@@ -54,8 +54,8 @@ let REMINDS = database.db.define('reminds', {
 });
 
 let SETTINGS = database.db.define('settings', {
-    Guild: { type: Sequelize.BIGINT },
-    JSON: { type: Sequelize.JSONB }
+	Guild: { type: Sequelize.BIGINT },
+	JSON: { type: Sequelize.JSONB }
 });
 
 

@@ -10,6 +10,7 @@ const nlPattern = new RegExp(nl, 'g');
 module.exports = class NepCommand extends Command {
 	constructor() {
 		super('nep', {
+			aliases: ['nep', 'eval'],
 			ownerOnly: true,
 			protected: true,
 			args: [
@@ -35,8 +36,9 @@ module.exports = class NepCommand extends Command {
 					for(const item of result) {
 						msg.reply(item);
 					}
-				} else
+				} else					{
 					msg.reply(result);
+				}
 			}
 		};
 		/* eslint-enable no-unused-vars */

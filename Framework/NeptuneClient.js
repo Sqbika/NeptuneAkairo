@@ -13,8 +13,8 @@ class NeptuneClient extends AkairoClient {
 			disabledEvents: ['TYPING_START']
 		});
 
-        this.database = require('../postgresql/models.js');
-        this.notify = require('./notify');
+		this.database = require('../postgresql/models.js');
+		this.notify = require('./notify');
 		this.config = config;
 		this.bus = require('./bus.js');
 		this.remind = require('./remind');
@@ -24,9 +24,11 @@ class NeptuneClient extends AkairoClient {
 		});
 	}
 
-	login(auth) {
-		super(auth);
+	start(auth) {
+		this.login(auth);
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 	}
 }
+
+module.exports = NeptuneClient;

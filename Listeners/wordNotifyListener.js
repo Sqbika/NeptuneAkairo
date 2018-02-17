@@ -10,6 +10,6 @@ module.exports = class NotifyListener extends Listener {
 	}
 
 	async exec(msg) {
-        msg.client.notify.checkWordNotify(msg);
+		msg.client.notify.checkWordNotify(msg);
 	}
 };
