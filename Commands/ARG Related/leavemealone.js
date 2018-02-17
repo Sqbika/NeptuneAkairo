@@ -25,6 +25,6 @@ module.exports = class LeavemealoneCommand extends Command {
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[arg].leavemealone.blacklist.push(msg.author.id);
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('Successfully added you to the blacklist.').delete(10000);
+		msg.reply('Successfully added you to the blacklist.').then((me) => me.delete(10000));
 	}
 };

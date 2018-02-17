@@ -50,6 +50,6 @@ module.exports = class ArgSetActivityCommand extends Command {
 		}
 		argObject[arg].details.active = active;
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('Successfully set the Active for the ARG.').delete(10000);
+		msg.reply('Successfully set the Active for the ARG.').then((me) => me.delete(10000));
 	}
 };

@@ -37,6 +37,6 @@ module.exports = class ArgSetChannelCommand extends Command {
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[arg].channel = channel.id;
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('Successfully set the channel for the ARG.').delete(10000);
+		msg.reply('Successfully set the channel for the ARG.').then((me) => me.delete(10000));
 	}
 };

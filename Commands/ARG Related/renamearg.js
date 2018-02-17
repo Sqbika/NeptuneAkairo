@@ -38,6 +38,6 @@ module.exports = class RenameArgCommand extends Command {
 		argObject[toWhat] = argObject[what];
 		delete argObject[what];
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('ARG Successfully renamed in the database.').delete(10000);
+		msg.reply('ARG Successfully renamed in the database.').then((me) => me.delete(10000));
 	}
 };

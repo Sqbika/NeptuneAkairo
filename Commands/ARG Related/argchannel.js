@@ -49,6 +49,6 @@ module.exports = class ArgChannelCommand extends Command {
 			argObject[arg].channels.splice(argObject[arg].channels.indexOf(channel.id), 1);
 		}
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply(`Successfully **${type}ed** channel.`).delete(10000);
+		msg.reply(`Successfully **${type}ed** channel.`).then((me) => me.delete(10000));
 	}
 };

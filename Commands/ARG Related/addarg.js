@@ -26,7 +26,7 @@ module.exports = class AddArgCommand extends Command {
 
 	async exec(msg, { argName }) {
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
-		msg.client.settings.set(msg.guild.id, 'args', msg.guild.settings.get(msg.guild.id, 'args')[argName] = {
+		msg.client.settings.set(msg.guild.id, 'args', msg.client.settings.get(msg.guild.id, 'args')[argName] = {
 			leavemealone: {
 				blacklist: [],
 				regexList: [],
@@ -38,6 +38,6 @@ module.exports = class AddArgCommand extends Command {
 			},
 			channels: [msg.channel.id]
 		});
-		msg.reply('ARG Successfully added to the database.').delete(10000);
+		msg.reply('ARG Successfully added to the database.').then((me) => me.delete(10000));
 	}
 };

@@ -37,6 +37,6 @@ module.exports = class ArgSetWikiLinkCommand extends Command {
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[arg].details.wiki = text;
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('Successfully set the Description for the ARG.').delete(10000);
+		msg.reply('Successfully set the Description for the ARG.').then((me) => me.delete(10000));
 	}
 };
