@@ -9,11 +9,11 @@ module.exports = class ArgSetActivityCommand extends Command {
 			args: [
 				{
 					id: 'arg',
-					type: (word, msg) => Object.keys(msg.client.options.get(msg.guild.id, 'args')).indexOf(word) !== -1,
+					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1,
 					prompt: {
 						retries: 2,
 						start: 'Please provide of the ARG.',
-						retry: (msg) => `Please provide an existing ARG. ARGs: \`${Object.keys(msg.client.options.get(msg.guild.id, 'args')).join(', ')}\``
+						retry: (msg) => `Please provide an existing ARG. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
 					}
 				}, {
 					id: 'active',

@@ -1,21 +1,23 @@
-const { Listener } = require('discord-akairo');
+const { Inhibitor } = require('discord-akairo');
 
-module.exports = class PreSetupListener extends Listener {
+module.exports = class PreSetupInhibitor extends Inhibitor {
 	constructor() {
 		super('preSetup', {
-			emitter: 'commandHandler',
-			eventName: 'commandStarted',
-			category: 'Essentials'
+			reason: 'noArgSetup'
 		});
 	}
 
 	exec(msg, command) {
-		if(msg.client.settings.get(msg.guild.id, 'settings', 'notFound') == 'notFound' && command.options.category == 'ARG Related') {
+		if(msg.client.settings.get(msg.guild.id, 'settings', 'notFound') == 'notFound' && command.category.id == 'ARG Related') {
 			if(msg.member.hasPermission('MANAGE_GULD')) {
 				msg.reply(`Please use \`${ msg.client.options.prefix} setup \` before using ARG related commands.`);
+				return true;
 			} else {
 				msg.reply(`Please notify higher ups to use \`${msg.client.options.prefix } setup \` before using ARG related commands.`);
+				return true;
 			}
+		} else {
+			return false;
 		}
 	}
 };

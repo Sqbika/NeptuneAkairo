@@ -10,6 +10,7 @@ class NeptuneClient extends AkairoClient {
 			inhibitorDirectory: config.inhibitorDirectory,
 			listenerDirectory: config.listenerDirectory,
 			disableEveryone: true,
+			automateCategories: true,
 			disabledEvents: ['TYPING_START']
 		});
 
@@ -28,6 +29,7 @@ class NeptuneClient extends AkairoClient {
 		this.login(auth);
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
+		this.settings.init();
 	}
 }
 

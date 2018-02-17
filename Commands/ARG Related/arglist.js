@@ -11,25 +11,27 @@ module.exports = class ArglistCommand extends Command {
 	}
 
 	exec(msg) {
-		var argObject = msg.guild.settings.get(msg.guild.id, 'args');
+		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		var result = '**List of ARGs**\nActive ARGs:\n```\n';
-		argObject.forEach((elem) => {
-			if(argObject[elem].details.active == true) {
-				result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
-			}
-		});
-		result += '```\nHiatus ARGs\n```\n';
-		argObject.forEach((elem) => {
-			if(argObject[elem].details.active !== true && argObject[elem].details.active !== false) {
-				result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
-			}
-		});
-		result += '```\nInactive ARGs\n```\n';
-		argObject.forEach((elem) => {
-			if(argObject[elem].details.active == false) {
-				result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
-			}
-		});
+		if(Object.keys(argObject).length !== 0) {
+			Object.keys(argObject).forEach((elem) => {
+				if(argObject[elem].details.active == true) {
+					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
+				}
+			});
+			result += '```\nHiatus ARGs\n```\n';
+			Object.keys(argObject).forEach((elem) => {
+				if(argObject[elem].details.active !== true && argObject[elem].details.active !== false) {
+					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
+				}
+			});
+			result += '```\nInactive ARGs\n```\n';
+			Object.keys(argObject).forEach((elem) => {
+				if(argObject[elem].details.active == false) {
+					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
+				}
+			});
+		} else { result += 'None.'; }
 		result += '```';
 		msg.reply(result, { split: { prepend: '```', append: '```' } });
 	}

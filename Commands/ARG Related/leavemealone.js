@@ -9,11 +9,11 @@ module.exports = class LeavemealoneCommand extends Command {
 			args: [
 				{
 					id: 'arg',
-					type: (word, msg) => Object.keys(msg.client.options.get(msg.guild.id, 'args')).indexOf(word) !== -1,
+					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1,
 					prompt: {
 						retries: 2,
 						start: 'Please provide a name for the ARG to set the main channel.',
-						retry: (msg) => `Please provide an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.options.get(msg.guild.id, 'args')).join(', ')}\``
+						retry: (msg) => `Please provide an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
 					}
 				}
 			]

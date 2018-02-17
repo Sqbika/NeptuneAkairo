@@ -15,7 +15,7 @@ module.exports = class NepCommand extends Command {
 			protected: true,
 			args: [
 				{
-					id: 'stuff',
+					id: 'script',
 					match: 'content'
 				}
 			]
