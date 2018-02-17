@@ -33,10 +33,10 @@ module.exports = class ArgSetChannelCommand extends Command {
 	}
 
 	exec(msg, { arg, channel }) {
-		if(msg.deletable && msg.guild.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
-		var argObject = msg.guild.settings.get(msg.guild.id, 'args');
+		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[arg].channel = channel.id;
-		msg.guild.settings.set(msg.guild.id, 'args', argObject);
+		msg.client.settings.set(msg.guild.id, 'args', argObject);
 		msg.reply('Successfully set the channel for the ARG.').delete(10000);
 	}
 };

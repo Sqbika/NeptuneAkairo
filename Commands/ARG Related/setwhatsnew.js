@@ -33,10 +33,10 @@ module.exports = class ArgSetWhatsNewCommand extends Command {
 	}
 
 	exec(msg, { arg, text }) {
-		if(msg.deletable && msg.guild.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
-		var argObject = msg.guild.settings.get(msg.guild.id, 'args');
+		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[arg].whatsnew.text = text;
-		msg.guild.settings.set(msg.guild.id, 'args', argObject);
+		msg.client.settings.set(msg.guild.id, 'args', argObject);
 		msg.reply('Successfully set the Whats New message for the ARG.').delete(10000);
 	}
 };

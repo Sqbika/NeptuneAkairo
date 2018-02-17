@@ -24,9 +24,9 @@ module.exports = class AddArgCommand extends Command {
 		return msg.client.settings.get(msg.guild.id, 'settings').admins.indexOf(msg.author.id) !== -1;
 	}
 
-	exec(msg, { argName }) {
-		if(msg.deletable && msg.guild.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
-		msg.guild.settings.set(msg.guild.id, 'args', msg.guild.settings.get(msg.guild.id, 'args')[argName] = {
+	async exec(msg, { argName }) {
+		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+		msg.client.settings.set(msg.guild.id, 'args', msg.guild.settings.get(msg.guild.id, 'args')[argName] = {
 			leavemealone: {
 				blacklist: [],
 				regexList: [],

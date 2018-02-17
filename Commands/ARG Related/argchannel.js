@@ -41,14 +41,14 @@ module.exports = class ArgChannelCommand extends Command {
 	}
 
 	exec(msg, { arg, type, channel }) {
-		if(msg.deletable && msg.guild.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
-		var argObject = msg.guild.settings.get(msg.guild.id, 'args');
+		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		if(type == 'add') {
 			argObject[arg].channels.push(channel.id);
 		} else {
 			argObject[arg].channels.splice(argObject[arg].channels.indexOf(channel.id), 1);
 		}
-		msg.guild.settings.set(msg.guild.id, 'args', argObject);
+		msg.client.settings.set(msg.guild.id, 'args', argObject);
 		msg.reply(`Successfully **${type}ed** channel.`).delete(10000);
 	}
 };
