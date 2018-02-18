@@ -214,7 +214,6 @@ function userHasPinNotify(user, channel, settings) {
 			}
 		}
 	});
-	console.log(yes);
 	return yes;
 }
 

@@ -4,6 +4,7 @@ module.exports = class HelpCommand extends Command {
 	constructor() {
 		super('help', {
 			aliases: ['help'],
+			usage: 'help <command>',
 			description: 'Lists all the commands',
 			args: [
 				{
@@ -42,7 +43,7 @@ module.exports = class HelpCommand extends Command {
 function funcDesc(command) {
 	return `
 **Description**: ${typeof command.description === Array ? command.description.join('\n') : command.description}
-**Usage**: ${command.usage ? command.usage : 'No Usage was provided. Please notify owner to provide one!'}
+**Usage**: ${command.usage ? `${command.client.config.prefix} ${command.usage}` : 'No Usage was provided. Please notify owner to provide one!'}
 **Enabled**: ${command.enabled}
 **Aliases**: \`${command.aliases.join(', ')}\`
 **Category**: \`${command.category}\`
@@ -53,7 +54,7 @@ ${command.args.map(ar => `  -**Name**: ${ar.id}
   -**Usage**: ${ar.description.usage !== undefined ? ar.description.usage : 'No Argument Usage was Provided. Yell at Developer please!'}
  `).join('\n')}
 
- **Cooldown**: ${command.cooldown ? `${command.cooldown } ms` : 'No Cooldown'}
+ **Cooldown**: ${command.cooldown ? `${command.cooldown} ms` : 'No Cooldown'}
  **Ratelimit**: ${command.cooldown ? `${command.ratelimit} usage per cooldown` : 'Disabled'} 
 
  **User Permission Required**: ${command.userPermissions ? `Yes: ${command.userPermissions}` : 'No'}

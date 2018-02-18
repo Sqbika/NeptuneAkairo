@@ -45,7 +45,6 @@ module.exports = class ArgalertCommand extends Command {
 	async exec(msg, { sub, arg, text })		{
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var alertObject = msg.client.settings.get(msg.guild.id, 'args');
-		console.log(alertObject);
 			// [arg]["argalert"];
 		switch(sub) {
 			case 'addme':
