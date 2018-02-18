@@ -9,15 +9,15 @@ module.exports = class SetupCommand extends Command {
 		});
 	}
 
-	exec(msg) {
+	async exec(msg) {
 		if(msg.client.settings.get(msg.guild.id, 'settings', 'notFound') == 'notFound') {
-			msg.client.settings.set(msg.guild.id, 'settings', {
+			await msg.client.settings.set(msg.guild.id, 'settings', {
 				admins: [msg.author.id, msg.guild.ownerID],
 				argDelete: true,
 				leaveMeAlone: true
 			});
-			msg.client.settings.set(msg.guild.id, 'args', {});
-			msg.client.settings.set(msg.guild.id, 'notify', []);
+			await msg.client.settings.set(msg.guild.id, 'args', {});
+			await msg.client.settings.set(msg.guild.id, 'notify', []);
 		}
 	}
 };

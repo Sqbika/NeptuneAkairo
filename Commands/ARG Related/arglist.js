@@ -19,13 +19,13 @@ module.exports = class ArglistCommand extends Command {
 					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
 				}
 			});
-			result += '```\nHiatus ARGs\n```\n';
+			result += '```\nHiatus ARGs\n```\n ';
 			Object.keys(argObject).forEach((elem) => {
 				if(argObject[elem].details.active !== true && argObject[elem].details.active !== false) {
 					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;
 				}
 			});
-			result += '```\nInactive ARGs\n```\n';
+			result += '```\nInactive ARGs\n```\n ';
 			Object.keys(argObject).forEach((elem) => {
 				if(argObject[elem].details.active == false) {
 					result += `[${elem}] - ${argObject[elem].details.description}\nWiki: ${argObject[elem].details.wiki}\n`;

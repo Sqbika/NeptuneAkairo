@@ -21,7 +21,7 @@ module.exports = class HelpCommand extends Command {
             .setColor(msg.client.config.color)
             .setTimestamp(new Date());
 			msg.client.commandHandler.categories.map(me => me).forEach((cat) => {
-				result.addField(cat.id, `\`\`\`\n${cat.map(com => `${com.aliases[0]} | ${com.description}`).join('\n')}\n\`\`\``);
+				result.addField(cat.id, `\`\`\`\n${cat.filter(me => { if(typeof me.userPermissions === 'function') { return me.userPermissions(msg); } else { return true; } }).map(com => `${com.aliases[0]} | ${com.description}`).join('\n')}\n\`\`\``);
 			});
 			msg.channel.send({ embed: result });
 		} else {
@@ -53,7 +53,7 @@ ${command.args.map(ar => `  -**Name**: ${ar.id}
   -**Usage**: ${ar.description.usage !== undefined ? ar.description.usage : 'No Argument Usage was Provided. Yell at Developer please!'}
  `).join('\n')}
 
- **Cooldown**: ${command.cooldown ? command.cooldown + " ms" : 'No Cooldown'}
+ **Cooldown**: ${command.cooldown ? `${command.cooldown } ms` : 'No Cooldown'}
  **Ratelimit**: ${command.cooldown ? `${command.ratelimit} usage per cooldown` : 'Disabled'} 
 
  **User Permission Required**: ${command.userPermissions ? `Yes: ${command.userPermissions}` : 'No'}

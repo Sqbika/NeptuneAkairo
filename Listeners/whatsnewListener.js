@@ -10,16 +10,17 @@ module.exports = class WhatsNewListener extends Listener {
 	}
 
 	async exec(msg) {
-		var argObject = msg.client.settings.get(msg.guild.id, 'args', []);
-		Object.keys(argObject).forEach((ele) => {
-			console.log(ele);
-			if(argObject[ele].channels.indexOf(msg.channel.id) !== -1) {
-				argObject[ele].leavemealone.regexList.forEach((ele2) => {
-					if(ele2.test(msg.content) && argObject[ele].leavemealone.blacklist.indexOf(msg.author.id) !== -1)						{
-						msg.author.send(argObject[ele].leavemealone.text);
-					}
-				});
-			}
-		});
+		if(msg.guild) {
+			var argObject = msg.client.settings.get(msg.guild.id, 'args', []);
+			Object.keys(argObject).forEach((ele) => {
+				if(argObject[ele].channels.indexOf(msg.channel.id) !== -1) {
+					argObject[ele].leavemealone.regexList.forEach((ele2) => {
+						if(new RegExp(ele2, 'i').test(msg.content) && argObject[ele].leavemealone.blacklist.indexOf(msg.author.id) !== -1)						{
+							msg.author.send(argObject[ele].leavemealone.text);
+						}
+					});
+				}
+			});
+		}
 	}
 };
