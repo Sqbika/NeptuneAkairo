@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ArgSetDescriptionCommand extends Command {
 	constructor() {
 		super('argsetdesc', {
-			aliases: ['argsetdesc'],
+			aliases: ['argsetdesc', 'asd'],
+			usage: 'asd <ARG> <text>',
 			description: 'Sets an ARGs Description.',
 			channelRestriction: 'guild',
 			args: [

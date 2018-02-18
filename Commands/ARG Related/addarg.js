@@ -5,6 +5,7 @@ module.exports = class AddArgCommand extends Command {
 		super('addarg', {
 			aliases: ['addarg'],
 			description: 'Adds an ARG to the database. The channel defaults to the channel it was created in.',
+			usage: 'addarg <argName>',
 			channelRestriction: 'guild',
 			args: [
 				{

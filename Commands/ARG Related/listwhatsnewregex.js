@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ListWhatsNewRegexCommand extends Command {
 	constructor() {
 		super('listwhatsnewregex', {
-			aliases: ['listwhatsnewregex', 'listwsr'],
+			aliases: ['listwhatsnewregex', 'listwsnr'],
+			usage: 'listwsnr <ARG>',
 			description: 'List the ARGs regexes',
 			channelRestriction: 'guild',
 			args: [

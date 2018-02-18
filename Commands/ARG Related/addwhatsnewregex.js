@@ -5,6 +5,7 @@ module.exports = class AddWhatsNewRegexCommand extends Command {
 		super('addwhatsnewregex', {
 			aliases: ['addwhatsnewregex', 'addwnr'],
 			description: 'Add a new regex to the whatsnew list.',
+			usage: 'addwnr <ARG> <text>',
 			channelRestriction: 'guild',
 			args: [
 				{

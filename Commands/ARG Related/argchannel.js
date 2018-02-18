@@ -4,6 +4,7 @@ module.exports = class ArgChannelCommand extends Command {
 	constructor() {
 		super('argchannel', {
 			aliases: ['argchannel'],
+			usage: 'argchannel <ARG> <add/remove> <channel>',
 			description: 'Adds the channel for the ARG List',
 			channelRestriction: 'guild',
 			args: [

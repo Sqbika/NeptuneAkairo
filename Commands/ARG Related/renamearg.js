@@ -4,6 +4,7 @@ module.exports = class RenameArgCommand extends Command {
 	constructor() {
 		super('renamearg', {
 			aliases: ['renamearg'],
+			usage: 'renamearg <What:ARG> <To:text>',
 			description: 'Renames an ARG to the database',
 			channelRestriction: 'guild',
 			args: [

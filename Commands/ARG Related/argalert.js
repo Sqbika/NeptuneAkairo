@@ -18,7 +18,7 @@ module.exports = class ArgalertCommand extends Command {
 					examples: ['addme', 'removeme', 'notify WAKING TITAN HAS STARTED']
 				}
 			}, {
-				id: 'ARG',
+				id: 'arg',
 				type: (word, msg, prevArg) => {
 					if(prevArg !== 'help') {
 						return Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1;
@@ -45,6 +45,7 @@ module.exports = class ArgalertCommand extends Command {
 	async exec(msg, { sub, arg, text })		{
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var alertObject = msg.client.settings.get(msg.guild.id, 'args');
+		console.log(alertObject);
 			// [arg]["argalert"];
 		switch(sub) {
 			case 'addme':
@@ -68,10 +69,14 @@ module.exports = class ArgalertCommand extends Command {
 			case 'notify':
 				if(msg.client.settings.get(msg.guild.id, 'settings').admins.indexOf(msg.author.id) !== -1) {
 					msg.guild.channels.get(alertObject[arg].argalert.channel).send(argString(text));
-					msg.guild.channels.get(alertObject[arg].argalert.channel).send(usersString(msg, arg), { split: { char: ' ' } }).then(msg => {
-						msg.forEach((ele) => {
-							ele.delete(300);
-						});
+					msg.guild.channels.get(alertObject[arg].argalert.channel).send(usersString(msg, arg), { split: { char: ' ' } }).then(msgs => {
+						if(typeof msgs === Array) {
+							msgs.forEach((ele) => {
+								ele.delete(300);
+							});
+						} else {
+							msgs.delete(300);
+						}
 					});
 				} else {
 					msg.channel.send('You have no permission to use this sub-command.').then(msg => msg.delete(5000));
@@ -87,9 +92,9 @@ function helpstring(msg) {
 	return `
 Possible Commands:
 
-**addme**: Subscribes you to the ARG notification. | Usage: nep argalert <argName> addme
-**removeme**: Unsubscribes you from the ARG notification | Usage: nep argalert <argName> removeme
-**notify**: Notifies the users in the list about the arg + string (MODERATORS ONLY) | Usage: nep argalert <argName> notify <string>
+**addme**: Subscribes you to the ARG notification. | Usage: nep argalert addme <argName>
+**removeme**: Unsubscribes you from the ARG notification | Usage: nep argalert removeme <argName>
+**notify**: Notifies the users in the list about the arg + string (MODERATORS ONLY) | Usage: nep argalert notify <argName> <string>
 **help**: This. | Usage: nep argalert help
 
 Possible <argName>s: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\`
@@ -111,7 +116,7 @@ ${input}
 function usersString(msg, arg) {
 	var json = msg.client.settings.get(msg.guild.id, 'args')[arg].argalert.users;
 	var userstring = '';
-	json.users.forEach((ele) => {
+	json.forEach((ele) => {
 		userstring += `<@!${ele}> `;
 	});
 	return userstring;

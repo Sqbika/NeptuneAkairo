@@ -4,7 +4,8 @@ module.exports = class RemoveWhatsNewRegexCommand extends Command {
 	constructor() {
 		super('removewhatsnewregex', {
 			aliases: ['removewhatsnewregex', 'removewnr'],
-			description: 'Remove a regex from the whatsnew list.',
+			usage: 'removewr <ARG> <Number>',
+			description: 'Remove a regex from the whatsnew list. Use listwnr before using!',
 			channelRestriction: 'guild',
 			args: [
 				{

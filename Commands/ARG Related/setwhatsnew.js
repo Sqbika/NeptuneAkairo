@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ArgSetWhatsNewCommand extends Command {
 	constructor() {
 		super('setwhatsnew', {
-			aliases: ['setwhatsnew'],
+			aliases: ['setwhatsnew', 'swn'],
+			usage: 'swn <ARG> <text>',
 			description: 'Sets an ARGs Whats New Message.',
 			channelRestriction: 'guild',
 			args: [

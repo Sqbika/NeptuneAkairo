@@ -4,6 +4,7 @@ module.exports = class ArglistCommand extends Command {
 	constructor() {
 		super('arglist', {
 			aliases: ['arglist'],
+			usage: 'arglist',
 			description: 'Lists the ARGs.',
 			channelRestriction: 'guild',
 			ratelimit: 10000

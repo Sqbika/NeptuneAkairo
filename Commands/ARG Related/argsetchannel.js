@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ArgSetChannelCommand extends Command {
 	constructor() {
 		super('argsetchannel', {
-			aliases: ['argsetchannel'],
+			aliases: ['argsetchannel', 'asc'],
+			usage: 'asc <ARG> <channel>',
 			description: 'Sets an ARGs channel.',
 			channelRestriction: 'guild',
 			args: [

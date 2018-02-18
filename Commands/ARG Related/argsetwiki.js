@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ArgSetWikiLinkCommand extends Command {
 	constructor() {
 		super('argsetwiki', {
-			aliases: ['argsetwiki'],
+			aliases: ['argsetwiki', 'asw'],
+			usage: 'asw <ARG> <URL>',
 			description: 'Sets an ARGs Wiki Link.',
 			channelRestriction: 'guild',
 			args: [

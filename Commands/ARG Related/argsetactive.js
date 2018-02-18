@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class ArgSetActivityCommand extends Command {
 	constructor() {
 		super('argsetactive', {
-			aliases: ['argsetactive'],
+			aliases: ['argsetactive', 'asa'],
+			usage: 'asa <ARG> <Active: true/false/text>',
 			description: 'Sets an ARGs Active.',
 			channelRestriction: 'guild',
 			args: [

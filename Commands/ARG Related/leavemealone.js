@@ -3,7 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class LeavemealoneCommand extends Command {
 	constructor() {
 		super('leavemealone', {
-			aliases: ['leavemealone'],
+			aliases: ['leavemealone', 'lma'],
+			usage: 'lma <ARG>',
 			description: 'Adds to you the leavemealone list of an arg.',
 			channelRestriction: 'guild',
 			args: [
