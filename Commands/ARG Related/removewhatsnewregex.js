@@ -1,10 +1,10 @@
 const { Command } = require('discord-akairo');
 
-module.exports = class AddWhatsNewRegexCommand extends Command {
+module.exports = class RemoveWhatsNewRegexCommand extends Command {
 	constructor() {
-		super('addwhatsnewregex', {
-			aliases: ['addwhatsnewregex', 'addwnr'],
-			description: 'Add a new regex to the whatsnew list.',
+		super('removewhatsnewregex', {
+			aliases: ['removewhatsnewregex', 'removewnr'],
+			description: 'Remove a regex from the whatsnew list.',
 			channelRestriction: 'guild',
 			args: [
 				{
@@ -17,11 +17,12 @@ module.exports = class AddWhatsNewRegexCommand extends Command {
 					}
 				}, {
 					id: 'text',
-					match: 'rest',
+                    match: 'rest',
+                    type: 'number',
 					prompt: {
 						retries: 2,
-						start: 'Please provide the text you want to set the regex to be.',
-						retry: 'Please provide the text you want to set the regex to be.'
+						start: 'Please provide the number of the regex you want to remove.',
+						retry: 'Please provide the number of the regex you want to remove.'
 					}
 				}
 			]
@@ -35,8 +36,8 @@ module.exports = class AddWhatsNewRegexCommand extends Command {
 	exec(msg, { arg, text }) {
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
-		argObject[arg].leavemealone.regexList.push(text);
+		argObject[arg].leavemealone.regexList.splice(text, 1);
 		msg.client.settings.set(msg.guild.id, 'args', argObject);
-		msg.reply('Successfully added the regex for the ARG.').then((me) => me.delete(10000));
+		msg.reply('Successfully removed the regex for the ARG.').then((me) => me.delete(10000));
 	}
 };
