@@ -20,13 +20,7 @@ module.exports = class HelpCommand extends Command {
 				.setColor(msg.client.config.color)
 				.setTimestamp(new Date());
 			msg.client.commandHandler.categories.map(me => me).forEach((cat) => {
-				result.addField(cat.id, `\`\`\`\n${cat.filter(me => hasPermission(msg, me)).map(com => `
-					${
-						com.aliases[0]
-					} | ${
-						com.description
-					}
-					`).join('\n')}\n\`\`\``);
+				result.addField(cat.id, `\`\`\`\n${cat.filter(me => hasPermission(msg, me)).map(com => `${com.aliases[0]} | ${com.description}`).join('\n')}\n\`\`\``);
 			});
 			msg.channel.send({ embed: result });
 		} else {
