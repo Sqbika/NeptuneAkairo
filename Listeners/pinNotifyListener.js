@@ -7,10 +7,11 @@ module.exports = class pinNotifyListener extends Listener {
 			eventName: 'channelPinsUpdate',
 			category: 'Notify'
 		});
-    }
+	}
 
-    async exec(channel) {
-        this.client.notify.checkPinNotify(channel);
-    }
-    
+	async exec(channel) {
+		this.client.notify.checkPinNotify(channel);
+	}
+
 }
+;

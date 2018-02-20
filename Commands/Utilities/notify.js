@@ -3,6 +3,7 @@ const { Command } = require('discord-akairo');
 module.exports = class NotifyCommand extends Command {
 	constructor() {
 		super('notify', {
+			aliases: ['notify'],
 			channel: 'guild',
 			args: [
 				{
@@ -10,8 +11,8 @@ module.exports = class NotifyCommand extends Command {
 					type: ['addpin', 'addword', 'removepin', 'removeword', 'enable', 'disable', 'list', 'help'],
 					default: 'help',
 					description: {
-						content: "Notification plugin.",
-						usage: "<sub> <argument depending on sub> <words if sub is addword>",
+						content: 'Notification plugin.',
+						usage: '<sub> <argument depending on sub> <words if sub is addword>',
 						examples: ['addpin #channel-name', 'addword anywhere Sqbika']
 					}
 				}, {
@@ -78,20 +79,20 @@ module.exports = class NotifyCommand extends Command {
 	}
 
 	async exec(msg, { sub, arg2, words }) {
-        switch (sub) {
-			case "addword":
+		switch(sub) {
+			case 'addword':
 				msg.reply(msg.client.sqbika.notify.addWordNotify(msg, words, arg2));
-				break;	
-			case "addpin":
+				break;
+			case 'addpin':
 				msg.reply(msg.client.sqbika.notify.addPinNotify(msg, arg2));
 				break;
-			case "removeword":
+			case 'removeword':
 				msg.reply(msg.client.sqbika.notify.removeWordNotify(msg, arg2));
 				break;
-			case "removepin":
+			case 'removepin':
 				msg.reply(msg.client.sqbika.notify.removePinNotify(msg, arg2));
 				break;
-			/*case "enable":
+			/* case "enable":
 				if (arg2 == "anywhere") {
 					msg.channel.send("Please provide an ID to enable.");
 				} else {
@@ -104,10 +105,10 @@ module.exports = class NotifyCommand extends Command {
 				} else {
 					msg.channel.send(msg.client.sqbika.notify.disableN(msg, arg2));
 				}*/
-			case "list":
+			case 'list':
 				msg.reply(msg.client.sqbika.notify.listNotifies(msg));
 				break;
-			case "help":
+			case 'help':
 				msg.reply(helpstring);
 		}
 	}
