@@ -7,5 +7,5 @@ const client = new NeptuneClient(config);
 client.start(require(config.loginToken).loginToken);
 
 process.on('unhandledRejection', error => {
-    console.log('unhandledRejection', error.message);
+    console.log(error);
   });
