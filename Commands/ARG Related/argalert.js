@@ -21,7 +21,7 @@ module.exports = class ArgalertCommand extends Command {
 				id: 'arg',
 				type: (word, msg, prevArg) => {
 					if(prevArg !== 'help') {
-						return Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1;
+						return Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined;
 					} else {
 						return true;
 					}

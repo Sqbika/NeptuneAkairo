@@ -10,7 +10,7 @@ module.exports = class RenameArgCommand extends Command {
 			args: [
 				{
 					id: 'what',
-					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1,
+					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined,
 					prompt: {
 						retries: 2,
 						start: 'Please provide a name for the ARG to rename.',
@@ -18,7 +18,7 @@ module.exports = class RenameArgCommand extends Command {
 					}
 				}, {
 					id: 'toWhat',
-					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) == -1,
+					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) == -1 ? true : undefined,
 					prompt: {
 						retries: 2,
 						start: 'Please provide a name for the ARG for the users to use. It cannot be the same as an existing one.',
