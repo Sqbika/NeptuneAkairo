@@ -69,8 +69,12 @@ function hasPermission(msg, command) {
 		return msg.author.id == msg.client.config.ownerID;
 	}
 	if(msg.guild) {
-		if(command.clientPermissions) {
+		if(command.clientPermissions && command.userPermissions) {
+			result = msg.guild.me.hasPermission(command.clientPermissions) && msg.member.hasPermission(command.userPermissions);
+		} else if (command.clientPermissions) {
 			result = msg.guild.me.hasPermission(command.clientPermissions);
+		} else if (command.userPermissions) {
+			result = msg.member.hasPermission(command.userPermissions);
 		}
 	} else {
 		result = command.channelRestriction !== 'guild';
