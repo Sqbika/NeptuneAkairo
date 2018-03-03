@@ -81,32 +81,32 @@ module.exports = class NotifyCommand extends Command {
 	async exec(msg, { sub, arg2, words }) {
 		switch(sub) {
 			case 'addword':
-				msg.reply(msg.client.sqbika.notify.addWordNotify(msg, words, arg2));
+				msg.reply(msg.client.notify.addWordNotify(msg, words, arg2));
 				break;
 			case 'addpin':
-				msg.reply(msg.client.sqbika.notify.addPinNotify(msg, arg2));
+				msg.reply(msg.client.notify.addPinNotify(msg, arg2));
 				break;
 			case 'removeword':
-				msg.reply(msg.client.sqbika.notify.removeWordNotify(msg, arg2));
+				msg.reply(msg.client.notify.removeWordNotify(msg, arg2));
 				break;
 			case 'removepin':
-				msg.reply(msg.client.sqbika.notify.removePinNotify(msg, arg2));
+				msg.reply(msg.client.notify.removePinNotify(msg, arg2));
 				break;
 			/* case "enable":
 				if (arg2 == "anywhere") {
 					msg.channel.send("Please provide an ID to enable.");
 				} else {
-					msg.channel.send(msg.client.sqbika.notify.enableN(msg, arg2));
+					msg.channel.send(msg.client.notify.enableN(msg, arg2));
 				}
 				break;
 			case "disable":
 				if (arg2 == "anywhere") {
 					msg.channel.send("Please provide an ID to disable.");
 				} else {
-					msg.channel.send(msg.client.sqbika.notify.disableN(msg, arg2));
+					msg.channel.send(msg.client.notify.disableN(msg, arg2));
 				}*/
 			case 'list':
-				msg.reply(msg.client.sqbika.notify.listNotifies(msg));
+				msg.reply(msg.client.notify.listNotifies(msg));
 				break;
 			case 'help':
 				msg.reply(helpstring);
