@@ -12,11 +12,9 @@ module.exports = class ArgalertCommand extends Command {
 				type: ['addme', 'removeme', 'notify', 'help'],
 				match: 'word',
 				default: 'help',
-				description: {
-					content: 'ARGAlert Plugin sub groups.',
-					usage: '<sub> <Text, if sub is notify>',
-					examples: ['addme', 'removeme', 'notify WAKING TITAN HAS STARTED']
-				}
+				description: 'ARGAlert Plugin sub groups.',
+				usage: '<sub> <Text, if sub is notify>',
+				examples: ['addme', 'removeme', 'notify WAKING TITAN HAS STARTED']
 			}, {
 				id: 'arg',
 				type: (word, msg, prevArg) => {
@@ -31,13 +29,16 @@ module.exports = class ArgalertCommand extends Command {
 					retries: 2,
 					start: (msg) => `Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``,
 					retry: (msg) => `Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-				}
+				},
+				description: 'An ARG Name, which is in the database.',
+				usage: '<string>'
 			},
 			{
 				id: 'text',
 				match: 'rest',
 				default: 'FALSE ALARM!',
-				description: 'Text for notifying users. <Only people with Admin Rights>'
+				description: 'Text for notifying users. <Only people with Admin Rights>',
+				usage: '<string (infinite)>'
 			}]
 		});
 	}

@@ -15,7 +15,9 @@ module.exports = class ArgSetDescriptionCommand extends Command {
 						retries: 2,
 						start: 'Please provide of the ARG.',
 						retry: (msg) => `Please provide an existing ARG. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'text',
 					match: 'rest',
@@ -23,7 +25,9 @@ module.exports = class ArgSetDescriptionCommand extends Command {
 						retries: 2,
 						start: 'Please provide the text you want to set the Description to be.',
 						retry: 'Please provide the text you want to set the Description to be.'
-					}
+					},
+					description: 'An ARGs description text',
+					usage: '<string (infinite)'
 				}
 			]
 		});

@@ -15,7 +15,9 @@ module.exports = class ArgChannelCommand extends Command {
 						retries: 2,
 						start: 'Please provide a name for the ARG to set the main channel.',
 						retry: (msg) => `Please provide an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'type',
 					type: ['add', 'remove'],
@@ -23,7 +25,9 @@ module.exports = class ArgChannelCommand extends Command {
 						retries: 2,
 						start: 'Do you want to **add** or **remove** a channel?',
 						retry: 'You need to choose either **add** or **remove**'
-					}
+					},
+					description: 'You can **add** or **remove**',
+					usage: '<add / remove>'
 				}, {
 					id: 'channel',
 					type: 'channel',
@@ -31,7 +35,9 @@ module.exports = class ArgChannelCommand extends Command {
 						retries: 2,
 						start: 'Please provide a channel to set the ARGs main channel',
 						retry: 'Please provide a channel to set the ARGs main channel'
-					}
+					},
+					description: 'Add an ARG channel to watch for the whats new messages.',
+					usage: '<channel>'
 				}
 			]
 		});

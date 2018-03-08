@@ -15,7 +15,9 @@ module.exports = class ArgSetChannelCommand extends Command {
 						retries: 2,
 						start: 'Please provide a name for the ARG to set the main channel.',
 						retry: (msg) => `Please provide an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'channel',
 					type: 'channel',
@@ -23,7 +25,9 @@ module.exports = class ArgSetChannelCommand extends Command {
 						retries: 2,
 						start: 'Please provide a channel to set the ARGs main channel',
 						retry: 'Please provide a channel to set the ARGs main channel'
-					}
+					},
+					description: 'Sets an ARGs main channel',
+					usage: '<channel>'
 				}
 			]
 		});
