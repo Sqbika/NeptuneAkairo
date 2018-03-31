@@ -15,7 +15,9 @@ module.exports = class RemoveWhatsNewRegexCommand extends Command {
 						retries: 2,
 						start: 'Please provide a name for the ARG to set the regex for.',
 						retry: (msg) => `Please provide an existing ARG to set the regex for. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'text',
                     match: 'rest',
@@ -24,7 +26,9 @@ module.exports = class RemoveWhatsNewRegexCommand extends Command {
 						retries: 2,
 						start: 'Please provide the number of the regex you want to remove.',
 						retry: 'Please provide the number of the regex you want to remove.'
-					}
+					},
+					description: 'Remove a whatsnewregex from the ARG',
+					usage: '<number>'
 				}
 			]
 		});

@@ -96,14 +96,14 @@ module.exports = class NotifyCommand extends Command {
 				if (arg2 == "anywhere") {
 					msg.channel.send("Please provide an ID to enable.");
 				} else {
-					msg.channel.send(msg.client.sqbika.notify.enableN(msg, arg2));
+					msg.channel.send(msg.client.notify.enableN(msg, arg2));
 				}
 				break;
 			case "disable":
 				if (arg2 == "anywhere") {
 					msg.channel.send("Please provide an ID to disable.");
 				} else {
-					msg.channel.send(msg.client.sqbika.notify.disableN(msg, arg2));
+					msg.channel.send(msg.client.notify.disableN(msg, arg2));
 				}*/
 			case 'list':
 				msg.reply(msg.client.notify.listNotifies(msg));

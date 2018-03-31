@@ -23,6 +23,23 @@ class NeptuneClient extends AkairoClient {
 			idColumn: 'Guild',
 			dataColumn: 'JSON'
 		});
+		this.Permissions = {
+			ARGRelated: (msg) =>{
+				const server = this.settings.get(msg.guild.id, 'settings', {admins: []});
+				for (const role in msg.member.roles)
+					if (server.admins.indexOf(role.id) !== -1) return true;
+				return server.admins.indexOf(msg.author.id) !== -1;
+			},
+			PerCommand: {
+				ArgAlert: (msg) => {
+					const notifiers = this.settings.get(msg.guild.id, 'settings', {notifiers: []});
+					if (this.Permissions.ARGRelated(msg)) return true;
+					for (const role in msg.member.roles)
+						if (server.notifiers.indexOf(role.id) !== -1) return true;
+					return server.notifiers.indexOf(msg.author.id) !== -1;					
+				}
+			}
+		}
 	}
 
 	start(auth) {

@@ -15,14 +15,18 @@ module.exports = class ArgSetActivityCommand extends Command {
 						retries: 2,
 						start: 'Please provide of the ARG.',
 						retry: (msg) => `Please provide an existing ARG. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'active',
 					prompt: {
 						retries: 2,
 						start: 'Please provide the text you want to set the Active to be.',
 						retry: 'Please provide the text you want to set the Active to be.'
-					}
+					},
+					description: 'A string whether the ARG is active, inactive or hiatus.',
+					usage: '<active, true, yes / inactive, false, no / string>'
 				}
 			]
 		});

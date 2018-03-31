@@ -10,12 +10,14 @@ module.exports = class ArgSetWikiLinkCommand extends Command {
 			args: [
 				{
 					id: 'arg',
-					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ,
+					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined,
 					prompt: {
 						retries: 2,
 						start: 'Please provide of the ARG.',
 						retry: (msg) => `Please provide an existing ARG. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}, {
 					id: 'text',
 					match: 'rest',
@@ -23,7 +25,9 @@ module.exports = class ArgSetWikiLinkCommand extends Command {
 						retries: 2,
 						start: 'Please provide the text you want to set the Wiki Link to be.',
 						retry: 'Please provide the text you want to set the Wiki Link to be.'
-					}
+					},
+					description: 'The ARGs wiki link',
+					usage: '<url>'
 				}
 			]
 		});

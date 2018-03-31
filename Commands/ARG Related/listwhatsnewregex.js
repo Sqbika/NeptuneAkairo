@@ -15,7 +15,9 @@ module.exports = class ListWhatsNewRegexCommand extends Command {
 						retries: 2,
 						start: 'Please provide a name for the ARG to set the regex for.',
 						retry: (msg) => `Please provide an existing ARG to set the regex for. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					}
+					},
+					description: 'An ARG Name, which is in the database.',
+					usage: '<string>'
 				}
 			]
 		});
