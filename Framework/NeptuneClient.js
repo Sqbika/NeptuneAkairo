@@ -11,7 +11,14 @@ class NeptuneClient extends AkairoClient {
 			listenerDirectory: config.listenerDirectory,
 			disableEveryone: true,
 			automateCategories: true,
-			disabledEvents: ['TYPING_START']
+			disabledEvents: ['TYPING_START'],
+			defaultPrompt: {
+				timeout:'Prompt has been canceled. Time out.',
+				ended: 'Retry limit reached. Please use `' + client.prefix + ' help <command>` for more information',
+				cancel: 'Command has been cancelled.',
+				retries: 4,
+				time: 30000
+			},
 		});
 
 		this.database = require('../postgresql/models.js');
@@ -23,6 +30,7 @@ class NeptuneClient extends AkairoClient {
 			idColumn: 'Guild',
 			dataColumn: 'JSON'
 		});
+		
 		this.Permissions = {
 			ARGRelated: (msg) =>{
 				const server = this.settings.get(msg.guild.id, 'settings', {admins: []});
