@@ -9,7 +9,7 @@ module.exports = class ArginfoCommand extends Command {
 			channelRestriction: 'guild',
 			args: [
 				{
-					id: 'arg',
+					id: 'argName',
 					type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined,
 					prompt: {
 						retries: 2,
@@ -23,10 +23,10 @@ module.exports = class ArginfoCommand extends Command {
 		});
 	}
 
-	exec(msg, { arg2 }) {
-        var arg = msg.client.settings.get(msg.guild.id, 'args')[arg2];
+	exec(msg, { argName }) {
+        var arg = msg.client.settings.get(msg.guild.id, 'args')[argName];
         var result = msg.client.util.embed()
-            .setTitle(`Details about ${arg2}`)
+            .setTitle(`Details about ${argName}`)
             .setColor(msg.client.config.color)
             .setTimestamp(new Date())
             .addField("Details", `
@@ -34,18 +34,17 @@ module.exports = class ArginfoCommand extends Command {
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
 **Active**: ${arg.details.active} 
-
---**WhatsNew**--
+            `)
+            .addField("WhatsNew", `
 **Blacklist**: ${arg.leavemealone.blacklist.length} Users
 **RegexList**: ${arg.leavemealone.regexList.length} Regexes
-**Text**: ${arg.leavemealone.text}
-
---**ArgAlert**--
+**Text**: \`${arg.leavemealone.text}
+            `)
+            .addField("ArgAlert", `
 **Channel**: ${arg.argalert.channel}
 **Users**: ${arg.argalert.users.length} Users
-`);
-        console.log(result);
-        msg.reply(result);
+            `);
+        msg.reply({embed: result});
 	}
 };
 
