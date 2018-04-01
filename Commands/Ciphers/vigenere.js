@@ -19,15 +19,19 @@ module.exports = class VigenereCommand extends Command {
 	}
 
 	async exec(msg, { word, text }) {
-        word = word.split('');
+        var decode = word.startsWith('-') ? true : false; 
+        word = word.replace('-', '').split('');
         var textarr = text.split('');
         var result = "";
         for (var i = 0; i < text.length; i++) {
             if (abc.indexOf(textarr[i].toLowerCase()) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
-                    result += abc[abc.indexOf(textarr[i].toLowerCase()) + 1 + abc.indexOf(word[i % word.length].toLowerCase())].toUpperCase();
+                    result += decode ? abc[abc.indexOf(textarr[i].toLowerCase()) - abc.indexOf(word[i % word.length])].toUpperCase() :
+                                       abc[abc.indexOf(textarr[i].toLowerCase()) + abc.indexOf(word[i % word.length])].toUpperCase();
                 } else {
-                    result += abc[abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length].toLowerCase())];
+                    console.log(abc.indexOf(word[i % word.length]));
+                    result += decode ? abc[abc.indexOf(textarr[i]) - abc.indexOf(word[i % word.length])] :
+                                       abc[abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length])];
                 }
             } else {
                 result += textarr[i];

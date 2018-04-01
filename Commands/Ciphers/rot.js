@@ -19,15 +19,19 @@ module.exports = class RotCommand extends Command {
 	}
 
 	async exec(msg, { number, text }) {
+        var decode = number < 0 ? true : false;
+        if (number < 0) number = number * -1;
         number = number % abc.length;
         var textarr = text.split('');
         var result = "";
         for (var i = 0; i < text.length; i++) {
             if (abc.indexOf(textarr[i].toLowerCase()) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
-                    result += abc[abc.indexOf(textarr[i].toLowerCase()) + number].toUpperCase();
+                    result += decode ? abc[abc.indexOf(textarr[i].toLowerCase()) - number].toUpperCase() :
+                                       abc[abc.indexOf(textarr[i].toLowerCase()) + number].toUpperCase();
                 } else {
-                    result += abc[abc.indexOf(textarr[i]) + number];
+                    result += decode ? abc[abc.indexOf(textarr[i]) - number] :
+                                       abc[abc.indexOf(textarr[i]) + number];
                 }
             } else {
                 result += textarr[i];
