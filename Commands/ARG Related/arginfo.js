@@ -38,10 +38,10 @@ module.exports = class ArginfoCommand extends Command {
             .addField("WhatsNew", `
 **Blacklist**: ${arg.leavemealone.blacklist.length} Users
 **RegexList**: ${arg.leavemealone.regexList.length} Regexes
-**Text**: \`${arg.leavemealone.text}
+**Text**: \`${arg.leavemealone.text}\`
             `)
             .addField("ArgAlert", `
-**Channel**: ${arg.argalert.channel}
+**Channel**: <#${arg.argalert.channel}> (${arg.argalert.channel})
 **Users**: ${arg.argalert.users.length} Users
             `);
         msg.reply({embed: result});
