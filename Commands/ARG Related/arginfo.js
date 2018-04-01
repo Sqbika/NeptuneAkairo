@@ -30,6 +30,7 @@ module.exports = class ArginfoCommand extends Command {
             .setColor(msg.client.config.color)
             .setTimestamp(new Date())
             .addField("Details", `
+**MainChannel**: <#${arg.channel}> (${arg.channel})
 **Channels**: \`${arg.channels.map(e => "<#" + e + ">").join(', ')}\`
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
@@ -41,7 +42,6 @@ module.exports = class ArginfoCommand extends Command {
 **Text**: \`${arg.leavemealone.text}\`
             `)
             .addField("ArgAlert", `
-**Channel**: <#${arg.argalert.channel}> (${arg.argalert.channel})
 **Users**: ${arg.argalert.users.length} Users
             `);
         msg.reply({embed: result});
