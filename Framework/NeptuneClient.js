@@ -36,7 +36,7 @@ class NeptuneClient extends AkairoClient {
 				var settings = msg.client.settings.get(msg.guild.id, 'settings', []);
 				if (settings.admins.indexOf(msg.author.id) !== -1) return true;
 				if (typeof settings.mods == "undefined") settings.mods = [];
-				var result = msg.member.roles.filter((ele) => settings.mods.indexOf(ele.id) !== -1) > 0;
+				return msg.member.roles.filter((ele) => settings.mods.indexOf(ele.id) !== -1).size > 0;
 			}
 		}
 	}
