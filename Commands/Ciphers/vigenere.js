@@ -37,6 +37,6 @@ module.exports = class VigenereCommand extends Command {
                 result += textarr[i];
             }
         }
-        msg.reply("Vigenere Ciphered Text with `" + word.replace(/,/ig, '') + "`: **" + result + "**");
+        msg.reply("Vigenere Ciphered Text with `" + word.join('') + "`: **" + result + "**");
 	}
 };
