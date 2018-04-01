@@ -20,6 +20,6 @@ module.exports = class Base64Command extends Command {
 	}
 
 	async exec(msg, { text }) {
-        text.startsWith('-') ? msg.reply("Decoded Text: " + Buffer.from(text, 'base64').toString('ascii')) : msg.reply("Encoded Text: " + Buffer.from(text).toString('base64'));
+        text.startsWith('-') ? msg.reply("Decoded Text: " + Buffer.from(text.replace('-', ''), 'base64').toString('ascii')) : msg.reply("Encoded Text: " + Buffer.from(text.replace('-', '')).toString('base64'));
 	}
 };
