@@ -84,5 +84,6 @@ function hasPermission(msg, command) {
 	} else {
 		result = command.channelRestriction !== 'guild';
 	}
+	console.log(result + client + command);
 	return result && client && command;
 }
