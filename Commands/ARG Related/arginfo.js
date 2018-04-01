@@ -23,10 +23,10 @@ module.exports = class ArginfoCommand extends Command {
 		});
 	}
 
-	exec(msg, { arg }) {
-        var arg = msg.client.settings.get(msg.guild.id, 'args')[arg];
+	exec(msg, { arg2 }) {
+        var arg = msg.client.settings.get(msg.guild.id, 'args')[arg2];
         var result = msg.client.util.embed()
-            .setTitle(`Details about ${arg}`)
+            .setTitle(`Details about ${arg2}`)
             .setColor(msg.client.config.color)
             .setTimestamp(new Date())
             .addField("Details", `
