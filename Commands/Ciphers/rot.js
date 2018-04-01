@@ -11,9 +11,17 @@ module.exports = class RotCommand extends Command {
             args: [{
                 id: 'number',
                 type: 'integer',
+                description: {
+                    description: 'The number you want to encode/decode with.',
+                    usage: '<-><number> (The - is a sign for decoding. `5` encode / `-5` decode'
+                }
             }, {
                 id: 'text',
-                match: 'rest'
+                match: 'rest',
+                description: {
+                    description: "The text you want to encode/decode",
+                    usage: "<text:Rest>"
+                }
             }]
         });
 	}

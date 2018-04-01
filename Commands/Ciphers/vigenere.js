@@ -11,9 +11,17 @@ module.exports = class VigenereCommand extends Command {
             args: [{
                 id: 'word',
                 match: 'word',
+                description: {
+                    description: 'The vigenere word you want to encode/decode with.',
+                    usage: '<-><word> (The - is a sign for decoding. `apple` encode / `-apple` decode'
+                }
             }, {
                 id: 'text',
-                match: 'rest'
+                match: 'rest',
+                description: {
+                    description: "The text you want to encode/decode",
+                    usage: "<text:Rest>"
+                }
             }]
         });
 	}
