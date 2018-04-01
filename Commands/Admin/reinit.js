@@ -31,6 +31,7 @@ module.exports = class ReinitCommand extends Command {
             TEMPCategory.removeAll();
             var i = 0;
             fs.readdirSync(path.join(catpath, '..')).forEach((file) => {
+                console.log(file);
                 msg.client.commandHandler.add(file);
                 i++;
             });
