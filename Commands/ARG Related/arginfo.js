@@ -30,7 +30,7 @@ module.exports = class ArginfoCommand extends Command {
             .setColor(msg.client.config.color)
             .setTimestamp(new Date())
             .addField("Details", `
-**Channels**: \`${arg.channels.join(', ')}\`
+**Channels**: \`${arg.channels.map(e => "<#" + e + ">").join(', ')}\`
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
 **Active**: ${arg.details.active} 
