@@ -34,11 +34,11 @@ module.exports = class ArginfoCommand extends Command {
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
 **Active**: ${arg.details.active} 
-            `)
-            .addField("WhatsNew", `
-**Blacklist**: \`${arg.leavemealone.blacklist.length} Users\`
-**RegexList**: \`${arg.leavemealone.regexList.length} Regexes\`
-**Text**: \`${arg.leavemealone.text}\`
+            `);
+            result.addField("WhatsNew", `
+**Blacklist**: ${arg.leavemealone.blacklist.length} Users
+**RegexList**: ${arg.leavemealone.regexList.length} Regexes
+**Text**: ${arg.leavemealone.text}
             `);
 /*            .addField("ArgAlert", `
 **Channel**: ${arg.argalert.channel}
