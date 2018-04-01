@@ -27,11 +27,11 @@ module.exports = class RotCommand extends Command {
         for (var i = 0; i < text.length; i++) {
             if (abc.indexOf(textarr[i].toLowerCase()) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
-                    result += decode ? abc[abc.indexOf(textarr[i].toLowerCase()) - number].toUpperCase() :
-                                       abc[abc.indexOf(textarr[i].toLowerCase()) + number].toUpperCase();
+                    result += decode ? abc[(abc.indexOf(textarr[i].toLowerCase()) - number) % abc.length].toUpperCase() :
+                                       abc[(abc.indexOf(textarr[i].toLowerCase()) + number) % abc.length].toUpperCase();
                 } else {
-                    result += decode ? abc[abc.indexOf(textarr[i]) - number] :
-                                       abc[abc.indexOf(textarr[i]) + number];
+                    result += decode ? abc[(abc.indexOf(textarr[i]) - number) % abc.length] :
+                                       abc[(abc.indexOf(textarr[i]) + number) % abc.length];
                 }
             } else {
                 result += textarr[i];

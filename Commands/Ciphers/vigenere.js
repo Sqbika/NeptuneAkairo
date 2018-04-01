@@ -26,12 +26,12 @@ module.exports = class VigenereCommand extends Command {
         for (var i = 0; i < text.length; i++) {
             if (abc.indexOf(textarr[i].toLowerCase()) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
-                    result += decode ? abc[abc.indexOf(textarr[i].toLowerCase()) - abc.indexOf(word[i % word.length])].toUpperCase() :
-                                       abc[abc.indexOf(textarr[i].toLowerCase()) + abc.indexOf(word[i % word.length])].toUpperCase();
+                    result += decode ? abc[(abc.indexOf(textarr[i].toLowerCase()) - abc.indexOf(word[i % word.length])) % abc.length].toUpperCase() :
+                                       abc[(abc.indexOf(textarr[i].toLowerCase()) + abc.indexOf(word[i % word.length])) % abc.length].toUpperCase();
                 } else {
                     console.log(abc.indexOf(word[i % word.length]));
-                    result += decode ? abc[abc.indexOf(textarr[i]) - abc.indexOf(word[i % word.length])] :
-                                       abc[abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length])];
+                    result += decode ? abc[(abc.indexOf(textarr[i]) - abc.indexOf(word[i % word.length])) % abc.length] :
+                                       abc[(abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length])) % abc.length];
                 }
             } else {
                 result += textarr[i];
