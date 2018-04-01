@@ -37,9 +37,9 @@ module.exports = class AddArgCommand extends Command {
 				text: ''
 			},
 			argalert: {
-				channel: msg.channel.id,
 				users: []
 			},
+			channel: msg.channel.id,
 			channels: [msg.channel.id],
 			details: {
 				description: '',
