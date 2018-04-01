@@ -18,7 +18,7 @@ module.exports = class RotCommand extends Command {
         });
 	}
 
-	async exec(msg, { rot, text }) {
+	async exec(msg, { number, text }) {
         var textarr = text.split('');
         var result = "";
         for (var i = 0; i < text.length; i++) {
