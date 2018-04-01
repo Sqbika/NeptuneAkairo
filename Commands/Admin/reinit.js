@@ -12,7 +12,7 @@ module.exports = class ReinitCommand extends Command {
             args: [
                 { 
                     id: 'category',
-                    type: Array.from(client.commandHandler.categories.keys()).push('all'),
+                    type: (word, msg) => Array.from(msg.client.commandHandler.categories.keys()).push('all'),
                     default: 'all',
                 }
             ]
