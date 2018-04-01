@@ -32,20 +32,10 @@ class NeptuneClient extends AkairoClient {
 		});
 		
 		this.Permissions = {
-			ARGRelated: (msg) =>{
-				const server = this.settings.get(msg.guild.id, 'settings', {admins: []});
-				for (const role in msg.member.roles)
-					if (server.admins.indexOf(role.id) !== -1) return true;
-				return server.admins.indexOf(msg.author.id) !== -1;
-			},
-			PerCommand: {
-				ArgAlert: (msg) => {
-					const notifiers = this.settings.get(msg.guild.id, 'settings', {notifiers: []});
-					if (this.Permissions.ARGRelated(msg)) return true;
-					for (const role in msg.member.roles)
-						if (server.notifiers.indexOf(role.id) !== -1) return true;
-					return server.notifiers.indexOf(msg.author.id) !== -1;					
-				}
+			ARGPermission: (msg) =>{
+				var settings = msg.client.settings.get(msg.guild.id, 'settings', []);
+				if (settings.admins.indexOf(msg.author.id) !== -1) return true;
+				var result = msg.member.roles.filter((ele) => settings.mods.indexOf(ele.id) !== -1) > 0;
 			}
 		}
 	}
