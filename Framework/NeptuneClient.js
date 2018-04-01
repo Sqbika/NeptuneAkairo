@@ -14,7 +14,7 @@ class NeptuneClient extends AkairoClient {
 			disabledEvents: ['TYPING_START'],
 			defaultPrompt: {
 				timeout:'Prompt has been canceled. Time out.',
-				ended: 'Retry limit reached. Please use `' + client.prefix + ' help <command>` for more information',
+				ended: 'Retry limit reached. Please use `' + this.prefix + ' help <command>` for more information',
 				cancel: 'Command has been cancelled.',
 				retries: 4,
 				time: 30000
