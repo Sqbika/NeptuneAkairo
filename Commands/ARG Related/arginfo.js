@@ -34,16 +34,16 @@ module.exports = class ArginfoCommand extends Command {
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
 **Active**: ${arg.details.active} 
-            `);
-            result.addField("WhatsNew", `
+
+--**WhatsNew**--
 **Blacklist**: ${arg.leavemealone.blacklist.length} Users
 **RegexList**: ${arg.leavemealone.regexList.length} Regexes
 **Text**: ${arg.leavemealone.text}
-            `);
-/*            .addField("ArgAlert", `
+
+--**ArgAlert**--
 **Channel**: ${arg.argalert.channel}
 **Users**: ${arg.argalert.users.length} Users
-            `);*/
+`);
         msg.reply(result);
 	}
 };
