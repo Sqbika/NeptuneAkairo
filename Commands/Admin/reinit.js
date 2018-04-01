@@ -12,7 +12,7 @@ module.exports = class ReinitCommand extends Command {
             args: [
                 { 
                     id: 'category',
-                    type: (word, msg) => Array.from(msg.client.commandHandler.categories.keys()).push('all'),
+                    type: (word, msg) => Array.from(msg.client.commandHandler.categories.keys()).concat(['all']),
                     match: 'word',
                     default: 'all',
                 }
@@ -21,7 +21,6 @@ module.exports = class ReinitCommand extends Command {
 	}
 
 	exec(msg, { category }) {
-        console.log(category);
         if (category == 'all') {
             client.commandHandler.removeAll(); 
             client.commandHandler.loadAll();
