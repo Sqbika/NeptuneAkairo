@@ -21,6 +21,7 @@ module.exports = class ReinitCommand extends Command {
 	}
 
 	exec(msg, { category }) {
+        console.log(category);
         if (category == 'all') {
             client.commandHandler.removeAll(); 
             client.commandHandler.loadAll();
