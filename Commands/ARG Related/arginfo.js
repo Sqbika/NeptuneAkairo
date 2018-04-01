@@ -34,8 +34,8 @@ module.exports = class ArginfoCommand extends Command {
 **Description**: ${arg.details.description}
 **Wiki**: \`${arg.details.wiki}\`
 **Active**: ${arg.details.active} 
-            `)
-            .addField("WhatsNew", `
+            `);
+/*            .addField("WhatsNew", `
 **Blacklist**: \`${arg.leavemealone.blacklist.length} Users\`
 **RegexList**: \`${arg.leavemealone.regexList.length} Regexes\`
 **Text**: \`${arg.leavemealone.text}\`
@@ -43,7 +43,7 @@ module.exports = class ArginfoCommand extends Command {
             .addField("ArgAlert", `
 **Channel**: ${arg.argalert.channel}
 **Users**: ${arg.argalert.users.length} Users
-            `);
+            `);*/
         msg.send(result);
 	}
 };
