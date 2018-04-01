@@ -73,7 +73,7 @@ module.exports = class ArgalertCommand extends Command {
 				}
 				break;
 			case 'notify':
-				if(msg.client.Permissions.ARGPermission(msg);) {
+				if(msg.client.Permissions.ARGPermission(msg)) {
 					msg.guild.channels.get(alertObject[arg].argalert.channel).send(argString(text));
 					msg.guild.channels.get(alertObject[arg].argalert.channel).send(usersString(msg, arg), { split: { char: ' ' } }).then(msgs => {
 						if(typeof msgs === Array) {
