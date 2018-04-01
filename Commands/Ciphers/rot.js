@@ -19,6 +19,7 @@ module.exports = class RotCommand extends Command {
 	}
 
 	async exec(msg, { number, text }) {
+        number = number % abc.length;
         var textarr = text.split('');
         var result = "";
         for (var i = 0; i < text.length; i++) {
