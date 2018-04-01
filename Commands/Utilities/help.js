@@ -60,30 +60,29 @@ ${command.args.map(ar => `  -**Name**: ${ar.id}
 `;
 }
 
-function hasPermission(msg, command) {
+function hasPermission(msg, Command) {
 	var client = true, command = true;
 	var result = true;
-	if(command.ownerOnly) {
+	if(Command.ownerOnly) {
 		return msg.author.id == msg.client.config.ownerID;
 	} else 
 	if(msg.guild) {
-		if(command.clientPermissions) {
-			if (typeof command.clientPermissions !== "function") {
-				client = msg.guild.me.hasPermission(command.clientPermissions);
+		if(Command.clientPermissions) {
+			if (typeof Command.clientPermissions !== "function") {
+				client = msg.guild.me.hasPermission(Command.clientPermissions);
 			} else {
-				client = command.clientPermissions(msg);
+				client = Command.clientPermissions(msg);
 			}
 		}
-		if (command.userPermissions) {
-			if (typeof command.userPermissions !== "function") {
-				command = msg.member.hasPermission(command.userPermissions);
+		if (Command.userPermissions) {
+			if (typeof Command.userPermissions !== "function") {
+				command = msg.member.hasPermission(Command.userPermissions);
 			} else {
-				command = msg.emmber.clientPermissions(msg);
+				command = msg.emmber.userPermissions(msg);
 			}
 		}
 	} else {
-		result = command.channelRestriction !== 'guild';
+		result = Command.channelRestriction !== 'guild';
 	}
-	console.log(result + client + command);
 	return result && client && command;
 }
