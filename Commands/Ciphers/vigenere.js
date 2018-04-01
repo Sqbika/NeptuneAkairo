@@ -25,7 +25,7 @@ module.exports = class VigenereCommand extends Command {
         for (var i = 0; i < text.length; i++) {
             if (abc.indexOf(textarr[i]) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
-                    result += abc[abc.indexOf(textarr[i].toLowerCase()) + abc.indexOf(word[i % word.length].toLowerCase())].toUpperCase();
+                    result += abc[abc.indexOf(textarr[i].toLowerCase()) + 1 + abc.indexOf(word[i % word.length].toLowerCase())].toUpperCase();
                 } else {
                     result += abc[abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length].toLowerCase())];
                 }
