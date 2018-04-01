@@ -27,7 +27,7 @@ module.exports = class ReinitCommand extends Command {
             msg.reply(`Reloaded commands. \nLoaded **${msg.client.commandHandler.categories.size}** categories\nLoaded **${msg.client.commandHandler.modules.size}** Modules.`)
         } else {
             var TEMPCategory = msg.client.commandHandler.categories.get(category);
-            console.log(TEMPCategory);
+            console.log(TEMPCategory.filepath);
             TEMPCategory.removeAll();
             var i = 0;
             msg.reply((path.join(TEMPCategory.filepath, '..')));
