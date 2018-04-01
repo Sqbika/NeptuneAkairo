@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
-const exec = require('child_process').execFile;
+const util = require('util');
+const exec = util.promisify(require('child_process').execFile);
 
 module.exports = class PullCommand extends Command {
 	constructor() {
@@ -12,8 +13,7 @@ module.exports = class PullCommand extends Command {
 	}
 
 	async exec(msg) {
-        exec('git pull', (err, stdout, stderr) => {
-            msg.reply('Updated. Response:\n```\n' + stdout + '\n```');
-        })
+        var {stdout} = await exec('git', ['pull']);
+        msg.reply("Updated. Reply:\n```\n" + stdout + "\n```");
 	}
 };

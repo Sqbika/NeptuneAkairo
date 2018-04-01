@@ -24,7 +24,7 @@ module.exports = class ReinitCommand extends Command {
         if (category == 'all') {
             msg.client.commandHandler.removeAll(); 
             msg.client.commandHandler.loadAll();
-            msg.reply(`Reloaded commands. \nLoaded **${msg.client.commandHandler.categories.size}** categories\nLoaded **${msg.client.commandHandler.modules.size}`)
+            msg.reply(`Reloaded commands. \nLoaded **${msg.client.commandHandler.categories.size}** categories\nLoaded **${msg.client.commandHandler.modules.size}**`)
         } else {
             var TEMPCategory = msg.client.commandHandler.categories.get(category);
             TEMPCategory.removeAll();
