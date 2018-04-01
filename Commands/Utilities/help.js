@@ -41,7 +41,7 @@ module.exports = class HelpCommand extends Command {
 function funcDesc(command) {
 	return `
 **Description**: ${typeof command.description === Array ? command.description.join('\n') : command.description}
-**Usage**: ${command.usage ? `${command.client.config.prefix} ${command.usage}` : command.client.config.prefix + " " + command.args.map(ar => ar.id).join(' ') + "(Generated.)"}
+**Usage**: ${command.usage ? `${command.client.config.prefix} ${command.usage}` : command.client.config.prefix + " " + command.args.map(ar => "<" + ar.id + ">").join(' ') + "   (Generated.)"}
 **Enabled**: ${command.enabled}
 **Aliases**: \`${command.aliases.join(', ')}\`
 **Category**: \`${command.category}\`
