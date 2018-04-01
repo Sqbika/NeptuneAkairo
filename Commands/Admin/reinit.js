@@ -14,7 +14,7 @@ module.exports = class ReinitCommand extends Command {
             args: [{
                 id: 'category',
                 type: (word, msg) => Array.from(msg.client.commandHandler.categories.keys()).concat(['all']).indexOf(word) !== -1 ? true : undefined,
-                match: 'word',
+                match: 'rest',
                 default: 'all',
             }]
         });
