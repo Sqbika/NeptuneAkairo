@@ -23,7 +23,7 @@ module.exports = class RotCommand extends Command {
         var textarr = text.split('');
         var result = "";
         for (var i = 0; i < text.length; i++) {
-            if (abc.indexOf(textarr[i]) !== -1) {
+            if (abc.indexOf(textarr[i].toLowerCase()) !== -1) {
                 if (textarr[i].toLowerCase() !== textarr[i]) {
                     result += abc[abc.indexOf(textarr[i].toLowerCase()) + number].toUpperCase();
                 } else {
