@@ -44,7 +44,7 @@ module.exports = class ArginfoCommand extends Command {
 **Channel**: ${arg.argalert.channel}
 **Users**: ${arg.argalert.users.length} Users
             `);
-        msg.reply(result);
+        msg.send(result);
 	}
 };
 
