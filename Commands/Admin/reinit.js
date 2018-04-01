@@ -21,16 +21,16 @@ module.exports = class ReinitCommand extends Command {
 	}
 
 	exec(msg, { category }) {
-        console.log(category);
         if (category == 'all') {
-            client.commandHandler.removeAll(); 
-            client.commandHandler.loadAll();
+            msg.client.commandHandler.removeAll(); 
+            msg.client.commandHandler.loadAll();
             msg.reply(`Reloaded commands. \nLoaded **${msg.client.commandHandler.categories.size}** categories\nLoaded **${msg.client.commandHandler.modules.size}`)
         } else {
             var TEMPCategory = msg.client.commandHandler.categories.get(category);
             TEMPCategory.removeAll();
             var i = 0;
             fs.readdirSync(path.join(TEMPCategory.filepath, '..')).forEach((file) => {
+                console.log(file);
                 msg.client.commandHandler.load(file);
                 i++;
             });
