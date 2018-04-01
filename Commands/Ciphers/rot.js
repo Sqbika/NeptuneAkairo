@@ -10,7 +10,7 @@ module.exports = class RotCommand extends Command {
             typing: true,
             args: [{
                 id: 'number',
-                type: integer,
+                type: 'integer',
             }, {
                 id: 'text',
                 match: 'rest'
