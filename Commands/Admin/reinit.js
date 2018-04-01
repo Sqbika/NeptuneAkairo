@@ -27,11 +27,10 @@ module.exports = class ReinitCommand extends Command {
             msg.reply(`Reloaded commands. \nLoaded **${msg.client.commandHandler.categories.size}** categories\nLoaded **${msg.client.commandHandler.modules.size}** Modules.`)
         } else {
             var TEMPCategory = msg.client.commandHandler.categories.get(category);
-            console.log(TEMPCategory.filepath);
+            var path = TEMPCategory.first().filepath;
             TEMPCategory.removeAll();
             var i = 0;
-            msg.reply((path.join(TEMPCategory.filepath, '..')));
-            fs.readdirSync(path.join(TEMPCategory.filepath, '..')).forEach((file) => {
+            fs.readdirSync(path.join(path, '..')).forEach((file) => {
                 msg.client.commandHandler.load(file);
                 i++;
             });
