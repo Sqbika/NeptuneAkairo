@@ -78,7 +78,7 @@ function hasPermission(msg, Command) {
 			if (typeof Command.userPermissions !== "function") {
 				command = msg.member.hasPermission(Command.userPermissions);
 			} else {
-				command = msg.member.userPermissions(msg);
+				command = Command.userPermissions(msg);
 			}
 		}
 	} else {
