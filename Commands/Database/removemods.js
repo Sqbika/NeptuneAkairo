@@ -3,8 +3,8 @@ const { Command } = require('discord-akairo');
 module.exports = class RemoveModsCommand extends Command {
 	constructor() {
 		super('removemods', {
-			aliases: ['removeadmin'],
-			usage: 'removemds <role>',
+			aliases: ['removemods'],
+			usage: 'removemods <role>',
 			description: 'Removes a role from the mods list.',
 			channelRestriction: 'guild',
 			args: [
