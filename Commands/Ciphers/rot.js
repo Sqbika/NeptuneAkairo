@@ -43,6 +43,7 @@ module.exports = class RotCommand extends Command {
 
 function wrap (what, num) {
     do {
-        what + num;
+        what += num;
     } while (what < 0 );
+    return what;
 }
