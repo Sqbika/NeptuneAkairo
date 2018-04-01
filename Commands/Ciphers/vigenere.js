@@ -29,7 +29,6 @@ module.exports = class VigenereCommand extends Command {
                     result += decode ? abc[wrap(abc.indexOf(textarr[i].toLowerCase()) - abc.indexOf(word[i % word.length]), abc.length) % abc.length].toUpperCase() :
                                        abc[(abc.indexOf(textarr[i].toLowerCase()) + abc.indexOf(word[i % word.length])) % abc.length].toUpperCase();
                 } else {
-                    console.log(abc.indexOf(word[i % word.length]));
                     result += decode ? abc[wrap(abc.indexOf(textarr[i]) - abc.indexOf(word[i % word.length]), abc.length) % abc.length] :
                                        abc[(abc.indexOf(textarr[i]) + abc.indexOf(word[i % word.length])) % abc.length];
                 }
