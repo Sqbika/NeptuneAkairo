@@ -85,7 +85,7 @@ module.exports = class NotifyCommand extends Command {
 				{
 					id: 'words',
 					prompt: {
-						start: `<@!${msg.author.id}> Please provide the word you want to get notified about.`,
+						start: (msg) => `<@!${msg.author.id}> Please provide the word you want to get notified about.`,
 						optional: true
 					},
 					match: 'rest',
