@@ -193,6 +193,31 @@ function checkPinNotify(channel) {
 	}
 }
 
+function checkImportantPinNotify(channel) {
+	if(channel.type !== 'dm') {
+		var file = getJSON(channel);
+		var users = [];
+		Object.keys(file).forEach((ele) => {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
+				users.push(file[ele]);
+			}
+		});
+		channel.send("**Important Pin Happened.");
+		channel.send(users.map(e => "<@!" + e +">").join(' '), {split: true}).then(res => res.delete(500));
+	}
+}
+
+function checkFirstPinNotify(channel) {
+	if(channel.type !== 'dm') {
+		var file = getJSON(channel);
+		Object.keys(file).forEach((ele) => {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
+				channel.client.users.get(ele).send(`**Ambiguous Pin Detected**\n\nA Pin might have been added or deleted. in <#${channel.id}>`);
+			}
+		});
+	}
+}
+
 function userHasNotify(user, input, settings) {
 	var yes = false;
 	Object.keys(user.words).forEach((ele,) => {

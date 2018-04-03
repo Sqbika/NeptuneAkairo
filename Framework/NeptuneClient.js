@@ -46,8 +46,8 @@ class NeptuneClient extends AkairoClient {
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.settings.init();
-		this.pinNumber = {}
-		this.channels.filter(e => (e.type == "text") && e.permissionsFor(e.guild.me).has('VIEW_CHANNEL')).forEach(e => { e.fetchPinnedMessages().then(f => {this.pinNumber[e.id] = f.size})});	}
+		this.pinNumber = {};
+	}
 }
 
 module.exports = NeptuneClient;
