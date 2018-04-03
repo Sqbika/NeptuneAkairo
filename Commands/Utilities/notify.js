@@ -74,6 +74,7 @@ module.exports = class NotifyCommand extends Command {
 				{
 					id: 'words',
 					default: (msg, args) => {
+						console.log(args.sub);
 						if(args.sub !== 'addword')	{
 							return 'nothing';
 						}
