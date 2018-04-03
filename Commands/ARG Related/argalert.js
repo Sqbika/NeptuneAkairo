@@ -1,4 +1,6 @@
-const { Command } = require('discord-akairo');
+const {
+	Command
+} = require('discord-akairo');
 
 module.exports = class ArgalertCommand extends Command {
 	constructor() {
@@ -8,54 +10,59 @@ module.exports = class ArgalertCommand extends Command {
 			usage: 'See argalert help',
 			channelRestriction: 'guild',
 			args: [{
-				id: 'sub',
-				type: ['addme', 'removeme', 'notify', 'help'],
-				match: 'word',
-				default: 'help',
-				description: {
-					description: 'ARGAlert Plugin sub groups.',
-					usage: '<sub> <Text, if sub is notify>',
-					examples: ['addme', 'removeme', 'notify WAKING TITAN HAS STARTED']
-				}
-			}, {
-				id: 'arg',
-				type: (word, msg, prevArg) => {
-					if(prevArg !== 'help') {
-						return Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined;
-					} else {
-						return true;
+					id: 'sub',
+					type: ['addme', 'removeme', 'notify', 'help'],
+					match: 'word',
+					default: 'help',
+					description: {
+						description: 'ARGAlert Plugin sub groups.',
+						usage: '<sub> <Text, if sub is notify>',
+						examples: ['addme', 'removeme', 'notify WAKING TITAN HAS STARTED']
+					}
+				}, {
+					id: 'arg',
+					type: (word, msg, prevArg) => {
+						if (prevArg !== 'help') {
+							return Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined;
+						} else {
+							return true;
+						}
+					},
+					match: 'word',
+					prompt: {
+						retries: 2,
+						start: (msg) => `<@!${msg.author.id}${`> Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``}`,
+						retry: (msg) => `<@!${msg.author.id}${`> Please provide **ONLY** an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``}`
+					},
+					description: {
+						description: 'An ARG Name, which is in the database.',
+						usage: '<string>'
 					}
 				},
-				match: 'word',
-				prompt: {
-					retries: 2,
-					start: (msg) => '<@!' + msg.author.id + `> Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``,
-					retry: (msg) => '<@!' + msg.author.id + `> Please provide **ONLY** an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-				},
-				description: {
-					description: 'An ARG Name, which is in the database.',
-					usage: '<string>'
+				{
+					id: 'text',
+					match: 'rest',
+					default: 'FALSE ALARM!',
+					description: {
+						description: 'Text for notifying users. <Only people with Admin Rights>',
+						usage: '<string (infinite)>'
+					}
 				}
-			},
-			{
-				id: 'text',
-				match: 'rest',
-				default: 'FALSE ALARM!',
-				description: {
-					description: 'Text for notifying users. <Only people with Admin Rights>',
-					usage: '<string (infinite)>'
-				}
-			}]
+			]
 		});
 	}
 
-	async exec(msg, { sub, arg, text })		{
-		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+	async exec(msg, {
+		sub,
+		arg,
+		text
+	}) {
+		if (msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var alertObject = msg.client.settings.get(msg.guild.id, 'args');
-			// [arg]["argalert"];
-		switch(sub) {
+		// [arg]["argalert"];
+		switch (sub) {
 			case 'addme':
-				if(alertObject[arg].argalert.users.indexOf(msg.author.id) == -1)					{
+				if (alertObject[arg].argalert.users.indexOf(msg.author.id) == -1) {
 					alertObject[arg].argalert.users.push(msg.author.id);
 					msg.client.settings.set(msg.guild.id, 'args', alertObject);
 					msg.reply('Added you to the notification list.').then(msg => msg.delete(5000));
@@ -64,7 +71,7 @@ module.exports = class ArgalertCommand extends Command {
 				}
 				break;
 			case 'removeme':
-				if(alertObject[arg].argalert.users.indexOf(msg.author.id) !== -1)					{
+				if (alertObject[arg].argalert.users.indexOf(msg.author.id) !== -1) {
 					alertObject[arg].argalert.users.splice(alertObject[arg].argalert.users.indexOf(msg.author.id), 1);
 					msg.client.settings.set(msg.guild.id, 'args', alertObject);
 					msg.reply('Removed you to the notification list.').then(msg => msg.delete(5000));
@@ -73,10 +80,14 @@ module.exports = class ArgalertCommand extends Command {
 				}
 				break;
 			case 'notify':
-				if(msg.client.Permissions.ARGPermission(msg)) {
+				if (msg.client.Permissions.ARGPermission(msg)) {
 					msg.guild.channels.get(alertObject[arg].channel).send(argString(text));
-					msg.guild.channels.get(alertObject[arg].channel).send(usersString(msg, arg), { split: { char: ' ' } }).then(msgs => {
-						if(typeof msgs === Array) {
+					msg.guild.channels.get(alertObject[arg].channel).send(usersString(msg, arg), {
+						split: {
+							char: ' '
+						}
+					}).then(msgs => {
+						if (typeof msgs === Array) {
 							msgs.forEach((ele) => {
 								ele.delete(300);
 							});

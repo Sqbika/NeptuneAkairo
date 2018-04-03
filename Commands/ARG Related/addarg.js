@@ -1,4 +1,6 @@
-const { Command } = require('discord-akairo');
+const {
+	Command
+} = require('discord-akairo');
 
 module.exports = class AddArgCommand extends Command {
 	constructor() {
@@ -7,19 +9,17 @@ module.exports = class AddArgCommand extends Command {
 			description: 'Adds an ARG to the database. The channel defaults to the channel it was created in.',
 			usage: 'addarg <argName>',
 			channelRestriction: 'guild',
-			args: [
-				{
-					id: 'argName',
-					type: (word, msg) => (Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) == -1) ? true : undefined,
-					prompt: {
-						retries: 2,
-						start: (msg) => '<@!' + msg.author.id + '> Please provide a name for the ARG for the users to use. It cannot be the same as an existing one.',
-						retry: (msg) => '<@!' + msg.author.id + `> Please provide **ONLY** a non-existant name in the database for the ARG. Names in the database: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					},
-					description: 'A name for the ARG',
-					usage: '<string>'
-				}
-			]
+			args: [{
+				id: 'argName',
+				type: (word, msg) => (Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) == -1) ? true : undefined,
+				prompt: {
+					retries: 2,
+					start: (msg) => `<@!${msg.author.id}> Please provide a name for the ARG for the users to use. It cannot be the same as an existing one.`,
+					retry: (msg) => `<@!${msg.author.id}${`> Please provide **ONLY** a non-existant name in the database for the ARG. Names in the database: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``}`
+				},
+				description: 'A name for the ARG',
+				usage: '<string>'
+			}]
 		});
 	}
 
@@ -27,8 +27,10 @@ module.exports = class AddArgCommand extends Command {
 		return msg.client.Permissions.ARGPermission(msg);
 	}
 
-	async exec(msg, { argName }) {
-		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+	async exec(msg, {
+		argName
+	}) {
+		if (msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
 		argObject[argName] = {
 			leavemealone: {
