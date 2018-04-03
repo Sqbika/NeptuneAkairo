@@ -127,12 +127,12 @@ module.exports = class NotifyCommand extends Command {
 var helpstring = `
 Possible Commands:
 
-removeword and removepin requires using a Notify ID. You can get them by using \`nep notify list\`
+removeword and removepin requires using a Notify ID. You can get them by using \`atl notify list\`
 
-**addword**: Adds a new word notify whenever something mentioned in the channelID. | Usage: nep notify addword <channelID or anywhere> [words (Goes Infinite)]
-**addpin**: Adds a new pin notify. | Usage: nep notify addpin <channelID or anywhere>
-**removeword**: Removes the word notify from the word list | Usage: nep notify removeword <notifyID>
-**removepin**: Removes thes pin notify from the pin list | Usage: nep notify removepin <notifyID>
-**list**: Lists the notify you currently have | Usage: nep notify list
-**help**: This. | Usage: nep notify help
+**addword**: Adds a new word notify whenever something mentioned in the channelID. | Usage: atl notify addword <channelID or anywhere> [words (Goes Infinite)]
+**addpin**: Adds a new pin notify. | Usage: atl notify addpin <channelID or anywhere>
+**removeword**: Removes the word notify from the word list | Usage: atl notify removeword <notifyID>
+**removepin**: Removes thes pin notify from the pin list | Usage: atl notify removepin <notifyID>
+**list**: Lists the notify you currently have | Usage: atl notify list
+**help**: This. | Usage: atl notify help
 `;

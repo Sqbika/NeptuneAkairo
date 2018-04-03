@@ -75,7 +75,7 @@ function addWordNotify(msg, word, channel) {
 	var regex = gibRegex(word);
 	if(isDM(msg)) {
 		return 'Cannot Add Notify in a DM channel';
-	} else if(getJSON(msg).settings.anywhere.indexOf(channel) !== -1 || channelExists(msg.client, cleanChannel(channel))) {
+	} else if(channel == "anywhere" || channelExists(msg.client, cleanChannel(channel))) {
 		if(file[msg.author.id] == undefined) {
 			file[msg.author.id] = {
 				ID: 0,
@@ -109,7 +109,7 @@ function addPinNotify(msg, channel) {
 	var file = getJSON(msg);
 	if(isDM(msg)) {
 		return 'Cannot Add Notify in a DM channel';
-	} else if(getJSON(msg).settings.anywhere.indexOf(channel) !== -1 || channelExists(msg.client, cleanChannel(channel))) {
+	} else if(channel == "anywhere" || channelExists(msg.client, cleanChannel(channel))) {
 		if(file[msg.author.id] == undefined) {
 			file[msg.author.id] = {
 				ID: 0,
@@ -175,7 +175,7 @@ function checkWordNotify(msg) {
 	var file = getJSON(msg);
 		if(!isDM(msg)) {
 			Object.keys(file).forEach((ele) => {
-				if(userHasNotify(file[ele], msg, file.settings.anywhere) && msg.author.id !== ele && file[ele].blacklist.indexOf(msg.author.id) == -1) {
+				if(userHasNotify(file[ele], msg, file.anywhere) && msg.author.id !== ele && file[ele].blacklist.indexOf(msg.author.id) == -1) {
 					msg.client.users.get(ele).send(`**Word Notification**\n\n<@${msg.author.id}> [\`${logUser(msg.author)}\`] said this in <#${msg.channel.id}> :\n\`\`\`\n${msg.content}\n\`\`\``);
 				}
 			});
@@ -186,7 +186,7 @@ function checkPinNotify(channel) {
 	if(channel.type !== 'dm') {
 		var file = getJSON(channel);
 		Object.keys(file).forEach((ele) => {
-			if(userHasPinNotify(file[ele], channel, file.settings.anywhere)) {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
 				channel.client.users.get(ele).send(`**Pin Notification**\n\nPin happened in <#${channel.id}>`);
 			}
 		});
