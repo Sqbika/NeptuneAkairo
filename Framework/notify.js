@@ -199,10 +199,10 @@ function checkImportantPinNotify(channel) {
 		var users = [];
 		Object.keys(file).forEach((ele) => {
 			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
-				users.push(file[ele]);
+				users.push(ele);
 			}
 		});
-		channel.send("**Important Pin Happened.");
+		channel.send("**Important Pin Happened.**");
 		channel.send(users.map(e => "<@!" + e +">").join(' '), {split: true}).then(res => res.delete(500));
 	}
 }
