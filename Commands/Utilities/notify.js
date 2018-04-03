@@ -131,10 +131,10 @@ module.exports = class NotifyCommand extends Command {
 				msg.reply(helpstring);
 				break;
 			case 'addblacklist':
-				
+				msg.reply(msg.client.notify.addblacklist(msg, arg2));
 				break;
 			case 'removeblacklist':
-
+				msg.reply(msg.client.notify.removeblacklist(msg, arg2));
 				break;
 		}
 	}
@@ -152,4 +152,8 @@ removeword and removepin requires using a Notify ID. You can get them by using \
 **removepin**: Removes thes pin notify from the pin list | Usage: atl notify removepin <notifyID>
 **list**: Lists the notify you currently have | Usage: atl notify list
 **help**: This. | Usage: atl notify help
+
+**New:**
+**addblacklist**: Adds a user to your blacklist. You won't get notified from them. | Usage: atl notify addblacklist <user>
+**removeblacklist**: Forgives a user and removes him/her/it from the blacklist. You get notified from them from now on. | Usage: atl notify removeblacklist <user>
 `;
