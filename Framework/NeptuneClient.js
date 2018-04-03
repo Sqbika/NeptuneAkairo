@@ -41,11 +41,13 @@ class NeptuneClient extends AkairoClient {
 		}
 	}
 
-	start(auth) {
-		this.login(auth);
+	async start(auth) {
+		await this.login(auth);
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.settings.init();
+		this.pinNumber = {}
+        await this.channels.filter(e => e.type == "text").map(async e => { var pins = await e.fetchPinnedMessages(); return {[e.id]: pins.size} }).forEach(obj => this.pinNumber[Object.keys(obj)[0]] = obj[Object.keys(obj)[0]]);
 	}
 }
 
