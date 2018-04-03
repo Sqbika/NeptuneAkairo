@@ -60,7 +60,8 @@ module.exports = class NotifyCommand extends Command {
 								default:
 									return 'Oopsie. Error found. Please report it.';
 							}
-						}
+						},
+						optional: true
 					},
 					default: (msg, args) => {
 						switch(args.sub) {
@@ -73,9 +74,14 @@ module.exports = class NotifyCommand extends Command {
 				},
 				{
 					id: 'words',
-					prompt: { start: 'Please provide the word you want to get notified about.' },
+					prompt: { start: 'Please provide the word you want to get notified about.', optional: true },
 					match: 'rest',
-					optional: true
+					default: (msg, args) => {
+						console.log(args.sub);
+						if(args.sub !== 'addword')	{
+							return 'nothing';
+						}
+					},
 				}
 			]
 		});
