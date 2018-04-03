@@ -75,12 +75,7 @@ module.exports = class NotifyCommand extends Command {
 					id: 'words',
 					prompt: { start: 'Please provide the word you want to get notified about.' },
 					match: 'rest',
-					default: (msg, args) => {
-						console.log(args.sub);
-						if(args.sub !== 'addword')	{
-							return 'nothing';
-						}
-					}
+					optional: true
 				}
 			]
 		});
