@@ -27,6 +27,9 @@ module.exports = class NotifyCommand extends Command {
 							case 'enable':
 							case 'disable':
 								return this.handler.resolver.type('integer');
+							case 'help':
+							case 'list':
+								return true;
 						}
 					},
 					prompt: {
@@ -40,6 +43,8 @@ module.exports = class NotifyCommand extends Command {
 								case 'enable':
 								case 'disable':
 									return 'Please provide a notify ID';
+								default:
+									return 'Oopsie. Error found. Please report it.';
 							}
 						},
 						retry: (msg, args) => {
@@ -52,6 +57,8 @@ module.exports = class NotifyCommand extends Command {
 								case 'enable':
 								case 'disable':
 									return 'Please provide a valid notify ID';
+								default:
+									return 'Oopsie. Error found. Please report it.';
 							}
 						}
 					},
