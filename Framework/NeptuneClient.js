@@ -47,8 +47,7 @@ class NeptuneClient extends AkairoClient {
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.settings.init();
 		this.pinNumber = {}
-        await this.channels.filter(e => (e.type == "text") && e.permissionsFor(e.guild.me).has('VIEW_CHANNEL')).map(async e => { var pins = await e.fetchPinnedMessages(); return {[e.id]: pins.size} }).forEach(obj => this.pinNumber[Object.keys(obj)[0]] = obj[Object.keys(obj)[0]]);
-	}
+		this.channels.filter(e => (e.type == "text") && e.permissionsFor(e.guild.me).has('VIEW_CHANNEL')).forEach(e => { e.fetchPinnedMessages().then(f => {this.pinNumber[e.id] = f.size})});	}
 }
 
 module.exports = NeptuneClient;
