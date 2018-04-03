@@ -80,7 +80,8 @@ function addWordNotify(msg, word, channel) {
 			file[msg.author.id] = {
 				ID: 0,
 				pins: {},
-				words: {}
+				words: {},
+				blacklist: []
 			};
 			file[msg.author.id].words[file[msg.author.id].ID] = {
 				word: regex,
