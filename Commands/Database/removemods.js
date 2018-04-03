@@ -13,7 +13,7 @@ module.exports = class RemoveModsCommand extends Command {
 					type: 'role',
 					prompt: {
 						retries: 2,
-						start: 'Please provide the role you want to remove from the list.'
+						start: (msg) => '<@!' + msg.author.id + '> Please provide the role you want to remove from the list.'
 					}
 				}
 			]

@@ -29,8 +29,8 @@ module.exports = class ArgalertCommand extends Command {
 				match: 'word',
 				prompt: {
 					retries: 2,
-					start: (msg) => `Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``,
-					retry: (msg) => `Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
+					start: (msg) => '<@!' + msg.author.id + `> Please provide an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``,
+					retry: (msg) => '<@!' + msg.author.id + `> Please provide **ONLY** an ARG from these: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
 				},
 				description: {
 					description: 'An ARG Name, which is in the database.',

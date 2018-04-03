@@ -13,8 +13,8 @@ module.exports = class AddWhatsNewRegexCommand extends Command {
 					type: (word, msg) => (Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1) ? true : undefined,
 					prompt: {
 						retries: 2,
-						start: 'Please provide a name for the ARG to set the regex for.',
-						retry: (msg) => `Please provide an existing ARG to set the regex for. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
+						start: (msg) => '<@!' + msg.author.id + '>Please provide a name for the ARG to set the regex for.',
+						retry: (msg) => '<@!' + msg.author.id + `> Please provide **ONLY** an existing ARG to set the regex for. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
 					},
 					description: 'An ARG Name, which is in the database.',
 					usage: '<string>'
@@ -23,8 +23,8 @@ module.exports = class AddWhatsNewRegexCommand extends Command {
 					match: 'rest',
 					prompt: {
 						retries: 2,
-						start: 'Please provide the text you want to set the regex to be.',
-						retry: 'Please provide the text you want to set the regex to be.'
+						start: (msg) => '<@!' + msg.author.id + '> Please provide the text you want to set the regex to be.',
+						retry: (msg) => '<@!' + msg.author.id + '> `Please provide **ONLY** the text you want to set the regex to be.'
 					},
 					description: 'A Regex which will be added to the list',
 					usage: '<regex string>'

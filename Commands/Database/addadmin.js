@@ -13,7 +13,7 @@ module.exports = class AddAdminCommand extends Command {
 					type: 'member',
 					prompt: {
 						retries: 2,
-						start: 'Please provide the user you want to add to the list.'
+						start: (msg) => '<@!' + msg.author.id + '> Please provide the user you want to add to the list.'
 					}
 				}
 			]

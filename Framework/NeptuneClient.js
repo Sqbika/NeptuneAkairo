@@ -16,7 +16,8 @@ class NeptuneClient extends AkairoClient {
 				timeout:'Prompt has been canceled. Time out.',
 				ended: 'Retry limit reached. Please use `' + config.prefix + ' help <command>` for more information',
 				cancel: 'Command has been cancelled.',
-				retries: 4,
+				start: 'Please provide argument.',
+				retries: 0,
 				time: 30000
 			},
 		});

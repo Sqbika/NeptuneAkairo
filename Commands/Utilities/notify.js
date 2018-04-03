@@ -40,34 +40,34 @@ module.exports = class NotifyCommand extends Command {
 							switch(args.sub) {
 								case 'addpin':
 								case 'addword':
-									return 'Please provide a channel ID or <anywhere>';
+									return '<@!' + msg.author.id + '> Please provide a channel ID or <anywhere>';
 								case 'removepin':
 								case 'removeword':
 								case 'enable':
 								case 'disable':
-									return 'Please provide a notify ID';
+									return '<@!' + msg.author.id + '> Please provide a notify ID';
 								case 'addblacklist':
 								case 'removeblacklist':
-									return 'Please provide an user';
+									return '<@!' + msg.author.id + '> Please provide an user';
 								default:
-									return 'Oopsie. Error found. Please report it.';
+									return '<@!' + msg.author.id + '> Oopsie. Error found. Please report it.';
 							}
 						},
 						retry: (msg, args) => {
 							switch(args.sub) {
 								case 'addpin':
 								case 'addword':
-									return 'Please provide a valid channel ID or <anywhere>';
+									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid channel ID or <anywhere>';
 								case 'removepin':
 								case 'removeword':
 								case 'enable':
 								case 'disable':
-									return 'Please provide a valid notify ID';
+									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid notify ID';
 								case 'addblacklist':
 								case 'removeblacklist':
-									return 'Please provide a valid user';
+									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid user';
 								default:
-									return 'Oopsie. Error found. Please report it.';
+									return '<@!' + msg.author.id + '> Oopsie. Error found. Please report it.';
 							}
 						},
 						optional: true
@@ -83,7 +83,7 @@ module.exports = class NotifyCommand extends Command {
 				},
 				{
 					id: 'words',
-					prompt: { start: 'Please provide the word you want to get notified about.', optional: true },
+					prompt: { start: '<@!' + msg.author.id + '> Please provide the word you want to get notified about.', optional: true },
 					match: 'rest',
 					default: (msg, args) => {
 						console.log(args.sub);
