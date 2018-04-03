@@ -21,7 +21,7 @@ module.exports = class NotifyCommand extends Command {
 						switch(args.sub) {
 							case 'addpin':
 							case 'addword':
-								return this.handler.resolver.type('textChannel')(word, message);
+								return (this.handler.resolver.type('textChannel')(word, message) || word == "anywhere");
 							case 'removepin':
 							case 'removeword':
 							case 'enable':
