@@ -288,5 +288,5 @@ function getWordString(msg, file) {
 }
 
 
-module.exports = { enableN, disableN, addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, listNotifies };
+module.exports = { enableN, disableN, addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, checkFirstPinNotify, checkImportantPinNotify, listNotifies };
 
