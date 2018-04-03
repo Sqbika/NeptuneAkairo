@@ -88,6 +88,7 @@ module.exports = class NotifyCommand extends Command {
 	}
 
 	async exec(msg, { sub, arg2, words }) {
+		if (typeof arg2.type !== "undefined") arg2 = arg2.id;
 		switch(sub) {
 			case 'addword':
 				msg.reply(msg.client.notify.addWordNotify(msg, words, arg2));
