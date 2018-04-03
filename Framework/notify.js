@@ -222,7 +222,7 @@ function userHasNotify(user, input, settings) {
 	var yes = false;
 	Object.keys(user.words).forEach((ele,) => {
 		if(user.words[ele].enabled) {
-			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (user.pins[ele].channel == "anywhere" || user.words[ele].channel == input.channel.id)) {
+			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (user.words[ele].channel == "anywhere" || user.words[ele].channel == input.channel.id)) {
 				yes = true;
 			}
 		}
