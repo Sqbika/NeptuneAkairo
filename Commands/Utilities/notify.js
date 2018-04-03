@@ -21,12 +21,12 @@ module.exports = class NotifyCommand extends Command {
 						switch(args.sub) {
 							case 'addpin':
 							case 'addword':
-								return this.handler.resolver.type('textChannel');
+								return this.handler.resolver.type('textChannel')(word, message);
 							case 'removepin':
 							case 'removeword':
 							case 'enable':
 							case 'disable':
-								return this.handler.resolver.type('integer');
+								return this.handler.resolver.type('integer')(word);
 							case 'help':
 							case 'list':
 								return true;
