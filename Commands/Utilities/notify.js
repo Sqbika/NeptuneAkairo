@@ -1,12 +1,13 @@
-const { Command } = require('discord-akairo');
+const {
+	Command
+} = require('discord-akairo');
 
 module.exports = class NotifyCommand extends Command {
 	constructor() {
 		super('notify', {
 			aliases: ['notify'],
 			channel: 'guild',
-			args: [
-				{
+			args: [{
 					id: 'sub',
 					type: ['addpin', 'addword', 'removepin', 'removeword', 'enable', 'disable', 'list', 'help', 'addblacklist', 'removeblacklist'],
 					default: 'help',
@@ -18,7 +19,7 @@ module.exports = class NotifyCommand extends Command {
 				}, {
 					id: 'arg2',
 					type: (word, message, args) => {
-						switch(args.sub) {
+						switch (args.sub) {
 							case 'addpin':
 							case 'addword':
 								return (this.handler.resolver.type('textChannel')(word, message) || word == "anywhere");
@@ -37,43 +38,43 @@ module.exports = class NotifyCommand extends Command {
 					},
 					prompt: {
 						start: (msg, args) => {
-							switch(args.sub) {
+							switch (args.sub) {
 								case 'addpin':
 								case 'addword':
-									return '<@!' + msg.author.id + '> Please provide a channel ID or <anywhere>';
+									return `<@!${msg.author.id}> Please provide a channel ID or <anywhere>`;
 								case 'removepin':
 								case 'removeword':
 								case 'enable':
 								case 'disable':
-									return '<@!' + msg.author.id + '> Please provide a notify ID';
+									return `<@!${msg.author.id}> Please provide a notify ID`;
 								case 'addblacklist':
 								case 'removeblacklist':
-									return '<@!' + msg.author.id + '> Please provide an user';
+									return `<@!${msg.author.id}> Please provide an user`;
 								default:
-									return '<@!' + msg.author.id + '> Oopsie. Error found. Please report it.';
+									return `<@!${msg.author.id}> Oopsie. Error found. Please report it.`;
 							}
 						},
 						retry: (msg, args) => {
-							switch(args.sub) {
+							switch (args.sub) {
 								case 'addpin':
 								case 'addword':
-									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid channel ID or <anywhere>';
+									return `<@!${msg.author.id}> Please **ONLY** provide a valid channel ID or <anywhere>`;
 								case 'removepin':
 								case 'removeword':
 								case 'enable':
 								case 'disable':
-									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid notify ID';
+									return `<@!${msg.author.id}> Please **ONLY** provide a valid notify ID`;
 								case 'addblacklist':
 								case 'removeblacklist':
-									return '<@!' + msg.author.id + '> Please **ONLY** provide a valid user';
+									return `<@!${msg.author.id}> Please **ONLY** provide a valid user`;
 								default:
-									return '<@!' + msg.author.id + '> Oopsie. Error found. Please report it.';
+									return `<@!${msg.author.id}> Oopsie. Error found. Please report it.`;
 							}
 						},
 						optional: true
 					},
 					default: (msg, args) => {
-						switch(args.sub) {
+						switch (args.sub) {
 							case 'help':
 								return 'help';
 							case 'list':
@@ -83,11 +84,14 @@ module.exports = class NotifyCommand extends Command {
 				},
 				{
 					id: 'words',
-					prompt: { start: '<@!' + msg.author.id + '> Please provide the word you want to get notified about.', optional: true },
+					prompt: {
+						start: `<@!${msg.author.id}> Please provide the word you want to get notified about.`,
+						optional: true
+					},
 					match: 'rest',
 					default: (msg, args) => {
 						console.log(args.sub);
-						if(args.sub !== 'addword')	{
+						if (args.sub !== 'addword') {
 							return 'nothing';
 						}
 					},
@@ -96,9 +100,13 @@ module.exports = class NotifyCommand extends Command {
 		});
 	}
 
-	async exec(msg, { sub, arg2, words }) {
+	async exec(msg, {
+		sub,
+		arg2,
+		words
+	}) {
 		if (typeof arg2.type !== "undefined") arg2 = arg2.id;
-		switch(sub) {
+		switch (sub) {
 			case 'addword':
 				msg.reply(msg.client.notify.addWordNotify(msg, words, arg2));
 				break;
@@ -111,19 +119,19 @@ module.exports = class NotifyCommand extends Command {
 			case 'removepin':
 				msg.reply(msg.client.notify.removePinNotify(msg, arg2));
 				break;
-			/* case "enable":
-				if (arg2 == "anywhere") {
-					msg.channel.send("Please provide an ID to enable.");
-				} else {
-					msg.channel.send(msg.client.notify.enableN(msg, arg2));
-				}
-				break;
-			case "disable":
-				if (arg2 == "anywhere") {
-					msg.channel.send("Please provide an ID to disable.");
-				} else {
-					msg.channel.send(msg.client.notify.disableN(msg, arg2));
-				}*/
+				/* case "enable":
+					if (arg2 == "anywhere") {
+						msg.channel.send("Please provide an ID to enable.");
+					} else {
+						msg.channel.send(msg.client.notify.enableN(msg, arg2));
+					}
+					break;
+				case "disable":
+					if (arg2 == "anywhere") {
+						msg.channel.send("Please provide an ID to disable.");
+					} else {
+						msg.channel.send(msg.client.notify.disableN(msg, arg2));
+					}*/
 			case 'list':
 				msg.reply(msg.client.notify.listNotifies(msg));
 				break;
@@ -138,8 +146,7 @@ module.exports = class NotifyCommand extends Command {
 				break;
 		}
 	}
-}
-;
+};
 
 var helpstring = `
 Possible Commands:
