@@ -8,7 +8,7 @@ module.exports = class NotifyCommand extends Command {
 			args: [
 				{
 					id: 'sub',
-					type: ['addpin', 'addword', 'removepin', 'removeword', 'enable', 'disable', 'list', 'help'],
+					type: ['addpin', 'addword', 'removepin', 'removeword', 'enable', 'disable', 'list', 'help', 'addblacklist', 'removeblacklist'],
 					default: 'help',
 					description: {
 						content: 'Notification plugin.',
@@ -30,6 +30,9 @@ module.exports = class NotifyCommand extends Command {
 							case 'help':
 							case 'list':
 								return true;
+							case 'addblacklist':
+							case 'removeblacklist':
+								return this.handler.resolver.type('user')(word);
 						}
 					},
 					prompt: {
@@ -43,6 +46,9 @@ module.exports = class NotifyCommand extends Command {
 								case 'enable':
 								case 'disable':
 									return 'Please provide a notify ID';
+								case 'addblacklist':
+								case 'removeblacklist':
+									return 'Please provide an user';
 								default:
 									return 'Oopsie. Error found. Please report it.';
 							}
@@ -57,6 +63,9 @@ module.exports = class NotifyCommand extends Command {
 								case 'enable':
 								case 'disable':
 									return 'Please provide a valid notify ID';
+								case 'addblacklist':
+								case 'removeblacklist':
+									return 'Please provide a valid user';
 								default:
 									return 'Oopsie. Error found. Please report it.';
 							}
@@ -120,6 +129,13 @@ module.exports = class NotifyCommand extends Command {
 				break;
 			case 'help':
 				msg.reply(helpstring);
+				break;
+			case 'addblacklist':
+				
+				break;
+			case 'removeblacklist':
+
+				break;
 		}
 	}
 }

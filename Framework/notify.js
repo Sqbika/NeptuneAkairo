@@ -32,11 +32,47 @@ function channelExists(client, chan) {
 	return client.channels.has(chan);
 }
 
+function remove(arr, thing) {
+	if(scontains(arr, thing)) {
+		return arr.slice(0, arr.indexOf(thing)).concat(arr.slice(arr.indexOf(thing) + 1, arr.length));
+	} else {
+		return arr;
+	}
+}
+
+function scontains(array, it) {
+	return array.indexOf(it) !== -1;
+}
+
 function gibRegex(input) {
 	if(util.isArray(input)) {
 		return regexFactories(input);
 	} else {
 		return regexFactory(input);
+	}
+}
+
+function addblacklist(msg, user) {
+	var file = getJSON(msg);
+	if (isDM(msg)) return "Sorry, This command doesn't work in DM.";
+	if (file[msg.author.id].blacklist.indexOf(user.id) == -1) {
+		file[msg.author.id].blacklist.push(user.id);
+		writeJSON(msg, file);
+		return "Successfully added user to the blacklist.";
+	} else {
+		return "User is already in the blacklist. Skipping.";
+	}
+}
+
+function removeblacklist(msg, user) {
+	var file = getJSON(msg);
+	if (isDM(msg)) return "Sorry, This command doesn't work in DM.";
+	if (file[msg.author.id].blacklist.indexOf(user.id) !== -1) {
+		file[msg.author.id].blacklist = remove(file[msg.author.id].blacklist, user.id);
+		writeJSON(msg, file);
+		return "Successfully removed user to the blacklist.";
+	} else {
+		return "User is not in the blacklist. Skipping.";
 	}
 }
 
