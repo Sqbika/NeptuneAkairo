@@ -11,12 +11,11 @@ module.exports = class pinNotifyListener extends Listener {
 
 	async exec(channel, date) {
 		var pins = await channel.fetchPinnedMessages();
-		console.log(pins.first().content);
 		if (this.client.pinNumber[channel.id] == undefined) {
 			this.client.notify.checkFirstPinNotify(channel)
 		}
 		if (pins.first().createdAt < date && pins.size > this.client.pinNumber[channel.id]) {
-			if (pins.first().content.startwith("!!!")) 
+			if (pins.first().content.startsWith("!!!")) 
 				this.client.notify.checkImportantPinNotify(channel);
 			else 
 				this.client.notify.checkPinNotify(channel);
