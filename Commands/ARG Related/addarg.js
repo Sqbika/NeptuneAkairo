@@ -24,7 +24,7 @@ module.exports = class AddArgCommand extends Command {
 	}
 
 	userPermissions(msg) {
-		return msg.client.settings.get(msg.guild.id, 'settings', []).admins.indexOf(msg.author.id) !== -1;
+		return msg.client.Permissions.ARGPermission(msg);
 	}
 
 	async exec(msg, { argName }) {
@@ -37,9 +37,9 @@ module.exports = class AddArgCommand extends Command {
 				text: ''
 			},
 			argalert: {
-				channel: msg.channel.id,
 				users: []
 			},
+			channel: msg.channel.id,
 			channels: [msg.channel.id],
 			details: {
 				description: '',

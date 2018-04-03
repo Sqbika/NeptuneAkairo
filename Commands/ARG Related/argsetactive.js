@@ -33,9 +33,8 @@ module.exports = class ArgSetActivityCommand extends Command {
 	}
 
 	userPermissions(msg) {
-		return msg.client.settings.get(msg.guild.id, 'settings', []).admins.indexOf(msg.author.id) !== -1;
+		return msg.client.Permissions.ARGPermission(msg);
 	}
-
 	exec(msg, { arg, active }) {
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');

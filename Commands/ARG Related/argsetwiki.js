@@ -34,7 +34,7 @@ module.exports = class ArgSetWikiLinkCommand extends Command {
 	}
 
 	userPermissions(msg) {
-		return msg.client.settings.get(msg.guild.id, 'settings', []).admins.indexOf(msg.author.id) !== -1;
+		return msg.client.Permissions.ARGPermission(msg); 0;
 	}
 
 	exec(msg, { arg, text }) {

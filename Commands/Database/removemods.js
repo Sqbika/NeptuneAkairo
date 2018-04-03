@@ -1,19 +1,19 @@
 const { Command } = require('discord-akairo');
 
-module.exports = class RemoveAdminCommand extends Command {
+module.exports = class RemoveModsCommand extends Command {
 	constructor() {
-		super('removeadmin', {
-			aliases: ['removeadmin'],
-			usage: 'removeadmin <member>',
-			description: 'Removes a user to the admin list.',
+		super('removemods', {
+			aliases: ['removemods'],
+			usage: 'removemods <role>',
+			description: 'Removes a role from the mods list.',
 			channelRestriction: 'guild',
 			args: [
 				{
-					id: 'user',
-					type: 'member',
+					id: 'role',
+					type: 'role',
 					prompt: {
 						retries: 2,
-						start: 'Please provide the user you want to remove from the list.'
+						start: 'Please provide the role you want to remove from the list.'
 					}
 				}
 			]
@@ -24,11 +24,11 @@ module.exports = class RemoveAdminCommand extends Command {
 		return msg.client.settings.get(msg.guild.id, 'settings', []).admins.indexOf(msg.author.id) !== -1;
 	}
 
-	exec(msg, { user }) {
+	exec(msg, { role }) {
 		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var argObject = msg.client.settings.get(msg.guild.id, 'settings');
-		argObject.admins.splice(argObject.admin.indexOf(user.id), 1);
+		argObject.mods.splice(argObject.mods.indexOf(role.id), 1);
 		msg.client.settings.set(msg.guild.id, 'settings', argObject);
-		msg.reply('Succesfully remove admin from the admin list.').then((me) => me.delete(10000));
+		msg.reply('Succesfully removed role from the mods list.').then((me) => me.delete(10000));
 	}
 };

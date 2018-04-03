@@ -32,11 +32,47 @@ function channelExists(client, chan) {
 	return client.channels.has(chan);
 }
 
+function remove(arr, thing) {
+	if(scontains(arr, thing)) {
+		return arr.slice(0, arr.indexOf(thing)).concat(arr.slice(arr.indexOf(thing) + 1, arr.length));
+	} else {
+		return arr;
+	}
+}
+
+function scontains(array, it) {
+	return array.indexOf(it) !== -1;
+}
+
 function gibRegex(input) {
 	if(util.isArray(input)) {
 		return regexFactories(input);
 	} else {
 		return regexFactory(input);
+	}
+}
+
+function addblacklist(msg, user) {
+	var file = getJSON(msg);
+	if (isDM(msg)) return "Sorry, This command doesn't work in DM.";
+	if (file[msg.author.id].blacklist.indexOf(user.id) == -1) {
+		file[msg.author.id].blacklist.push(user.id);
+		writeJSON(msg, file);
+		return "Successfully added user to the blacklist.";
+	} else {
+		return "User is already in the blacklist. Skipping.";
+	}
+}
+
+function removeblacklist(msg, user) {
+	var file = getJSON(msg);
+	if (isDM(msg)) return "Sorry, This command doesn't work in DM.";
+	if (file[msg.author.id].blacklist.indexOf(user.id) !== -1) {
+		file[msg.author.id].blacklist = remove(file[msg.author.id].blacklist, user.id);
+		writeJSON(msg, file);
+		return "Successfully removed user to the blacklist.";
+	} else {
+		return "User is not in the blacklist. Skipping.";
 	}
 }
 
@@ -75,12 +111,13 @@ function addWordNotify(msg, word, channel) {
 	var regex = gibRegex(word);
 	if(isDM(msg)) {
 		return 'Cannot Add Notify in a DM channel';
-	} else if(getJSON(msg).settings.anywhere.indexOf(channel) !== -1 || channelExists(msg.client, cleanChannel(channel))) {
+	} else if(channel == "anywhere" || channelExists(msg.client, cleanChannel(channel))) {
 		if(file[msg.author.id] == undefined) {
 			file[msg.author.id] = {
 				ID: 0,
 				pins: {},
-				words: {}
+				words: {},
+				blacklist: []
 			};
 			file[msg.author.id].words[file[msg.author.id].ID] = {
 				word: regex,
@@ -109,7 +146,7 @@ function addPinNotify(msg, channel) {
 	var file = getJSON(msg);
 	if(isDM(msg)) {
 		return 'Cannot Add Notify in a DM channel';
-	} else if(getJSON(msg).settings.anywhere.indexOf(channel) !== -1 || channelExists(msg.client, cleanChannel(channel))) {
+	} else if(channel == "anywhere" || channelExists(msg.client, cleanChannel(channel))) {
 		if(file[msg.author.id] == undefined) {
 			file[msg.author.id] = {
 				ID: 0,
@@ -175,7 +212,7 @@ function checkWordNotify(msg) {
 	var file = getJSON(msg);
 		if(!isDM(msg)) {
 			Object.keys(file).forEach((ele) => {
-				if(userHasNotify(file[ele], msg, file.settings.anywhere) && msg.author.id !== ele && file[ele].blacklist.indexOf(msg.author.id) == -1) {
+				if(userHasNotify(file[ele], msg, file.anywhere) && msg.author.id !== ele && file[ele].blacklist.indexOf(msg.author.id) == -1) {
 					msg.client.users.get(ele).send(`**Word Notification**\n\n<@${msg.author.id}> [\`${logUser(msg.author)}\`] said this in <#${msg.channel.id}> :\n\`\`\`\n${msg.content}\n\`\`\``);
 				}
 			});
@@ -186,8 +223,33 @@ function checkPinNotify(channel) {
 	if(channel.type !== 'dm') {
 		var file = getJSON(channel);
 		Object.keys(file).forEach((ele) => {
-			if(userHasPinNotify(file[ele], channel, file.settings.anywhere)) {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
 				channel.client.users.get(ele).send(`**Pin Notification**\n\nPin happened in <#${channel.id}>`);
+			}
+		});
+	}
+}
+
+function checkImportantPinNotify(channel) {
+	if(channel.type !== 'dm') {
+		var file = getJSON(channel);
+		var users = [];
+		Object.keys(file).forEach((ele) => {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
+				users.push(ele);
+			}
+		});
+		channel.send("**Important Pin Happened.**");
+		channel.send(users.map(e => "<@!" + e +">").join(' '), {split: true}).then(res => res.delete(500));
+	}
+}
+
+function checkFirstPinNotify(channel) {
+	if(channel.type !== 'dm') {
+		var file = getJSON(channel);
+		Object.keys(file).forEach((ele) => {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
+				channel.client.users.get(ele).send(`**Ambiguous Pin Detected**\n\nA Pin might have been added or deleted. in <#${channel.id}>`);
 			}
 		});
 	}
@@ -197,7 +259,7 @@ function userHasNotify(user, input, settings) {
 	var yes = false;
 	Object.keys(user.words).forEach((ele,) => {
 		if(user.words[ele].enabled) {
-			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (settings.indexOf(user.words[ele].channel) !== -1 || user.words[ele].channel == input.channel.id)) {
+			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (user.words[ele].channel == "anywhere" || user.words[ele].channel == input.channel.id)) {
 				yes = true;
 			}
 		}
@@ -209,7 +271,7 @@ function userHasPinNotify(user, channel, settings) {
 	var yes = false;
 	Object.keys(user.pins).forEach((ele, ind) => {
 		if(user.pins[ele].enabled) {
-			if(settings.indexOf(user.pins[ele].channel) !== -1 || user.pins[ele].channel == channel.id) {
+			if(user.pins[ele].channel == "anywhere" || user.pins[ele].channel == channel.id) {
 				yes = true;
 			}
 		}
@@ -263,5 +325,5 @@ function getWordString(msg, file) {
 }
 
 
-module.exports = { enableN, disableN, addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, listNotifies };
+module.exports = { enableN, disableN, addblacklist, removeblacklist,addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, checkFirstPinNotify, checkImportantPinNotify, listNotifies };
 

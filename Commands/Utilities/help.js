@@ -41,7 +41,7 @@ module.exports = class HelpCommand extends Command {
 function funcDesc(command) {
 	return `
 **Description**: ${typeof command.description === Array ? command.description.join('\n') : command.description}
-**Usage**: ${command.usage ? `${command.client.config.prefix} ${command.usage}` : 'No Usage was provided. Please notify owner to provide one!'}
+**Usage**: ${command.usage ? `${command.client.config.prefix} ${command.usage}` : command.client.config.prefix + " " + command.args.map(ar => "<" + ar.id + ">").join(' ') + "   (Generated.)"}
 **Enabled**: ${command.enabled}
 **Aliases**: \`${command.aliases.join(', ')}\`
 **Category**: \`${command.category}\`
@@ -60,29 +60,29 @@ ${command.args.map(ar => `  -**Name**: ${ar.id}
 `;
 }
 
-function hasPermission(msg, command) {
+function hasPermission(msg, Command) {
 	var client = true, command = true;
 	var result = true;
-	if(command.ownerOnly) {
+	if(Command.ownerOnly) {
 		return msg.author.id == msg.client.config.ownerID;
 	} else 
 	if(msg.guild) {
-		if(command.clientPermissions) {
-			if (typeof command.clientPermissions !== "function") {
-				client = msg.guild.me.hasPermission(command.clientPermissions);
+		if(Command.clientPermissions) {
+			if (typeof Command.clientPermissions !== "function") {
+				client = msg.guild.me.hasPermission(Command.clientPermissions);
 			} else {
-				client = command.clientPermissions(msg);
+				client = Command.clientPermissions(msg);
 			}
 		}
-		if (command.userPermissions) {
-			if (typeof command.userPermissions !== "function") {
-				command = msg.member.hasPermission(command.userPermissions);
+		if (Command.userPermissions) {
+			if (typeof Command.userPermissions !== "function") {
+				command = msg.member.hasPermission(Command.userPermissions);
 			} else {
-				command = msg.emmber.clientPermissions(msg);
+				command = Command.userPermissions(msg);
 			}
 		}
 	} else {
-		result = command.channelRestriction !== 'guild';
+		result = Command.channelRestriction !== 'guild';
 	}
 	return result && client && command;
 }

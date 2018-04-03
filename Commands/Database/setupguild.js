@@ -17,7 +17,7 @@ module.exports = class SetupCommand extends Command {
 				leaveMeAlone: true
 			});
 			await msg.client.settings.set(msg.guild.id, 'args', {});
-			await msg.client.settings.set(msg.guild.id, 'notify', []);
+			await msg.client.settings.set(msg.guild.id, 'notify', {});
 		}
 	}
 };
