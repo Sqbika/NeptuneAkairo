@@ -9,7 +9,7 @@ module.exports = class pinNotifyListener extends Listener {
 		});
 	}
 
-	async exec(channel) {
+	async exec(channel, date) {
 		var pins = await channel.fetchPinnedMessages();
 		if (pins.first().createdAt < date && pins.size > this.client.pinNumbers[channel.id]) {
 			this.client.notify.checkPinNotify(channel);
