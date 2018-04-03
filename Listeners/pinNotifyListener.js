@@ -11,6 +11,7 @@ module.exports = class pinNotifyListener extends Listener {
 
 	async exec(channel, date) {
 		var pins = await channel.fetchPinnedMessages();
+		console.log(pins.first().content);
 		if (this.client.pinNumber[channel.id] == undefined) {
 			this.client.notify.checkFirstPinNotify(channel)
 		}
