@@ -21,6 +21,7 @@ function regexFactory(word) {
 }
 
 function cleanChannel(input) {
+	console.log(input);
 	if (typeof channel !== "string") input = input.id;
 	return input.replace(/[<#>]/g, '');
 }
