@@ -197,7 +197,7 @@ function userHasNotify(user, input, settings) {
 	var yes = false;
 	Object.keys(user.words).forEach((ele,) => {
 		if(user.words[ele].enabled) {
-			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (settings.indexOf(user.words[ele].channel) !== -1 || user.words[ele].channel == input.channel.id)) {
+			if(new RegExp(user.words[ele].word, 'ig').test(input.content) && (user.pins[ele].channel == "anywhere" || user.words[ele].channel == input.channel.id)) {
 				yes = true;
 			}
 		}
@@ -209,7 +209,7 @@ function userHasPinNotify(user, channel, settings) {
 	var yes = false;
 	Object.keys(user.pins).forEach((ele, ind) => {
 		if(user.pins[ele].enabled) {
-			if(settings.indexOf(user.pins[ele].channel) !== -1 || user.pins[ele].channel == channel.id) {
+			if(user.pins[ele].channel == "anywhere" || user.pins[ele].channel == channel.id) {
 				yes = true;
 			}
 		}
