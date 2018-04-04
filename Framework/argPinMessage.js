@@ -29,7 +29,7 @@ function addMessage(pinMessage) {
 
 async function updateMessage(pinMessage) {
     var image = drawImage(pinMessage);
-    var msg = await fetchMessage(pinMessage.msgID);
+    var msg = await fetchMessage(pinMessage);
 
     if (msg == "undefined") 
         msg = client.channels.get(pinMessage.channel).send({embed: client.util.embed().setImage(image)});
