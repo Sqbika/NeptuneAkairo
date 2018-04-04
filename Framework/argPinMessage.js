@@ -127,8 +127,8 @@ function drawImage(pinMessage) {
         var b = 30;
         var fill;
         do {
-            console.log(b);
             fill = text.slice(0, b);
+            console.log(fill);
             var fillWidth = ctx.measureText(fill).width;
             if (fillWidth > canvas.width) {
                 b--
