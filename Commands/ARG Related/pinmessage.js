@@ -46,7 +46,8 @@ module.exports = class PinMessageCommand extends Command {
 	}
 
     async exec(msg, { sub, arg, text }) {
-        var arg = msg.client.settings.get(msg.guild.id, 'args')[arg];
+        arg = msg.client.settings.get(msg.guild.id, 'args')[arg];
+        console.log(arg);
         var pinMessage = arg[pinMessage];
         if (typeof pinMessage == "undefined") {
             pinMessage = {
