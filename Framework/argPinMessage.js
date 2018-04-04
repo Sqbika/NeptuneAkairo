@@ -6,7 +6,7 @@ var client;
 var maxID = 0;
 
 function setup(Client) {
-    this.client = Client;
+    client = Client;
 }
 
 async function fetchMessage(pinMessage) {
