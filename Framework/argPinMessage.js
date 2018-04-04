@@ -19,7 +19,6 @@ async function fetchMessage(pinMessage) {
         console.log(pinMessage);
         msg = await channel.fetchMessage(pinMessage.msgID);
     } catch (e) {
-        console.log(e);
         msg = undefined;
     }
     return msg;
@@ -45,9 +44,9 @@ async function updateMessage(pinMessage) {
         msg.edit({
             embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
+    console.log(msg);
     pinMessage.msgID = msg.id;
     var guildID = client.channels.get(pinMessage.channel).guild.id;
-    console.log(guildID);
     var a = client.settings.get(guildID, 'args')
     a[pinMessage.arg].pinMessage = pinMessage;
     client.settings.set(guildID, 'args', a);
