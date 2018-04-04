@@ -118,8 +118,7 @@ function drawImage(pinMessage) {
     var text = pinMessage.whatHappened.text;
     var textLength = ctx.measureText(text).width;
     var done = false;
-    var a = Math.floor(textLength / canvas.width);
-    console.log(textLength + " / " + canvas.length);
+    var a = Math.ceil(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
     console.log(a);
@@ -138,8 +137,6 @@ function drawImage(pinMessage) {
                 ehh = true;
             }
         } while (ehh);
-        console.log("Slice: " + b);
-        console.log("Text: " + fill);
         text = text.slice(b, text.length);
         ctx.fillText(fill, 1, whatHappenedStartin + (20 * i));
     }
@@ -157,7 +154,7 @@ function drawImage(pinMessage) {
     var text = pinMessage.waitingFor.text;
     var textLength = ctx.measureText(text).width;
     var done = false;
-    var a = Math.floor(textLength / canvas.width);
+    var a = Math.ceil(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
     for (var i = 1; i < a + 1; i++) {
@@ -175,8 +172,6 @@ function drawImage(pinMessage) {
                 ehh = true;
             }
         } while (ehh);
-        console.log("Slice: " + b);
-        console.log("Text: " + fill);
         var text = text.slice(b, text.length);
         ctx.fillText(fill, 1, waitingStart + (20 * i));
     }
