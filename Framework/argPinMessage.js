@@ -166,7 +166,7 @@ function drawImage(pinMessage) {
     ctx.fillStyle = "#22cc55";
     ctx.fillText("Speculation:" + pinMessage.waitingFor.date, 1, 290);
 
-    return canvas.toDataURL();
+    return canvas;
 }
 
 module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage, client};
