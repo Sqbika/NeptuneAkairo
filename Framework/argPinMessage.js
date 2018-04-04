@@ -6,8 +6,8 @@ var client;
 var maxID = 0;
 
 async function fetchMessage(pinMessage) {
-    console.log(client);
-    return await client.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
+    console.log(this.client);
+    return await this.client.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
 }
 
 function addMessage(pinMessage) {
