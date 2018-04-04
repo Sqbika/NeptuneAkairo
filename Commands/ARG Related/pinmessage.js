@@ -20,7 +20,7 @@ module.exports = class PinMessageCommand extends Command {
                 description: 'The sub between updating waitingfor and whathappened',
                 usage: '<waitingfor,wf,waiting,wfor> or <whathappened,wh,happened,happen>'
             },{
-				id: 'arg',
+				id: 'arg2',
 				type: (word, msg) => Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1 ? true : undefined,
 				prompt: {
 					retries: 2,
