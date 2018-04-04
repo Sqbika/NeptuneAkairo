@@ -59,7 +59,6 @@ function periodicUpdate() {
         periodicUpdateLimitter = 0;
         messages.forEach(pinMessage => {
             drawImage(pinMessage);
-            console.log(pinMessage);
             var message = fetchMessage(pinMessage).then(message => {
                 message.edit({
                     embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
@@ -136,7 +135,9 @@ function drawImage(pinMessage) {
                 ehh = true;
             }
         } while (ehh);
-        var text = text.slice(b, text.length);
+        console.log("Slice: " + b);
+        console.log("Text: " + fill);
+        text = text.slice(b, text.length);
         ctx.fillText(fill, 1, whatHappenedStartin + (20 * i));
     }
 
@@ -171,6 +172,8 @@ function drawImage(pinMessage) {
                 ehh = true;
             }
         } while (ehh);
+        console.log("Slice: " + b);
+        console.log("Text: " + fill);
         var text = text.slice(b, text.length);
         ctx.fillText(fill, 1, waitingStart + (20 * i));
     }
