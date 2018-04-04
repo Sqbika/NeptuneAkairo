@@ -134,9 +134,10 @@ function drawImage(pinMessage) {
             } else if (fillWidth + letter < canvas.width) {
                 b++;
             } else {
-                ehh = true;
+                ehh = false;
             }
         } while (ehh);
+
         text = text.slice(b, text.length);
         ctx.fillText(fill, 1, whatHappenedStartin + (20 * i));
     }
@@ -169,7 +170,7 @@ function drawImage(pinMessage) {
             } else if (fillWidth + letter < canvas.width) {
                 b++;
             } else {
-                ehh = true;
+                ehh = false;
             }
         } while (ehh);
         var text = text.slice(b, text.length);

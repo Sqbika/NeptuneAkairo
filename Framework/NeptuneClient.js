@@ -50,8 +50,8 @@ class NeptuneClient extends AkairoClient {
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.addFunction(this.pinMessage.periodicUpdate, false, 'PinMessageUpdate');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
-		this.pinMessage.loadMessages();
 		this.pinNumber = {};
+		setTimeout(this.pinMessage.loadMessages, 10000);
 	}
 }
 
