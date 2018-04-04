@@ -2,7 +2,7 @@ const { createCanvas, loadImage } = require('canvas');
 
 var messages = [];
 const width = 350;
-var nepnepClient; //not Undefined
+var nepClient; //not Undefined
 var maxID = 0;
 
 async function fetchMessage(pinMessage) {
