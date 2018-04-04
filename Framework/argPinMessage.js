@@ -5,7 +5,6 @@ const {
 const fs = require('fs-jetpack');
 
 let messages = [];
-const width = 350;
 let client;
 let maxID = 0;
 
@@ -15,7 +14,6 @@ function setup(Client) {
 
 async function fetchMessage(pinMessage) {
     var channel = client.channels.get(pinMessage.channel);
-    console.log(channel + " / " + pinMessage.channel);
     var msg;
     try {
         msg = await channel.fetchMessage(pinMessage.msgID);
@@ -45,6 +43,7 @@ async function updateMessage(pinMessage) {
         });
 
     var guildID = client.channels.get(pinMessage.channel).guild.id;
+    console.log(guildID);
     var a = client.settings.get(guildID, 'args')
     a = a[pinMessage.arg].pinMessage = pinMessage;
     client.settings.set(guildID, 'args', a);
@@ -93,9 +92,10 @@ function drawImage(pinMessage) {
 
     ctx.fillStyle = "#ffffff";
 
-    ctx.font = "13.25px Arial";
+    ctx.font = "13.25px Open Sans";
     ctx.fillText("Update:" + new Date().toString(), ctx.measureText(pinMessage.arg).width + 8, ctx.measureText("M").width);
     ctx.fillText(pinMessage.arg, 1, ctx.measureText("M").width);
+    canvas.width = ctx.measureText(pinMessage.arg) + ctx.measureText("Update:" + new Date().toString()) + 8;
 
     ctx.strokeStyle = "#ccffcc";
     ctx.fillStyle = "#ff0077";
@@ -109,17 +109,17 @@ function drawImage(pinMessage) {
     ctx.lineTo(500, (300 - ctx.measureText("M").width + 5) / 2);
     ctx.stroke();
 
-    ctx.font = "20px Arial";
+    ctx.font = "20px Open Sans";
     var whatHappenedStartin = ctx.measureText("M").width * 2;
 
 
     ctx.fillText("What Happened:", 1, whatHappenedStartin);
     ctx.fillStyle = "#cccccc";
-    ctx.font = "15px Arial";
+    ctx.font = "15px Open Sans";
     var text = pinMessage.whatHappened.text;
     var textLength = ctx.measureText(text).width;
     var done = false;
-    var a = Math.floor(textLength / width);
+    var a = Math.floor(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
     for (var i = 1; i < a + 1; i++) {
@@ -129,9 +129,9 @@ function drawImage(pinMessage) {
         do {
             fill = text.slice(0, b);
             var fillWidth = ctx.measureText(fill).width;
-            if (fillWidth > width) {
+            if (fillWidth > canvas.width) {
                 b--
-            } else if (fillWidth + letter < width) {
+            } else if (fillWidth + letter < canvas.width) {
                 b++;
             } else {
                 ehh = true;
@@ -144,17 +144,17 @@ function drawImage(pinMessage) {
     ctx.fillStyle = "#22cc55";
     ctx.fillText("When:" + pinMessage.whatHappened.date, 1, lineHeight - 5);
 
-    ctx.font = "20px Arial";
+    ctx.font = "20px Open Sans";
     var waitingStart = lineHeight + ctx.measureText("M").width + 5;
     ctx.fillStyle = "#ff0077";
     ctx.fillText("What are we waiting for:", 1, lineHeight + ctx.measureText("M").width + 5);
     ctx.fillStyle = "#cccccc";
-    ctx.font = "15px Arial";
+    ctx.font = "15px Open Sans";
 
     var text = pinMessage.waitingFor.text;
     var textLength = ctx.measureText(text).width;
     var done = false;
-    var a = Math.floor(textLength / width);
+    var a = Math.floor(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
     for (var i = 1; i < a + 1; i++) {
@@ -164,9 +164,9 @@ function drawImage(pinMessage) {
         do {
             fill = text.slice(0, b);
             var fillWidth = ctx.measureText(fill).width;
-            if (fillWidth > width) {
+            if (fillWidth > canvas.width) {
                 b--
-            } else if (fillWidth + letter < width) {
+            } else if (fillWidth + letter < canvas.width) {
                 b++;
             } else {
                 ehh = true;
