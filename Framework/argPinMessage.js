@@ -32,7 +32,7 @@ async function updateMessage(pinMessage) {
     var msg = await fetchMessage(pinMessage);
 
     if (msg == undefined) 
-        msg = client.channels.get(pinMessage.channel).send({files: client.util.embed().setImage(image.toBuffer())});
+        msg = client.channels.get(pinMessage.channel).send({embed: client.util.embed().setImage(image.toBuffer())});
     else 
         msg.edit({embed: client.util.embed().setImage(image.toBuffer())});
 
