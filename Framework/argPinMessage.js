@@ -70,10 +70,11 @@ function periodicUpdate() {
 
 function loadMessages() {
     client.settings.items.forEach(guild => {
-        guild.args.forEach(args => {
-            if (typeof args.pinMessage !== "undefined") {
-                messages.push(args.pinMessage);
-                if (args.pinMessage.id > maxID) maxID = args.pinMessage.id + 1;
+        Object.keys(guild.args).forEach(args => {
+            var arg = guild.args[args];
+            if (typeof arg.pinMessage !== "undefined") {
+                messages.push(arg.pinMessage);
+                if (arg.pinMessage.id > maxID) maxID = arg.pinMessage.id + 1;
             }
         })
     });
