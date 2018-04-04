@@ -119,6 +119,7 @@ function drawImage(pinMessage) {
     var textLength = ctx.measureText(text).width;
     var done = false;
     var a = Math.floor(textLength / canvas.width);
+    console.log(textLength + " / " + canvas.length);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
     console.log(a);
