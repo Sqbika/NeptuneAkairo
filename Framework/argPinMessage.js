@@ -1,12 +1,12 @@
-const {createCanvas, loadImage } = require('canvas');
+const { createCanvas, loadImage } = require('canvas');
 
 var messages = [];
 const width = 350;
 var client;
 var maxID = 0;
 
-function setup(client) {
-    this.client = client;
+function setup(Client) {
+    this.client = Client;
 }
 
 async function fetchMessage(pinMessage) {
