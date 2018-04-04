@@ -2,12 +2,15 @@ const { createCanvas, loadImage } = require('canvas');
 
 let messages = [];
 const width = 350;
-let nepClient; //not Undefined
+let client;
 let maxID = 0;
 
+function setup(Client) {
+    client = Client;
+}
+
 async function fetchMessage(pinMessage) {
-    console.log(nepClient); // undefined
-    return await nepClient.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
+    return await client.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
 }
 
 function addMessage(pinMessage) {
@@ -21,14 +24,14 @@ async function updateMessage(pinMessage) {
     var msg = await fetchMessage(pinMessage.msgID);
 
     if (msg == "undefined") 
-        msg = nepClient.channels.get(pinMessage.channel).send({embed: nepClient.util.embed().setImage(image)});
+        msg = client.channels.get(pinMessage.channel).send({embed: client.util.embed().setImage(image)});
     else 
-        msg.edit({embed: nepClient.util.embed().setImage(image)});
+        msg.edit({embed: client.util.embed().setImage(image)});
 
-    var guildID = nepClient.channels.get(pinMessage.channel).guild.id;
-    var a = nepClient.settings.get(guildID, 'args')
+    var guildID = client.channels.get(pinMessage.channel).guild.id;
+    var a = client.settings.get(guildID, 'args')
     a = a[pinMessage.arg].pinMessage = pinMessage;
-    nepClient.settings.set(guildID, 'args', a);
+    client.settings.set(guildID, 'args', a);
 
     messages[messages.indexOf(messages.find(e => e.id == pinMessage.id))] = pinMessage;
 }
@@ -42,14 +45,14 @@ function periodicUpdate() {
         messages.forEach(pinMessage => {
             var image = drawImage(pinMessage);
             var message = fetchMessage(pinMessage).then(message => {
-                message.edit({embed: nepClient.util.embed().setImage(image)});
+                message.edit({embed: client.util.embed().setImage(image)});
             });
         })
     }
 }
 
 function loadMessages() {
-    nepClient.settings.items.forEach(guild => {
+    client.settings.items.forEach(guild => {
         guild.args.forEach(args => {
             if (typeof args.pinMessage !== "undefined") {
                 messages.push(args.pinMessage);
@@ -158,7 +161,7 @@ function drawImage(pinMessage) {
     return canvas.toDataURL();
 }
 
-module.exports = {fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage, nepClient};
+module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage, client};
 
 /*
 {
