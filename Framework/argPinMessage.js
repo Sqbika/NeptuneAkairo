@@ -6,8 +6,8 @@ let nepClient; //not Undefined
 var maxID = 0;
 
 async function fetchMessage(pinMessage) {
-    console.log(this.nepClient); // undefined
-    return await this.nepClient.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
+    console.log(nepClient); // undefined
+    return await nepClient.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
 }
 
 function addMessage(pinMessage) {
