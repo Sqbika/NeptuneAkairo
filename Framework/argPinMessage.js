@@ -16,7 +16,6 @@ async function fetchMessage(pinMessage) {
     var channel = client.channels.get(pinMessage.channel);
     var msg;
     try {
-        console.log(pinMessage);
         msg = await channel.fetchMessage(pinMessage.msgID);
     } catch (e) {
         msg = undefined;
