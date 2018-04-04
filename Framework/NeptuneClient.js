@@ -27,6 +27,7 @@ class NeptuneClient extends AkairoClient {
 		this.config = config;
 		this.bus = require('./bus.js');
 		this.remind = require('./remind');
+		this.pinMessage = require('./argPinMessage');
 		this.settings = new SequelizeProvider(this.database.SETTINGS, {
 			idColumn: 'Guild',
 			dataColumn: 'JSON'
@@ -45,6 +46,7 @@ class NeptuneClient extends AkairoClient {
 	async start(auth) {
 		await this.login(auth);
 		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
+		this.bus.addFunction(this.pinMessage.periodicUpdate, false, 'PinMessageUpdate');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.settings.init();
 		this.pinNumber = {};
