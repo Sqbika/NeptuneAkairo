@@ -12,9 +12,13 @@ function setup(Client) {
 async function fetchMessage(pinMessage) {
     var channel = client.channels.get(pinMessage.channel);
     console.log(channel + " / " + pinMessage.channel);
-    var msg = await channel.fetchMessage(pinMessage.msgID);
-    if (msg) return msg;
-    else return undefined;
+    var msg;
+    try {
+    msg  = await channel.fetchMessage(pinMessage.msgID);
+    } catch (e) {
+        msg = undefined;
+    }
+    return msg;
 }
 
 function addMessage(pinMessage) {

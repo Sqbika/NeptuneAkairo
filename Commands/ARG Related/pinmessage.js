@@ -47,7 +47,6 @@ module.exports = class PinMessageCommand extends Command {
 
     async exec(msg, { sub, arg, text }) {
         arg = msg.client.settings.get(msg.guild.id, 'args')[arg];
-        console.log(arg);
         var pinMessage = arg[pinMessage];
         if (typeof pinMessage == "undefined") {
             pinMessage = {
@@ -73,6 +72,7 @@ module.exports = class PinMessageCommand extends Command {
             pinMessage.whatHappened.text = text;
             pinMessage.waitingFor.date = new Date();
         }
+        console.log(pinMessage);
         msg.client.pinMessage.addMessage(pinMessage);
         msg.reply("Added and updated PinMessage. Will show up in a few seconds.").then(res => res.delete(5000));
 	}
