@@ -45,7 +45,7 @@ async function updateMessage(pinMessage) {
     var guildID = client.channels.get(pinMessage.channel).guild.id;
     console.log(guildID);
     var a = client.settings.get(guildID, 'args')
-    a = a[pinMessage.arg].pinMessage = pinMessage;
+    a[pinMessage.arg].pinMessage = pinMessage;
     client.settings.set(guildID, 'args', a);
 
     messages[messages.indexOf(messages.find(e => e.id == pinMessage.id))] = pinMessage;
