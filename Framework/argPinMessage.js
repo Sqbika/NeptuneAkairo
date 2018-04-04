@@ -2,7 +2,7 @@ const {
     createCanvas,
     loadImage
 } = require('canvas');
-const fs = require('jetpack');
+const fs = require('fs-jetpack');
 
 let messages = [];
 const width = 350;
