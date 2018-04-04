@@ -5,11 +5,8 @@ const width = 350;
 var client;
 var maxID = 0;
 
-function setup(Client) {
-    client = Client;
-}
-
 async function fetchMessage(pinMessage) {
+    console.log(client);
     return await client.channels.get(pinMessage.channel).fetchMessage(pinMessage.msgID);
 }
 
@@ -161,7 +158,7 @@ function drawImage(pinMessage) {
     return canvas.toDataURL();
 }
 
-module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage};
+module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage, client};
 
 /*
 {
