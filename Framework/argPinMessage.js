@@ -161,7 +161,7 @@ function drawImage(pinMessage) {
     return canvas.toDataURL();
 }
 
-module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage};
+module.exports = {setup, fetchMessage, updateMessage, periodicUpdate, loadMessages, drawImage, addMessage};
 
 /*
 {
