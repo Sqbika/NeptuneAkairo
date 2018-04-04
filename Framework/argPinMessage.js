@@ -124,7 +124,7 @@ function drawImage(pinMessage) {
     console.log(a);
     for (var i = 1; i < a + 1; i++) {
         var ehh = true;
-        var b = 30;
+        var b = 50;
         var fill;
         do {
             fill = text.slice(0, b);
@@ -132,8 +132,6 @@ function drawImage(pinMessage) {
             var fillWidth = ctx.measureText(fill).width;
             if (fillWidth > canvas.width) {
                 b--
-            } else if (fillWidth + letter < canvas.width) {
-                b++;
             } else {
                 ehh = false;
             }
@@ -161,15 +159,13 @@ function drawImage(pinMessage) {
     var letter = ctx.measureText("M").width;
     for (var i = 1; i < a + 1; i++) {
         var ehh = true;
-        var b = 30;
+        var b = 50;
         var fill;
         do {
             fill = text.slice(0, b);
             var fillWidth = ctx.measureText(fill).width;
             if (fillWidth > canvas.width) {
                 b--
-            } else if (fillWidth + letter < canvas.width) {
-                b++;
             } else {
                 ehh = false;
             }
