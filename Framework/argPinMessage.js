@@ -121,6 +121,7 @@ function drawImage(pinMessage) {
     var a = Math.floor(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
+    console.log(a);
     for (var i = 1; i < a + 1; i++) {
         var ehh = true;
         var b = 30;
@@ -192,7 +193,8 @@ module.exports = {
     loadMessages,
     drawImage,
     addMessage,
-    client
+    client,
+    messages
 };
 
 /*
