@@ -55,7 +55,7 @@ var periodicUpdateLimitter = 0;
 
 function periodicUpdate() {
     periodicUpdateLimitter++;
-    if (periodicUpdateLimitter >= 8) {
+    if (periodicUpdateLimitter >= 720) {
         periodicUpdateLimitter = 0;
         messages.forEach(pinMessage => {
             drawImage(pinMessage);
