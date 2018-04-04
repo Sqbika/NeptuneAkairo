@@ -18,6 +18,7 @@ async function fetchMessage(pinMessage) {
     try {
         msg = await channel.fetchMessage(pinMessage.msgID);
     } catch (e) {
+        console.log(e);
         msg = undefined;
     }
     return msg;
@@ -33,10 +34,12 @@ async function updateMessage(pinMessage) {
     drawImage(pinMessage);
     var msg = await fetchMessage(pinMessage);
 
-    if (msg == undefined)
+    if (msg == undefined) {
         msg = client.channels.get(pinMessage.channel).send({
             embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
+        pinMessage.msgID = msg.id;
+    }
     else
         msg.edit({
             embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
