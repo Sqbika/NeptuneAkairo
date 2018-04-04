@@ -35,11 +35,11 @@ async function updateMessage(pinMessage) {
 
     if (msg == undefined)
         msg = client.channels.get(pinMessage.channel).send({
-            embed: client.util.embed().setImage({url: `https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`})
+            embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
     else
         msg.edit({
-            embed: client.util.embed().setImage({url: `https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`})
+            embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
 
     var guildID = client.channels.get(pinMessage.channel).guild.id;
@@ -61,9 +61,7 @@ function periodicUpdate() {
             drawImage(pinMessage);
             var message = fetchMessage(pinMessage).then(message => {
                 message.edit({
-                    embed: client.util.embed().setImage({
-                        url: `https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`
-                    })
+                    embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
                 });
             });
         })
