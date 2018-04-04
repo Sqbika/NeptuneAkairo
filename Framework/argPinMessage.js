@@ -32,9 +32,9 @@ async function updateMessage(pinMessage) {
     var msg = await fetchMessage(pinMessage);
 
     if (msg == undefined) 
-        msg = client.channels.get(pinMessage.channel).send({embed: client.util.embed().setImage(image)});
+        msg = client.channels.get(pinMessage.channel).send({files: [image]});
     else 
-        msg.edit({embed: client.util.embed().setImage(image)});
+        msg.edit({files: [image]});
 
     var guildID = client.channels.get(pinMessage.channel).guild.id;
     var a = client.settings.get(guildID, 'args')
@@ -53,7 +53,7 @@ function periodicUpdate() {
         messages.forEach(pinMessage => {
             var image = drawImage(pinMessage);
             var message = fetchMessage(pinMessage).then(message => {
-                message.edit({embed: client.util.embed().setImage(image)});
+                message.edit({files: [image]});
             });
         })
     }
