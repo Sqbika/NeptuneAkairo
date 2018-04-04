@@ -121,14 +121,12 @@ function drawImage(pinMessage) {
     var a = Math.ceil(textLength / canvas.width);
     a > 5 ? a = 5 : a = a;
     var letter = ctx.measureText("M").width;
-    console.log(a);
     for (var i = 1; i < a + 1; i++) {
         var ehh = true;
         var b = 50;
         var fill;
         do {
             fill = text.slice(0, b);
-            console.log(fill);
             var fillWidth = ctx.measureText(fill).width;
             if (fillWidth > canvas.width) {
                 b--
