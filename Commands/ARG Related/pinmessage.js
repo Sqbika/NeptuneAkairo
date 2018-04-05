@@ -57,21 +57,21 @@ module.exports = class PinMessageCommand extends Command {
                 channel: arg.channel,
                 whatHappened: {
                     text: "Nothing.",
-                    date: new Date()
+                    date: new Date().toString()
                 },
                 waitingFor: {
                     text: "Nothing.",
-                    date: new Date()
+                    date: new Date().toString()
                 }
             }
         }
         if (sub == "waitingfor") {
             pinMessage.waitingFor.text = text;
-            pinMessage.waitingFor.date = new Date();
+            pinMessage.waitingFor.date = new Date().toString()
         }
         if (sub == "whathappened") {
             pinMessage.whatHappened.text = text;
-            pinMessage.waitingFor.date = new Date();
+            pinMessage.waitingFor.date = new Date().toString()
         }
         msg.client.pinMessage.addMessage(pinMessage);
         msg.reply("Added and updated PinMessage. Will show up in a few seconds.").then(res => res.delete(5000));
