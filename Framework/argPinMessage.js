@@ -81,7 +81,7 @@ function loadMessages() {
 
 function drawImage(pinMessage) {
 
-    const canvas = createCanvas(360, 450);
+    const canvas = createCanvas(380, 450);
     var ctx = canvas.getContext("2d");
     ctx.antialias = 'subpixel';
 
@@ -222,7 +222,7 @@ function drawImage(pinMessage) {
     ctx.textAlign = "center";
     ctx.fillText("Design by: @violace#8728 (307964708743413760)", width, pos());
 
-    const canvas2 = createCanvas(360, pos());
+    const canvas2 = createCanvas(380, pos());
     var ctx2 = canvas2.getContext("2d");
     ctx2.drawImage(canvas, 0, 0);
 
