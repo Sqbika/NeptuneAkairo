@@ -224,7 +224,7 @@ function drawImage(pinMessage) {
     var ctx2 = canvas.getContext("2d");
     ctx2.drawImage(canvas, 0, 0);
 
-    fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas2.toBuffer());
+    fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas.toBuffer());
 }
 
 
