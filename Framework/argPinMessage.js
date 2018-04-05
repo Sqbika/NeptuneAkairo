@@ -132,7 +132,7 @@ function drawImage(pinMessage) {
 
     ctx.fillStyle = normal;
     ctx.font = subText;
-    ctx.fillText(cutDate(pinMessage.whatHappened.date), canvas.width, pos(4));
+    ctx.fillText(cutDate(pinMessage.whatHappened.date.toString()), canvas.width, pos(4));
 
     ctx.textAlign = "start";
     ctx.fillStyle = red;
@@ -178,7 +178,7 @@ function drawImage(pinMessage) {
 
     ctx.fillStyle = normal;
     ctx.font = subText;
-    ctx.fillText(cutDate(pinMessage.waitingFor.date), canvas.width, pos(4));
+    ctx.fillText(cutDate(pinMessage.waitingFor.date.toString()), canvas.width, pos(4));
 
     ctx.textAlign = "start";
     ctx.fillStyle = red;
