@@ -64,6 +64,15 @@ module.exports = class PinMessageCommand extends Command {
                     date: new Date().toString()
                 }
             }
+            if (sub == "waitingfor") {
+                pinMessage.waitingFor.text = text;
+                pinMessage.waitingFor.date = new Date().toString()
+            }
+            if (sub == "whathappened") {
+                pinMessage.whatHappened.text = text;
+                pinMessage.whatHappened.date = new Date().toString()
+            }
+            msg.client.pinMessage.addMessage(pinMessage);
         }
         if (sub == "waitingfor") {
             pinMessage.waitingFor.text = text;
@@ -73,7 +82,7 @@ module.exports = class PinMessageCommand extends Command {
             pinMessage.whatHappened.text = text;
             pinMessage.whatHappened.date = new Date().toString()
         }
-        msg.client.pinMessage.addMessage(pinMessage);
+        msg.client.pinMessage.updateMessage(pinMessage);
         msg.reply("Added and updated PinMessage. Will show up in a few seconds.").then(res => res.delete(5000));
 	}
 };
