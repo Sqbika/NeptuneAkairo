@@ -81,7 +81,7 @@ function loadMessages() {
 
 function drawImage(pinMessage) {
 
-    const canvas = createCanvas(300, 450);
+    const canvas = createCanvas(350, 450);
     var ctx = canvas.getContext("2d");
     ctx.antialias = 'subpixel';
 
@@ -92,10 +92,10 @@ function drawImage(pinMessage) {
 
     var font = "Consolas";
 
-    var title = "25px " + font;
-    var subTitle = "11px " + font;
-    var subText = "14px " + font;
-    var sepFont = "9px " + font;
+    var title = "27px " + font;
+    var subTitle = "13px " + font;
+    var subText = "16px " + font;
+    var sepFont = "11px " + font;
 
     var bigSplit = ". - - .. - - .. - - .. - - .. - - .. - - .. -";
     var split = " .. - - .. - - .. - - .. - - ..";
@@ -159,8 +159,8 @@ function drawImage(pinMessage) {
             } else {
                 ehh = false;
             }
-
         } while (ehh);
+        if (i !== a-1)
         [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
         fill = text.slice(0, b);
         text = text.slice(b, text.length);
@@ -207,6 +207,7 @@ function drawImage(pinMessage) {
             }
 
         } while (ehh);
+        if (i !== a-1)
         [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
         fill = text.slice(0, b);
         text = text.slice(b, text.length);
@@ -219,9 +220,9 @@ function drawImage(pinMessage) {
     ctx.fillText(bigSplit, width, pos());
     ctx.font = "italic " + subTitle;
     ctx.textAlign = "center";
-    ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos());
+    ctx.fillText("Design by: @violace#8728 (307964708743413760)", width, pos());
 
-    const canvas2 = createCanvas(300, pos());
+    const canvas2 = createCanvas(350, pos());
     var ctx2 = canvas2.getContext("2d");
     ctx2.drawImage(canvas, 0, 0);
 

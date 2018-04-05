@@ -71,7 +71,7 @@ module.exports = class PinMessageCommand extends Command {
         }
         if (sub == "whathappened") {
             pinMessage.whatHappened.text = text;
-            pinMessage.waitingFor.date = new Date().toString()
+            pinMessage.whatHappened.date = new Date().toString()
         }
         msg.client.pinMessage.addMessage(pinMessage);
         msg.reply("Added and updated PinMessage. Will show up in a few seconds.").then(res => res.delete(5000));
