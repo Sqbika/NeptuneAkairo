@@ -36,7 +36,7 @@ module.exports = class PinMessageCommand extends Command {
                 prompt: {
                     start: (msg) => `<@!${msg.author.id}> Please provide the text you want to update the pin with.`
                 },
-                description: 'The text that will update the pinMessage.',
+                description: 'The text that will update the pinMessage.\nThe date can be these: Exact date (2017 04 10 12:00:00) or time from now (5day4hour / <0mo1w2d3h4m5s>)',
 				usage: '<string:rest>'
             }]
 		});
