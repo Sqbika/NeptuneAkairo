@@ -220,6 +220,8 @@ function drawImage(pinMessage) {
     ctx.font = "italic " + subTitle;
     ctx.textAlign = "center";
     ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos(-20));
+
+    fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas.toBuffer());
 }
 
 
