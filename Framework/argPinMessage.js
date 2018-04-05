@@ -87,7 +87,7 @@ function drawImage(pinMessage) {
 
     var red = "#CF3E6E";
     var blue = "#53B4BD";
-    var separator = "#626973";
+    var separator = "#738084";
     var normal = "#BFC0C1";
 
     var font = "Consolas";
@@ -95,7 +95,7 @@ function drawImage(pinMessage) {
     var title = "28px " + font;
     var subTitle = "14px " + font;
     var subText = "17px " + font;
-    var sepFont = "12px " + font;
+    var sepFont = "bold 12px " + font;
 
     var bigSplit = ". - - .. - - .. - - .. - - .. - - .. - - .. -";
     var split = " .. - - .. - - .. - - .. - - ..";
