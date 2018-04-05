@@ -37,8 +37,7 @@ async function updateMessage(pinMessage) {
         msg = await client.channels.get(pinMessage.channel).send({
             embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
-    }
-    else
+    } else
         msg.edit({
             embed: client.util.embed().setImage(`https://sqbika.win/atlas/pinmessages/${pinMessage.arg}.png?${Math.random()}`)
         });
@@ -80,8 +79,151 @@ function loadMessages() {
     });
 }
 
+function drawImage(pinMessage) {
+
+    const canvas = createCanvas(350, 450);
+    var ctx = canvas.getContext("2d");
+
+    var red = "#CF3E6E";
+    var blue = "#53B4BD";
+    var separator = "#626973";
+    var normal = "#BFC0C1";
+
+    var font = "Consolas";
+
+    var title = "25px " + font;
+    var subTitle = "11px " + font;
+    var subText = "14px " + font;
+    var sepFont = "9px " + font;
+
+    var bigSplit = ". - - .. - - .. - - .. - - .. - - .. - - .. -";
+    var split = " .. - - .. - - .. - - .. - - ..";
+
+    var width = canvas.width / 2;
+
+    function cutDate(date) {
+        return date.substr(0, date.length - 33);
+    }
+
+    // Positions;
+    var posCounter = 1;
+    var pos = (add = 10) => {
+        return 20 * posCounter++ + add;
+    }
 
 
+    ctx.font = title;
+    ctx.fillStyle = red;
+    ctx.textAlign = "center";
+    ctx.fillText(":: " + pinMessage.arg + " ::", width, pos());
+
+    ctx.font = subTitle;
+    ctx.fillStyle = blue;
+    ctx.fillText("last pin refresh: " + cutDate(new Date().toString()), width, pos());
+
+    ctx.fillStyle = separator;
+    ctx.font = sepFont;
+    ctx.fillText(bigSplit, width, pos());
+
+    ctx.fillStyle = blue;
+    ctx.font = subTitle;
+    ctx.textAlign = "right";
+    ctx.fillText("TIME OF LAST EVENT<", canvas.width, pos());
+
+    ctx.fillStyle = normal;
+    ctx.font = subText;
+    ctx.fillText(cutDate(pinMessage.whatHappened.date), canvas.width, pos(4));
+
+    ctx.textAlign = "start";
+    ctx.fillStyle = red;
+    ctx.font = subTitle;
+    ctx.fillText(">WHAT HAPPENED", 0, pos(10));
+
+    ctx.font = subText;
+    ctx.fillStyle = normal;
+    var text = pinMessage.whatHappened.text;
+    var textLength = ctx.measureText(text).width;
+    var a = Math.ceil(textLength / canvas.width);
+    for (var i = 1; i < a + 1; i++) {
+        var ehh = true;
+        var b = 50;
+        var fill;
+        var TEMPa = 0;
+        do {
+            TEMPa += 20;
+            fill = text.slice(0, b);
+            var fillWidth = ctx.measureText(fill).width + 25;
+            if (fillWidth > canvas.width) {
+                b--
+            } else {
+                ehh = false;
+            }
+
+        } while (ehh);
+        [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
+        fill = text.slice(0, b);
+        text = text.slice(b, text.length);
+        ctx.fillText(fill, 15, pos());
+    }
+
+    ctx.fillStyle = separator;
+    ctx.textAlign = "center";
+    ctx.font = sepFont;
+    ctx.fillText(split, width, pos());
+
+    ctx.fillStyle = blue;
+    ctx.font = subTitle;
+    ctx.textAlign = "right";
+    ctx.fillText("SPECULATED TIME OF NEXT EVENT<", canvas.width, pos());
+
+    ctx.fillStyle = normal;
+    ctx.font = subText;
+    ctx.fillText(cutDate(pinMessage.waitingFor.date), canvas.width, pos(4));
+
+    ctx.textAlign = "start";
+    ctx.fillStyle = red;
+    ctx.font = subTitle;
+    ctx.fillText(">WHAT WE ARE WAITING FOR", 0, pos(10));
+
+    ctx.font = subText;
+    ctx.fillStyle = normal;
+    var text = pinMessage.waitingFor.text;
+    var textLength = ctx.measureText(text).width;
+    var a = Math.ceil(textLength / canvas.width);
+    for (var i = 1; i < a + 1; i++) {
+        var ehh = true;
+        var b = 50;
+        var fill;
+        var TEMPa = 0;
+        do {
+            TEMPa += 20;
+            fill = text.slice(0, b);
+            var fillWidth = ctx.measureText(fill).width + 25;
+            if (fillWidth > canvas.width) {
+                b--
+            } else {
+                ehh = false;
+            }
+
+        } while (ehh);
+        [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
+        fill = text.slice(0, b);
+        text = text.slice(b, text.length);
+        ctx.fillText(fill, 15, pos());
+    }
+
+    ctx.fillStyle = separator;
+    ctx.textAlign = "center";
+    ctx.font = sepFont;
+    ctx.fillText(bigSplit, width, pos());
+    canvas.height = pos();
+    ctx.font = "italic " + subTitle;
+    ctx.textAlign = "center";
+    ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos(-20));
+}
+
+
+/* Old drawImage
 function drawImage(pinMessage) {
     const canvas = createCanvas(350, 300);
     var ctx = canvas.getContext("2d");
@@ -175,7 +317,7 @@ function drawImage(pinMessage) {
     ctx.fillText("Speculation:" + pinMessage.waitingFor.date, 1, 290);
 
     fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas.toBuffer());
-}
+} */
 
 module.exports = {
     setup,
