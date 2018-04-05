@@ -160,7 +160,7 @@ function drawImage(pinMessage) {
                 ehh = false;
             }
         } while (ehh);
-        if (i !== a-1)
+        if (i !== a)
         [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
         fill = text.slice(0, b);
         text = text.slice(b, text.length);
@@ -207,7 +207,7 @@ function drawImage(pinMessage) {
             }
 
         } while (ehh);
-        if (i !== a-1)
+        if (i !== a)
         [0, -1].indexOf(fill.lastIndexOf(' ')) !== -1 ? b = b : b = fill.lastIndexOf(' ');
         fill = text.slice(0, b);
         text = text.slice(b, text.length);
