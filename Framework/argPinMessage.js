@@ -142,7 +142,7 @@ function drawImage(pinMessage) {
 
     ctx.font = subText;
     ctx.fillStyle = normal;
-    var text = pinMessage.whatHappened.text;
+    var text = pinMessage.whatHappened.text + " ";
     var textLength = ctx.measureText(text).width;
     var a = Math.ceil(textLength / canvas.width);
     for (var i = 1; i < a + 1; i++) {
@@ -188,7 +188,7 @@ function drawImage(pinMessage) {
 
     ctx.font = subText;
     ctx.fillStyle = normal;
-    var text = pinMessage.waitingFor.text;
+    var text = pinMessage.waitingFor.text + " ";
     var textLength = ctx.measureText(text).width;
     var a = Math.ceil(textLength / canvas.width);
     for (var i = 1; i < a + 1; i++) {
