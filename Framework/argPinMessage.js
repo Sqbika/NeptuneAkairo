@@ -216,9 +216,6 @@ function drawImage(pinMessage) {
     ctx.textAlign = "center";
     ctx.font = sepFont;
     ctx.fillText(bigSplit, width, pos());
-    ctx.save();
-    canvas.height = pos();
-    ctx.load()
     ctx.font = "italic " + subTitle;
     ctx.textAlign = "center";
     ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos(-20));
