@@ -92,10 +92,10 @@ function drawImage(pinMessage) {
 
     var font = "Consolas";
 
-    var title = "27px " + font;
-    var subTitle = "13px " + font;
-    var subText = "16px " + font;
-    var sepFont = "11px " + font;
+    var title = "28px " + font;
+    var subTitle = "14px " + font;
+    var subText = "17px " + font;
+    var sepFont = "12px " + font;
 
     var bigSplit = ". - - .. - - .. - - .. - - .. - - .. - - .. -";
     var split = " .. - - .. - - .. - - .. - - ..";
@@ -109,7 +109,7 @@ function drawImage(pinMessage) {
     // Positions;
     var posCounter = 1;
     var pos = (add = 10) => {
-        return 20 * posCounter++ + add;
+        return 25 * posCounter++ + add;
     }
 
 
