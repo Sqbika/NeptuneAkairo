@@ -83,6 +83,7 @@ function drawImage(pinMessage) {
 
     const canvas = createCanvas(350, 450);
     var ctx = canvas.getContext("2d");
+    ctx.antialias = 'subpixel';
 
     var red = "#CF3E6E";
     var blue = "#53B4BD";
@@ -102,7 +103,7 @@ function drawImage(pinMessage) {
     var width = canvas.width / 2;
 
     function cutDate(date) {
-        return date.substr(0, date.length - 33);
+        return date.substr(0, date.length - 8);
     }
 
     // Positions;
@@ -218,13 +219,13 @@ function drawImage(pinMessage) {
     ctx.fillText(bigSplit, width, pos());
     ctx.font = "italic " + subTitle;
     ctx.textAlign = "center";
-    ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos(-20));
+    ctx.fillText("Design by: @Violance#8728 (307964708743413760)", width, pos());
 
     const canvas2 = createCanvas(350, pos(-20));
-    var ctx2 = canvas.getContext("2d");
+    var ctx2 = canvas2.getContext("2d");
     ctx2.drawImage(canvas, 0, 0);
 
-    fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas.toBuffer());
+    fs.write('/var/www/html/atlas/pinmessages/' + pinMessage.arg + ".png", canvas2.toBuffer());
 }
 
 
