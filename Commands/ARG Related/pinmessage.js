@@ -1,7 +1,7 @@
 const {
 	Command
 } = require('discord-akairo');
-const time = require('moment');
+const moment = require('moment');
 
 module.exports = class PinMessageCommand extends Command {
 	constructor() {
