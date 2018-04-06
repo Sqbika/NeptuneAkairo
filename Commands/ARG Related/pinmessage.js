@@ -72,7 +72,6 @@ module.exports = class PinMessageCommand extends Command {
 					date: new Date().toString()
 				}
 			}
-			console.log("Switch: " + sub);
 			switch (sub) {
 				case "waitingfor":
 					pinMessage.waitingFor.text = text;
@@ -90,13 +89,11 @@ module.exports = class PinMessageCommand extends Command {
 							break;
 						}
 					}
-					console.log(parsedTime);
 					pinMessage.waitingFor.date = parsedTime.toDate().toString();
 					break;
 			}
 			msg.client.pinMessage.addMessage(pinMessage);
 		}
-		console.log("Switch: " + sub);
 		switch (sub) {
 			case "waitingfor":
 				pinMessage.waitingFor.text = text;
@@ -107,7 +104,6 @@ module.exports = class PinMessageCommand extends Command {
 				break;
 			case "waitingfordate":
 				var parsedTime = moment(text);
-				console.log(parsedTime.isValid() + " / " + parsedTime.toString());
 				if (!parsedTime.isValid()) {
 					parsedTime = moment(new Date(parseUgly(text).absolute));
 					if (parsedTime == false) {
@@ -115,7 +111,6 @@ module.exports = class PinMessageCommand extends Command {
 						break;
 					}
 				}
-				console.log(parsedTime);
 				pinMessage.waitingFor.date = parsedTime.toDate().toString();
 				break;
 		}
