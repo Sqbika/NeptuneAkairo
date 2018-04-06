@@ -48,7 +48,6 @@ module.exports = class PinMessageCommand extends Command {
 
     async exec(msg, { sub, arg2, text }) {
         var arg = msg.client.settings.get(msg.guild.id, 'args')[arg2];
-        console.log(arg);
         var pinMessage = arg['pinMessage'];
         if (typeof pinMessage == "undefined") {
             pinMessage = {
@@ -64,7 +63,8 @@ module.exports = class PinMessageCommand extends Command {
                     text: "Nothing.",
                     date: new Date().toString()
                 }
-            }
+			}
+			console.log("Switch: " + sub);
             switch(sub) {
                 case "waitingfor":
                     pinMessage.waitingFor.text = text;
@@ -80,7 +80,8 @@ module.exports = class PinMessageCommand extends Command {
                         if (parsedTime == false)
                             msg.reply("Couldn't parse date format.");
                             break;
-                    }
+					}
+					console.log(parsedTime);
                     pinMessage.waitingFor.date = parsedTime.toDate().toString();
                     break;
             }
