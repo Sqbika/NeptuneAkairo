@@ -92,7 +92,7 @@ module.exports = class PinMessageCommand extends Command {
 					break;
 				case "waitingfordate":
 					var found = false;
-					Scheme.forEach(e => {
+					Schemes.forEach(e => {
 						if (e.arr.contains(text)) {
 							pinMessage.waitingFor.date = e.real;
 							found = true;
@@ -122,7 +122,7 @@ module.exports = class PinMessageCommand extends Command {
 				break;
 			case "waitingfordate":
 				var found = false;
-					Scheme.forEach(e => {
+					Schemes.forEach(e => {
 						if (e.arr.contains(text)) {
 							pinMessage.waitingFor.date = e.real;
 							found = true;
