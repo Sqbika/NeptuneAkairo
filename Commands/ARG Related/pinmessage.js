@@ -2,6 +2,16 @@ const {
 	Command
 } = require('discord-akairo');
 const moment = require('moment');
+const Schemes = [
+	{
+		real: 'Not Known.',
+		arr: ['unknown', 'undefined', 'no', 'not known', 'soon']
+	},
+	{
+		real: 'Next Weekend',
+		arr: ['weekend', 'next weekend', 'nw', 'saturday', 'sunday', 'next saturday', 'next sunday']
+	}
+]
 
 module.exports = class PinMessageCommand extends Command {
 	constructor() {
@@ -81,6 +91,14 @@ module.exports = class PinMessageCommand extends Command {
 					pinMessage.whatHappened.date = new Date().toString();
 					break;
 				case "waitingfordate":
+					var found = false;
+					Scheme.forEach(e => {
+						if (e.arr.contains(text)) {
+							pinMessage.waitingFor.date = e.real;
+							found = true;
+						}
+					});
+					if (found) break;
 					var parsedTime = moment(text);
 					if (!parsedTime.isValid()) {
 						parsedTime = moment(new Date(parseUgly(text).absolute));
@@ -103,6 +121,14 @@ module.exports = class PinMessageCommand extends Command {
 				pinMessage.whatHappened.date = new Date().toString();
 				break;
 			case "waitingfordate":
+				var found = false;
+					Scheme.forEach(e => {
+						if (e.arr.contains(text)) {
+							pinMessage.waitingFor.date = e.real;
+							found = true;
+						}
+					});
+				if (found) break;
 				var parsedTime = moment(text);
 				if (!parsedTime.isValid()) {
 					parsedTime = moment(new Date(parseUgly(text).absolute));
