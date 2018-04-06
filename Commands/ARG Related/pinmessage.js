@@ -4,11 +4,11 @@ const {
 const moment = require('moment');
 const Schemes = [
 	{
-		real: 'Not Known.',
+		real: 'Not Known.        ',
 		arr: ['unknown', 'undefined', 'no', 'not known', 'soon']
 	},
 	{
-		real: 'Next Weekend',
+		real: 'Next Weekend        ',
 		arr: ['weekend', 'next weekend', 'nw', 'saturday', 'sunday', 'next saturday', 'next sunday']
 	}
 ]
