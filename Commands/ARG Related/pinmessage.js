@@ -85,9 +85,10 @@ module.exports = class PinMessageCommand extends Command {
 					var parsedTime = moment(text);
 					if (!parsedTime.isValid()) {
 						parsedTime = moment(new Date(parseUgly(text).absolute));
-						if (parsedTime == false)
+						if (parsedTime == false) {
 							msg.reply("Couldn't parse date format.");
-						break;
+							break;
+						}
 					}
 					console.log(parsedTime);
 					pinMessage.waitingFor.date = parsedTime.toDate().toString();
@@ -109,9 +110,10 @@ module.exports = class PinMessageCommand extends Command {
 				console.log(parsedTime.isValid() + " / " + parsedTime.toString());
 				if (!parsedTime.isValid()) {
 					parsedTime = moment(new Date(parseUgly(text).absolute));
-					if (parsedTime == false)
+					if (parsedTime == false) {
 						msg.reply("Couldn't parse date format.");
-					break;
+						break;
+					}
 				}
 				console.log(parsedTime);
 				pinMessage.waitingFor.date = parsedTime.toDate().toString();
