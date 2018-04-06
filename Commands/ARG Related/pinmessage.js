@@ -106,6 +106,7 @@ module.exports = class PinMessageCommand extends Command {
 				break;
 			case "waitingfordate":
 				var parsedTime = moment(text);
+				console.log(parsedTime.isValid() + " / " + parsedTime.toString());
 				if (!parsedTime.isValid()) {
 					parsedTime = moment(new Date(parseUgly(text).absolute));
 					if (parsedTime == false)
