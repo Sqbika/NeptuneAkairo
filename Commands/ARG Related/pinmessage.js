@@ -95,6 +95,7 @@ module.exports = class PinMessageCommand extends Command {
 			}
 			msg.client.pinMessage.addMessage(pinMessage);
 		}
+		console.log("Switch: " + sub);
 		switch (sub) {
 			case "waitingfor":
 				pinMessage.waitingFor.text = text;
