@@ -76,7 +76,7 @@ module.exports = class PinMessageCommand extends Command {
                 case "waitingfordate":
                     var parsedTime = moment(text);
                     if (!parsedTime.isValid()) {
-                        parsedTime = moment(parseUgly(text).absolute);
+                        parsedTime = moment(new Date(parseUgly(text).absolute));
                         if (parsedTime == false)
                             msg.reply("Couldn't parse date format.");
                             break;
@@ -98,7 +98,7 @@ module.exports = class PinMessageCommand extends Command {
             case "waitingfordate":
                 var parsedTime = moment(text);
                 if (!parsedTime.isValid()) {
-                    parsedTime = moment(parseUgly(text).absolute);
+                    parsedTime = moment(new Date(parseUgly(text).absolute));
                     if (parsedTime == false)
                             msg.reply("Couldn't parse date format.");
                             break;
