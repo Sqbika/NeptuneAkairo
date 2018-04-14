@@ -13,7 +13,7 @@ class NeptuneClient extends AkairoClient {
 			automateCategories: true,
 			disabledEvents: ['TYPING_START'],
 			defaultPrompt: {
-				timeout:'Prompt has been canceled. Time out.',
+				timeout: 'Prompt has been canceled. Time out.',
 				ended: 'Retry limit reached. Please use `' + config.prefix + ' help <command>` for more information',
 				cancel: 'Command has been cancelled.',
 				start: 'Please provide argument.',
@@ -44,10 +44,11 @@ class NeptuneClient extends AkairoClient {
 	}
 
 	async start(auth) {
-		await this.login(auth);
+		this.build();
 		this.settings.init();
 		this.pinMessage.setup(this);
-		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
+		await this.login(auth);
+		//this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
 		this.bus.addFunction(this.pinMessage.periodicUpdate, false, 'PinMessageUpdate');
 		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.pinNumber = {};
