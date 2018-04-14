@@ -184,7 +184,7 @@ function drawImage(pinMessage) {
     ctx.textAlign = "start";
     ctx.fillStyle = red;
     ctx.font = subTitle;
-    ctx.fillText(">WHAT WE ARE WAITING FOR", 0, pos(10));
+    ctx.fillText(">SPECULATION FOR NEXT EVENT", 0, pos(10));
 
     ctx.font = subText;
     ctx.fillStyle = normal;
