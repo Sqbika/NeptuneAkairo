@@ -13,6 +13,7 @@ module.exports = class SetupCommand extends Command {
 		if(msg.client.settings.get(msg.guild.id, 'settings', 'notFound') == 'notFound') {
 			await msg.client.settings.set(msg.guild.id, 'settings', {
 				admins: [msg.author.id, msg.guild.ownerID],
+				mods: [],
 				argDelete: true,
 				leaveMeAlone: true
 			});

@@ -1,4 +1,6 @@
-const { Command } = require('discord-akairo');
+const {
+	Command
+} = require('discord-akairo');
 
 module.exports = class ArgChannelCommand extends Command {
 	constructor() {
@@ -7,39 +9,37 @@ module.exports = class ArgChannelCommand extends Command {
 			usage: 'argchannel <ARG> <add/remove> <channel>',
 			description: 'Adds the channel for the ARG List',
 			channelRestriction: 'guild',
-			args: [
-				{
-					id: 'arg',
-					type: (word, msg) => (Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1) ? true : undefined,
-					prompt: {
-						retries: 2,
-						start: 'Please provide a name for the ARG to set the main channel.',
-						retry: (msg) => `Please provide an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``
-					},
-					description: 'An ARG Name, which is in the database.',
-					usage: '<string>'
-				}, {
-					id: 'type',
-					type: ['add', 'remove'],
-					prompt: {
-						retries: 2,
-						start: 'Do you want to **add** or **remove** a channel?',
-						retry: 'You need to choose either **add** or **remove**'
-					},
-					description: 'You can **add** or **remove**',
-					usage: '<add / remove>'
-				}, {
-					id: 'channel',
-					type: 'channel',
-					prompt: {
-						retries: 2,
-						start: 'Please provide a channel to set the ARGs main channel',
-						retry: 'Please provide a channel to set the ARGs main channel'
-					},
-					description: 'Add an ARG channel to watch for the whats new messages.',
-					usage: '<channel>'
-				}
-			]
+			args: [{
+				id: 'arg',
+				type: (word, msg) => (Object.keys(msg.client.settings.get(msg.guild.id, 'args')).indexOf(word) !== -1) ? true : undefined,
+				prompt: {
+					retries: 2,
+					start: (msg) => `<@!${msg.author.id}> Please provide a name for the ARG to set the main channel.`,
+					retry: (msg) => `<@!${msg.author.id}${`> Please provide **ONLY** an existing ARG to set the main channel. ARGs: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\``}`
+				},
+				description: 'An ARG Name, which is in the database.',
+				usage: '<string>'
+			}, {
+				id: 'type',
+				type: ['add', 'remove'],
+				prompt: {
+					retries: 2,
+					start: (msg) => `<@!${msg.author.id}> Do you want to **add** or **remove** a channel?`,
+					retry: (msg) => `<@!${msg.author.id}> You need to choose either **add** or **remove**`
+				},
+				description: 'You can **add** or **remove**',
+				usage: '<add / remove>'
+			}, {
+				id: 'channel',
+				type: 'channel',
+				prompt: {
+					retries: 2,
+					start: (msg) => `<@!${msg.author.id}> Please provide a channel to set the ARGs main channel`,
+					retry: (msg) => `<@!${msg.author.id}> Please provide **ONLY** a channel to set the ARGs main channel`
+				},
+				description: 'Add an ARG channel to watch for the whats new messages.',
+				usage: '<channel>'
+			}]
 		});
 	}
 
@@ -47,10 +47,14 @@ module.exports = class ArgChannelCommand extends Command {
 		return msg.client.Permissions.ARGPermission(msg);
 	}
 
-	exec(msg, { arg, type, channel }) {
-		if(msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
+	exec(msg, {
+		arg,
+		type,
+		channel
+	}) {
+		if (msg.deletable && msg.client.settings.get(msg.guild.id, 'settings').argDelete) msg.delete();
 		var argObject = msg.client.settings.get(msg.guild.id, 'args');
-		if(type == 'add') {
+		if (type == 'add') {
 			argObject[arg].channels.push(channel.id);
 		} else {
 			argObject[arg].channels.splice(argObject[arg].channels.indexOf(channel.id), 1);

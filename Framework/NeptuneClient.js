@@ -13,10 +13,11 @@ class NeptuneClient extends AkairoClient {
 			automateCategories: true,
 			disabledEvents: ['TYPING_START'],
 			defaultPrompt: {
-				timeout:'Prompt has been canceled. Time out.',
+				timeout: 'Prompt has been canceled. Time out.',
 				ended: 'Retry limit reached. Please use `' + config.prefix + ' help <command>` for more information',
 				cancel: 'Command has been cancelled.',
-				retries: 4,
+				start: 'Please provide argument.',
+				retries: 0,
 				time: 30000
 			},
 		});
@@ -26,6 +27,7 @@ class NeptuneClient extends AkairoClient {
 		this.config = config;
 		this.bus = require('./bus.js');
 		this.remind = require('./remind');
+		this.pinMessage = require('./argPinMessage');
 		this.settings = new SequelizeProvider(this.database.SETTINGS, {
 			idColumn: 'Guild',
 			dataColumn: 'JSON'
@@ -42,11 +44,15 @@ class NeptuneClient extends AkairoClient {
 	}
 
 	async start(auth) {
-		await this.login(auth);
-		this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
-		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
+		this.build();
 		this.settings.init();
+		this.pinMessage.setup(this);
+		await this.login(auth);
+		//this.bus.addFunction(this.remind.checkReminds, false, 'Reminds');
+		this.bus.addFunction(this.pinMessage.periodicUpdate, false, 'PinMessageUpdate');
+		this.bus.loop = setInterval(this.bus.execFunctions, 5000);
 		this.pinNumber = {};
+		setTimeout(this.pinMessage.loadMessages, 5000);
 	}
 }
 
