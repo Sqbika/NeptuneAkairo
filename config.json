@@ -1,14 +1,14 @@
 {
     "ownerID": "132136706378956800",
-    "prefix": "nep",
+    "prefix": "atl",
     "commandDirectory": "./Commands/",
     "inhibitorDirectory": "./Inhibitors/",
     "listenerDirectory": "./Listeners/",
     "loginToken": "./Auth/auth.json",
     "channels": {
-        "log": "",
-        "error": "",
-        "blocked": ""
+        "log": "342713409244102657",
+        "error": "414120282584776734",
+        "blocked": "342713523459063811"
     },
 	"color": "#69359c"
 }
