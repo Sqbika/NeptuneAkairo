@@ -1,9 +1,9 @@
 const { Command } = require('discord-akairo');
 
-class PingCommand extends Command {
+class Ping2Command extends Command {
     constructor() {
-        super('ping', {
-            aliases: ['ping']
+        super('ping2', {
+            aliases: ['ping2']
         });
         console.log("=== PING READY ===");
     }
