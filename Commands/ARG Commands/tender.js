@@ -27,7 +27,7 @@ module.exports = class TenderCommand extends Command {
                 },
             }, {
                 id: 'rest',
-                type: 'rest'
+                match: 'rest'
             }]
 		});
 	}
