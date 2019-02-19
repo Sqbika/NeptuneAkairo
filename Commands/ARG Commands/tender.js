@@ -55,11 +55,11 @@ module.exports = class TenderCommand extends Command {
                     var user = data[0];
                     if (!user.has_completed_profile)
                         return msg.reply("UserID Invalid / Not used yet. IF you think this is an error, ping Sqbika about it.");
-                    return embed
+                    return msg.reply(embed
                         .setTitle('Profile of ' + user.username)
                         .addField('Status.', user.status_share_sentence)
                         .addField('Level / [XP, XP to levelup]', user.level + " / [" + user.xp + "," + user.xp_to_next_level + "]")
-                        .addField('Bio', user.bio)
+                        .addField('Bio', user.bio))
                 } else {
                     embed
                         .setTitle('Requested Profiles.');
@@ -76,7 +76,7 @@ module.exports = class TenderCommand extends Command {
                     })
                     if (invalid.length !== 0)
                         embed.addField("Invalid ids", "These IDs were invalid / not registered yet: " + invalid.join(' '));
-                    return embed;
+                    return msg.reply(embed);
                 }
                 break;
             case "help":
