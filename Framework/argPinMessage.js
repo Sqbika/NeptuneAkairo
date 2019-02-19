@@ -342,7 +342,8 @@ module.exports = {
     drawImage,
     addMessage,
     client,
-    messages
+    messages,
+    removeMessage
 };
 
 /*
