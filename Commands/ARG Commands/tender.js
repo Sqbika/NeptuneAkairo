@@ -13,7 +13,7 @@ module.exports = class TenderCommand extends Command {
 			channelRestriction: 'guild',
 			args: [{
                 id: 'sub',
-                type: ['profile', 'help', 'rest'],
+                type: ['profile', 'help', 'test'],
                 match: 'word',
                 default: 'help',
                 description: {
