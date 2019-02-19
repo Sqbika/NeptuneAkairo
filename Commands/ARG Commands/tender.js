@@ -45,7 +45,7 @@ module.exports = class TenderCommand extends Command {
                 var data = await getData('profile/list', {
                     player_ids: rest
                 }).profiles;
-                if (rest.length == 1) {
+                if (data.length == 1) {
                     var user = data[0];
                     if (!user.has_completed_profile)
                         return msg.reply("UserID Invalid / Not used yet. IF you think this is an error, ping Sqbika about it.");
