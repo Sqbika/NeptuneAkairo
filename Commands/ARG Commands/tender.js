@@ -57,13 +57,19 @@ module.exports = class TenderCommand extends Command {
                 } else {
                     embed
                         .setTitle('Requested Profiles.');
+                    var invalid = [];
                     data.forEach((e) => {
+                        if (e.has_completed_profile)
                         embed.addField(e.username, [
                             'Status: ' + e.status_share_sentence,
                             'Level / [XP, XP to levelup]:' + e.level + " / [" + e.xp + "," + e.xp_to_next_level + "]",
                             'Bio (Short): ' + user.bio.substring(0, 100)
                         ].join('\n'))
+                        else 
+                            invalid += e.player_id;
                     })
+                    if (invalid.length !== 0)
+                        embed.addField("Invalid ids", "These IDs were invalid / not registered yet: " + invalid.join(' '));
                     return embed;
                 }
                 break;
