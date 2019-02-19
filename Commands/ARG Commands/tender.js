@@ -39,6 +39,7 @@ module.exports = class TenderCommand extends Command {
             .setColor(msg.client.config.color)
             .setTimestamp(new Date())
             .setAuthor(msg.author);
+        rest = rest.split(' ');
 		switch (sub) {
 
             case "test":
