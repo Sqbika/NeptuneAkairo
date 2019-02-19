@@ -224,7 +224,34 @@ function checkPinNotify(channel) {
 		var file = getJSON(channel);
 		Object.keys(file).forEach((ele) => {
 			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
-				channel.client.users.get(ele).send(`**Pin Notification**\n\nPin happened in <#${channel.id}>`);
+				try {
+					channel.client.users.get(ele).send(`**Pin Notification**\n\nPin happened in <#${channel.id}>`).then().catch((e) => {
+						channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: <@!"+ ele + "> (" + ele + ")");
+						deleteUserPinNotify(ele);
+					});
+				} catch (e) {
+					channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: <@!"+ ele + "> (" + ele + ")");
+					deleteUserPinNotify(ele);
+				}
+			}
+		});
+	}
+}
+
+function checkPinNotifyTEST(channel) {
+	if(channel.type !== 'dm') {
+		var file = getJSON(channel);
+		Object.keys(file).forEach((ele) => {
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
+				try {
+					channel.client.users.get(ele).then().catch((e) => {
+						channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: " + ele);
+						deleteUserPinNotify(ele);
+					});
+				} catch (e) {
+					channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: " + ele);
+					deleteUserPinNotify(ele);
+				}
 			}
 		});
 	}
@@ -248,8 +275,16 @@ function checkFirstPinNotify(channel) {
 	if(channel.type !== 'dm') {
 		var file = getJSON(channel);
 		Object.keys(file).forEach((ele) => {
-			if(userHasPinNotify(file[ele], channel, file.anywhere)) {
-				channel.client.users.get(ele).send(`**Ambiguous Pin Detected**\n\nA Pin might have been added or deleted. in <#${channel.id}>`);
+			if(userHasPinNotify(file[ele], channel, file.anywhere)) {			
+				try {
+					channel.client.users.get(ele).send(`**Ambiguous Pin Detected**\n\nA Pin might have been added or deleted. in <#${channel.id}>`).then().catch((e) => {
+						channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: <@!"+ ele + "> (" + ele + ")");
+						deleteUserPinNotify(ele);
+					});
+				} catch (e) {
+					channel.client.channels.get('414120282584776734').send("Error: " + e + "\nUser: <@!"+ ele + "> (" + ele + ")");
+					deleteUserPinNotify(ele);
+				}
 			}
 		});
 	}
@@ -277,6 +312,12 @@ function userHasPinNotify(user, channel, settings) {
 		}
 	});
 	return yes;
+}
+
+function deleteUserPinNotify(user) {
+	var file = getJSON(msg);
+	delete file[user].pins;
+	writeJSON(file);
 }
 
 function listNotifies(msg) {
@@ -325,5 +366,5 @@ function getWordString(msg, file) {
 }
 
 
-module.exports = { enableN, disableN, addblacklist, removeblacklist,addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, checkFirstPinNotify, checkImportantPinNotify, listNotifies };
+module.exports = { enableN, disableN, addblacklist, removeblacklist,addWordNotify, addPinNotify, removeWordNotify, removePinNotify, checkWordNotify, checkPinNotify, checkPinNotifyTEST, checkFirstPinNotify, checkImportantPinNotify, listNotifies };
 
