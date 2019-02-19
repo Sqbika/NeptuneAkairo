@@ -49,7 +49,8 @@ module.exports = class TenderCommand extends Command {
             case "profile":
                 var data = await getData('profile/list', {
                     player_ids: rest
-                }).profiles;
+                });
+                data = data.profiles;
                 if (data.length == 1) {
                     var user = data[0];
                     if (!user.has_completed_profile)
