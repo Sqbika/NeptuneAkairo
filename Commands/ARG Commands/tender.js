@@ -69,7 +69,7 @@ module.exports = class TenderCommand extends Command {
                         embed.addField(e.username, [
                             'Status: ' + e.status_share_sentence,
                             'Level / [XP, XP to levelup]:' + e.level + " / [" + e.xp + "," + e.xp_to_next_level + "]",
-                            'Bio (Short): ' + user.bio.substring(0, 100)
+                            'Bio (Short): ' + e.bio.substring(0, 100)
                         ].join('\n'))
                         else 
                             invalid += e.player_id;
