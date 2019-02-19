@@ -42,7 +42,7 @@ module.exports = class TenderCommand extends Command {
 		switch (sub) {
 
             case "test":
-                console.log(rest);
+                console.log(rest, Array.isArray(rest));
             break;
 
             case "profile":
