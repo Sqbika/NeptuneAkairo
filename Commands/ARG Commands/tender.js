@@ -58,8 +58,7 @@ module.exports = class TenderCommand extends Command {
                         .setTitle('Profile of ' + user.username)
                         .addField('Status.', "" + user.status_share_sentence)
                         .addField('Level / [XP, XP to levelup]', user.level + " / [" + user.xp + "," + user.xp_to_next_level + "]")
-                        console.log(JSON.stringify(embed));
-                    return msg.reply(embed);
+                        .addField('Bio', "" + user.bio)
                 } else {
                     embed
                         .setTitle('Requested Profiles.');
@@ -69,14 +68,17 @@ module.exports = class TenderCommand extends Command {
                         embed.addField(e.username, [
                             'Status: ' + e.status_share_sentence,
                             'Level / [XP, XP to levelup]:' + e.level + " / [" + e.xp + "," + e.xp_to_next_level + "]",
+                            'Bio (Short): ' + e.bio.substring(0, 100)
                         ].join('\n'))
                         else 
                             invalid += e.player_id;
                     })
                     if (invalid.length !== 0)
                         embed.addField("Invalid ids", "These IDs were invalid / not registered yet: " + invalid.join(' '));
-                    return msg.reply(embed);
                 }
+                return msg.reply({
+                    embed: embed
+                });
                 break;
             case "help":
             default:
