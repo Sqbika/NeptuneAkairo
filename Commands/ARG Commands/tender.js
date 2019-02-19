@@ -13,7 +13,7 @@ module.exports = class TenderCommand extends Command {
 			channelRestriction: 'guild',
 			args: [{
                 id: 'sub',
-                type: ['profile', 'help'],
+                type: ['profile', 'help', 'rest'],
                 match: 'word',
                 default: 'help',
                 description: {
@@ -40,6 +40,10 @@ module.exports = class TenderCommand extends Command {
             .setTimestamp(new Date())
             .setAuthor(msg.author);
 		switch (sub) {
+
+            case "test":
+                console.log(rest);
+            break;
 
             case "profile":
                 var data = await getData('profile/list', {
