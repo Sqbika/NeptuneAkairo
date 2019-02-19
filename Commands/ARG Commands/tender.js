@@ -57,7 +57,7 @@ module.exports = class TenderCommand extends Command {
                     embed
                         .setTitle('Profile of ' + user.username)
                         .addField('Status.', "" + user.status_share_sentence)
-                        .addField('Liked / Matched Profiles', user.liked_profiles.length + " / " + user.matched_profiles)
+                        .addField('Liked / Matched Profiles', user.liked_profiles.length + " / " + user.matched_profiles.length)
                         .addField('Level / [XP, XP to levelup]', user.level + " / [" + user.xp + "," + user.xp_to_next_level + "]")
                         .addField('e_1/2/3/4', [user.e_1, user.e_2, user.e_3, user.e_4].join('/'))
                 } else {
@@ -69,7 +69,7 @@ module.exports = class TenderCommand extends Command {
                         embed.addField(e.username, [
                             'Status: ' + e.status_share_sentence,
                             'Level / [XP, XP to levelup]:' + e.level + " / [" + e.xp + "," + e.xp_to_next_level + "]",
-                            'Liked / Matched Profiles: ' + e.liked_profiles.length + " / " + e.matched_profiles,
+                            'Liked / Matched Profiles: ' + e.liked_profiles.length + " / " + e.matched_profiles.length,
                             'e_1/2/3/4:' [user.e_1, user.e_2, user.e_3, user.e_4].join('/')
                         ].join('\n'))
                         else 
