@@ -55,6 +55,7 @@ module.exports = class TenderCommand extends Command {
                     var user = data[0];
                     if (!user.has_completed_profile)
                         return msg.reply("UserID Invalid / Not used yet. IF you think this is an error, ping Sqbika about it.");
+                        console.log(user.username, user.status_share_sentence, user.level + " / [" + user.xp + "," + user.xp_to_next_level + "]", user.bio);
                     embed
                         .setTitle('Profile of ' + user.username)
                         .addField('Status.', user.status_share_sentence)
