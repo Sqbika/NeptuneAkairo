@@ -46,7 +46,7 @@ module.exports = class TenderCommand extends Command {
                     token: msg.client.config.tender,
                 });
                 embed.setTitle('Avaliable Quests')
-                embed.setDescription(data.user.inventory.map((e => `[${e.name}] - ${e.item_instance_id == undefined ? 'Locked' : 'Unlocked'} / Type: ${e.item_class}`)))
+                embed.setDescription(data.user.inventory.map((e => `[${e.name.replace('\n', ' ')}] - ${e.item_instance_id == undefined ? 'Locked' : 'Unlocked'} / Type: ${e.item_class}`)))
                 return msg.reply({
                     embed: embed
                 });
