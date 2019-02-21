@@ -41,9 +41,15 @@ module.exports = class TenderCommand extends Command {
         rest = rest.split(' ');
 		switch (sub) {
 
-            case "test":
-                console.log(rest, Array.isArray(rest));
-            break;
+            case "quests":
+                var data = await getData('user/get', {
+                    token: msg.client.config.tender,
+                });
+                embed.setTitle('Avaliable Quests')
+                embed.setDescription(data.user.inventory.map((e => `[${e.name}] - ${e.item_instance_id == undefined ? 'Locked' : 'Unlocked'} / Type: ${e.item_class}`)))
+                return msg.reply({
+                    embed: embed
+                });
 
             case "profile":
                 var data = await getData('profile/list', {
@@ -81,14 +87,12 @@ module.exports = class TenderCommand extends Command {
                 return msg.reply({
                     embed: embed
                 });
-                break;
             case "help":
             default:
                 return msg.reply("All avaliable sub-groups for Tender:\n" + [
                     '`help` - Shows this message',
                     '`profile` - Shows the profile of the provided ID'
                 ].join('\n'));
-                break;
         }
 	}
 };
@@ -140,3 +144,5 @@ async function getData(url, body) {
     "mode":"cors"});
     return await a.json();
 }
+
+//fetch("https://api.tenderbeta.com/user/get", {"credentials":"omit","headers":{"accept":"application/json","accept-language":"en-US,en;q=0.9","content-type":"application/x-www-form-urlencoded"},"referrer":"https://app.tenderbeta.com/","referrerPolicy":"no-referrer-when-downgrade","body":"token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.VlN4TXhYekVVcnhzcE9SNDFJT3lhQWJjWSszV1kvdUp1WGtIcnF6WGg2K0xjNjZaZ3B4NlJ5VWY0aVFXYnpXTkJ1Q1V1eFI1SGxTNGlhSkpHZzBnTXBNY004di94WStIaDFSUkRpMWZSbFVmbWsydHJobm9OWXA5UVVSbldYUG5zc2xJaG9SUnVOTHYyNGNDRU1NbG1icGhzcGdtY2NzbWY2azlha2VQS3lQbytHZ2lQeWRaWnFrM3gvRVpTRGNXUTRWbXdYc0JVOTVBZjM5S05obEZGSzIyYTF5TGFmTlNOL3Q4MS9BQWxRSFVpN3NMTmlIcWVCblMrTi8xMkkweU9EUFBsREVyVVNnQlRRTk4wQlJzYWFQdFJrTk42eHZtbitWSU1NQmNxOFdQOXFaWm9INEdIdWwza1hZSGE3dFg0dDBhMWFTelNyeExBeHdYQURtdHRDUzAwbXJhMzNPb0gwTXdNWExBVWNBV2l1L2xzbXZ5U3UweU9nQS9UVXgyU3FqaGlUMnU3NmtHZFo5azR5QXo1RmlHR3ZTeGgvaTM5TS9henhmSUg2a3VFSXZNRnM1UDNIZjZkTi9WcHo5Zw%3D%3D._xQ8nemVpLBlBGMG2UhoRo3kgIozvJbcNabv5GAMctg&token_uuid=5ffb4345-c68a-459b-b02d-83c1d20a0634&token_auth_level=3","method":"POST","mode":"cors"});
