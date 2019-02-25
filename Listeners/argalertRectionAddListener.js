@@ -28,11 +28,8 @@ module.exports = class ClientArgalertRectionAddListener extends Listener {
 				if (alertObject[arg].argalert.users.indexOf(user.id) == -1) {
 					alertObject[arg].argalert.users.push(user.id);
 					msg.client.settings.set(msg.guild.id, 'args', alertObject);
-					msg.reply("aaasd");
 				}
-				msg.reply("b");
 			}
-			msg.reply("c");
 		}
 	}
 };
