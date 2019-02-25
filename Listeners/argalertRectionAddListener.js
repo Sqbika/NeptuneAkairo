@@ -22,7 +22,7 @@ module.exports = class ClientArgalertRectionAddListener extends Listener {
 		if (msg.embeds.length == 1) {
 			/** @type {discordjs.MessageEmbed} */
 			var embed = msg.embeds[0];
-			if (embed.footer != null && embed.footer.text.startsWith('ARGAlert|')) {
+			if (embed.footer != null && embed.footer.text.startsWith('ARGAlert')) {
 				var arg = embed.footer.text.split('/')[1];
 				var alertObject = msg.client.settings.get(msg.guild.id, 'args');
 				if (alertObject[arg].argalert.users.indexOf(user.id) == -1) {
