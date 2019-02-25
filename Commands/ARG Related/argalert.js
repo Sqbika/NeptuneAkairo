@@ -1,6 +1,9 @@
 const {
 	Command
 } = require('discord-akairo');
+const {
+	Message
+} = require('discord.js');
 
 module.exports = class ArgalertCommand extends Command {
 	constructor() {
@@ -11,7 +14,7 @@ module.exports = class ArgalertCommand extends Command {
 			channelRestriction: 'guild',
 			args: [{
 					id: 'sub',
-					type: ['addme', 'removeme', 'notify', 'help'],
+					type: ['addme', 'removeme', 'notify', 'help', 'embed'],
 					match: 'word',
 					default: 'help',
 					description: {
@@ -70,6 +73,21 @@ module.exports = class ArgalertCommand extends Command {
 					msg.reply('You are already on the notification list.').then(msg => msg.delete(5000));
 				}
 				break;
+			case 'embed':
+				if (msg.client.Permissions.ARGPermission(msg)) {
+					/** @type {Message} */
+					var newmsg = await msg.channel.send({
+						embed: msg.client.util.embed()
+							.setTitle('ARGAlert Subscription Embed')
+							.setDescription('This Embed is for subscribing to ARGAlert. Reacting to this message will subscribe to the ' + arg + '\'s Argalert. Removing the reaction will not remove you. You need to do that in #bot-commands.')
+							.setFooter('ARGAlert/' + arg)
+							.setColor(msg.client.config.color)
+							.setTimestamp(new Date())
+					});
+					newmsg.react('🕰');
+					newmsg.pin();
+				}
+				break;
 			case 'removeme':
 				if (alertObject[arg].argalert.users.indexOf(msg.author.id) !== -1) {
 					alertObject[arg].argalert.users.splice(alertObject[arg].argalert.users.indexOf(msg.author.id), 1);
@@ -112,6 +130,7 @@ Possible Commands:
 **addme**: Subscribes you to the ARG notification. | Usage: nep argalert addme <argName>
 **removeme**: Unsubscribes you from the ARG notification | Usage: nep argalert removeme <argName>
 **notify**: Notifies the users in the list about the arg + string (MODERATORS ONLY) | Usage: nep argalert notify <argName> <string>
+**embed**: Creates a RichEmbed message, auto-pins it, people can subscribe to the ARGalert through reacting to it. | Usage: nep argalert embed <argName>
 **help**: This. | Usage: nep argalert help
 
 Possible <argName>s: \`${Object.keys(msg.client.settings.get(msg.guild.id, 'args')).join(', ')}\`
