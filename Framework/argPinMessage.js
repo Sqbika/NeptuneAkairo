@@ -50,6 +50,13 @@ async function updateMessage(pinMessage) {
     messages[messages.indexOf(messages.find(e => e.id == pinMessage.id))] = pinMessage;
 }
 
+async function removeMessage(pinMessage) {
+    var guildID = client.channels.get(pinMessage.channel).guild.id;
+    var a = client.settings.get(guildID, 'args')
+    delete(a[pinMessage.arg].pinMessage);
+    client.settings.set(guildID, 'args', a);
+}
+
 var periodicUpdateLimitter = 0;
 
 function periodicUpdate() {
@@ -335,7 +342,8 @@ module.exports = {
     drawImage,
     addMessage,
     client,
-    messages
+    messages,
+    removeMessage
 };
 
 /*

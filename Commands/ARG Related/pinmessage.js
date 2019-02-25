@@ -25,7 +25,8 @@ module.exports = class PinMessageCommand extends Command {
 				type: [
 					['waitingfor', 'wf', 'waiting', 'wfor'],
 					['whathappened', 'wh', 'happened', 'happen'],
-					['waitingfordate', 'wfd', 'waitingfd']
+					['waitingfordate', 'wfd', 'waitingfd'],
+					['remove', 'rm', 'delete', 'del']
 				],
 				prompt: {
 					retries: 2,
@@ -138,6 +139,10 @@ module.exports = class PinMessageCommand extends Command {
 					}
 				}
 				pinMessage.waitingFor.date = parsedTime.toDate().toString();
+				break;
+			case "remove":
+					msg.client.pinMessage.removeMessage(pinMessage);
+					return msg.reply("Removed pinmessage.");
 				break;
 		}
 		msg.client.pinMessage.updateMessage(pinMessage);
