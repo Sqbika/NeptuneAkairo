@@ -1,0 +1,17 @@
+{
+  "ownerid": "",
+  "prefix": "",
+  "commandDirectory": "./Commands",
+  "listenerDirectory": "./Listeners",
+  "inhibitorDirectory": "./Inhibitors",
+  "auth": {
+    "databaseUrl": "",
+    "token": ""
+  },
+  "logChannels": {
+    "log": "",
+    "error": "",
+    "blocked": ""
+  },
+  "color": ""
+}
