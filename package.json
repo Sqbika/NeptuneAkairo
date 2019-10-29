@@ -14,7 +14,7 @@
     "moment": "^2.22.0",
     "pg": "^7.4.1",
     "request": "^2.85.0",
-    "sequelize": "^4.33.4"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {},
   "keywords": [
